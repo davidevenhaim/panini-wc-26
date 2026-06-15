@@ -1,0 +1,9 @@
+---
+description: Form system rules — react-hook-form, zod, shared field components, DataTable.
+globs: src/components/form/**,src/features/**/form*,src/features/**/Form*,**/*.schema.ts,**/*.form.tsx
+alwaysApply: false
+---
+
+Read `.claude/rules/forms.md` for the full form rules.
+
+Key points: use `<Form>` wrapper + components from `src/components/form/`. Use `formValidator` helpers for zod validation. Never raw `<input>/<select>/<textarea>`. For lists, use `<DataTable>`.

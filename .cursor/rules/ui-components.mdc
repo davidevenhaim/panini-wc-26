@@ -1,0 +1,9 @@
+---
+description: UI, styling, and layout rules — Tailwind, cn(), shared component library.
+globs: src/components/**,src/app/**/*.tsx,src/features/**/*.tsx
+alwaysApply: false
+---
+
+Read `.claude/rules/ui-patterns.md` for the full UI rules.
+
+Key points: reuse `src/components/ui/` before writing custom UI. Use `cn()` for conditional classes. `<Button>`, `<Typography>`, `<DataTable>`, `<Dialog>`, `<Empty>`, `<PageContainer>` are the primary building blocks.

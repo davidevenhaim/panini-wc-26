@@ -1,0 +1,9 @@
+---
+description: Testing rules — Vitest, Testing Library, test location, mocking patterns.
+globs: src/__tests__/**,**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx,src/test/**
+alwaysApply: false
+---
+
+Read `.claude/rules/testing.md` for the full testing rules.
+
+Key points: Vitest + `@testing-library/react`. Tests in `src/__tests__/`. Wrap components in `renderWithProviders()` for intl/theme context. Prefer `getByRole`/`getByLabelText` over `getByTestId`. Mock `@/lib/api-client` for network calls.

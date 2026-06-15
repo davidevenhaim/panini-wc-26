@@ -1,0 +1,37 @@
+# Skeleton App — AI Agent Instructions
+
+Next.js 15 skeleton template. Reuse existing patterns before inventing new ones.
+
+**Full rules:** `CLAUDE.md`
+**Detailed rules by topic:** `.claude/rules/` directory — read the relevant file before working in each area.
+
+## Rule Files
+
+| Area | File |
+|------|------|
+| Forms | `.claude/rules/forms.md` |
+| Data fetching / mutations | `.claude/rules/data-fetching.md` |
+| Translations / i18n | `.claude/rules/translations.md` |
+| Routes / config / storage | `.claude/rules/app-structure.md` |
+| UI / styling / layout | `.claude/rules/ui-patterns.md` |
+| Hooks / utilities | `.claude/rules/hooks-and-utils.md` |
+| Stores / state | `.claude/rules/stores.md` |
+| Error handling | `.claude/rules/error-handling.md` |
+| Auth / permissions | `.claude/rules/auth.md` |
+| Tests | `.claude/rules/testing.md` |
+| Removing demo / starting fresh | `.claude/rules/reset.md` |
+
+## Non-Negotiable Rules
+
+1. Imports → always `@/`. Never `../../..`.
+2. Strings → never hardcode user-visible text in JSX. Use `useTranslations()`. Update all locale files (`messages/en.json`, `he.json`, `es.json`, `ar.json`).
+3. Data reads → `useFetch`. Data writes → `useMutation`. Never `fetch`/`axios` directly in components.
+4. Routes → never hardcode strings. Use `WEB_ROUTES` and `API_ROUTES` constants.
+5. Forms → never raw `<input>/<select>/<textarea>`. Use `src/components/form` components.
+6. Config → never `process.env` in components. Use `CONFIG` from `@/lib/app-config`.
+7. Storage → never `localStorage` directly. Use `useLocalStorage` / `getStorage` / `setStorage`.
+8. Toasts → never `toast()` directly. Use `toastSuccess/Error/Warning/Info/Promise` from `@/lib/toast`.
+9. Buttons → never raw `<button>`. Use `<Button>` from `@/components/ui/button`.
+10. Text → never raw `<p>/<h1>–<h6>/<span>`. Use `<Typography variant="...">` from `@/components/ui/typography`.
+11. Stores → never add Zustand fields unless state is shared across unrelated components.
+12. Tables → use `<DataTable>` from `@/components/ui/data-table`. No custom sort/filter/pagination state.

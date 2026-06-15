@@ -1,0 +1,9 @@
+---
+description: i18n rules — next-intl, four locale files, key conventions.
+globs: messages/**,src/i18n/**
+alwaysApply: false
+---
+
+Read `.claude/rules/translations.md` for the full translation rules.
+
+Key points: `useTranslations()` for all user-visible text. Update all four locale files when adding/editing keys: `messages/en.json`, `he.json`, `es.json`, `ar.json`. Never hardcode strings in JSX.

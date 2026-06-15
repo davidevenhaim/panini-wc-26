@@ -1,0 +1,9 @@
+---
+description: Data fetching and mutation rules — useFetch, useMutation, usePaginatedFetch, API proxy.
+globs: src/hooks/**,src/features/**,src/app/**
+alwaysApply: false
+---
+
+Read `.claude/rules/data-fetching.md` for the full data fetching rules.
+
+Key points: `useFetch` for reads, `useMutation` for writes, `usePaginatedFetch` for paginated lists. All requests proxy through `/api/proxy`. API interceptor auto-fires `toastError` on 4xx/5xx — do not double-call.

@@ -1,0 +1,9 @@
+---
+description: State management rules — three Zustand stores, when to use them.
+globs: src/store/**,src/hooks/use-permissions*
+alwaysApply: false
+---
+
+Read `.claude/rules/stores.md` for the full state management rules.
+
+Key points: three stores only (`useAuthStore`, `useLoaderStore`, `useThemeStore`). Never create new ones. Local state → `useState`. Server data → `useFetch`. Role checks → `usePermissions()`, never `user.role` directly.

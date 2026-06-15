@@ -1,0 +1,9 @@
+---
+description: Auth, role checks, and route protection rules.
+globs: src/store/auth*,src/hooks/use-permissions*,src/app/**/login*,src/app/**/signup*,src/middleware*
+alwaysApply: false
+---
+
+Read `.claude/rules/auth.md` for the full auth rules.
+
+Key points: `useAuthStore` for session state. Never `user.role` directly — use `usePermissions()`. `<PermissionGate roles={[...]}>` for conditional UI. API client auto-calls `logout()` on 401.

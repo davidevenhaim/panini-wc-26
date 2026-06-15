@@ -1,0 +1,9 @@
+---
+description: How to strip demo files and start fresh. Use when the user wants to remove demo content, delete demo, clean up the skeleton, or start from scratch.
+globs:
+alwaysApply: false
+---
+
+Read `.claude/rules/reset.md` for the full reset guide — follow every step in order.
+
+Key points: delete `src/app/demo/`, `src/components/demo/`, `src/features/contact/`, `src/features/landing-page/`, related constants, and orphaned public assets including `public/lottie/lottie-demo.json`. Do NOT delete `public/landing-page/` — the root page hero uses those images. Do NOT delete `src/app/page.tsx`; remove only its demo-facing GitHub/showcase buttons and related imports/constants. Keep the root hero plus theme/language controls. Clean translation keys and route constants. Delete `.next/` before running `pnpm build` to verify.
