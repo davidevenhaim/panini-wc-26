@@ -61,24 +61,27 @@ function fontVariableClasses(locale: AppLocale): string {
 }
 
 const ogDescription =
-  "Skeleton UI is a library of components, hooks, and utilities for building web applications fast and efficiently with AI.";
+  "Track your Panini FIFA World Cup 2026 sticker album. Manage 980 stickers, mark duplicates, and never miss a swap.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(CONFIG.siteUrl),
-  title: "Skeleton UI",
+  title: "Panini WC 2026 Album Tracker",
   description: ogDescription,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "Panini WC26", statusBarStyle: "default" },
   icons: {
     icon: "/logo.png",
+    apple: "/logo.png",
   },
   openGraph: {
-    title: "Skeleton UI",
+    title: "Panini WC 2026 Album Tracker",
     description: ogDescription,
     type: "website",
-    images: [{ url: "/logo.png", alt: "Skeleton UI" }],
+    images: [{ url: "/logo.png", alt: "Panini WC 2026 Album Tracker" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Skeleton UI",
+    title: "Panini WC 2026 Album Tracker",
     description: ogDescription,
     images: ["/logo.png"],
   },

@@ -1,43 +1,52 @@
 {
-  "select": "اختيار",
-  "selected": "تم الاختيار",
-  "selectAll": "اختيار الكل",
-  "deselectAll": "مسح الاختيار",
-  "noResults": "لم يتم العثور على نتائج",
-  "loading": "جارٍ التحميل…",
+  "select": "اختر",
+  "selected": "محدد",
+  "selectAll": "اختر الكل",
+  "deselectAll": "إلغاء التحديد",
+  "noResults": "لا توجد نتائج",
+  "loading": "جاري التحميل…",
   "save": "حفظ",
   "cancel": "إلغاء",
   "confirm": "تأكيد",
   "search": "بحث",
   "clear": "مسح",
   "close": "إغلاق",
+  "commandPalette": {
+    "title": "لوحة الأوامر",
+    "description": "ابحث وتنقل بسرعة",
+    "searchPlaceholder": "اكتب أمراً…",
+    "empty": "لا توجد نتائج.",
+    "defaultGroup": "اقتراحات"
+  },
+  "announcementBanner": {
+    "learnMore": "اعرف المزيد",
+    "dismissAria": "إغلاق الإشعار",
+    "regionAria": "إشعار الموقع"
+  },
+  "notificationDropdown": {
+    "title": "الإشعارات",
+    "empty": "لا توجد إشعارات جديدة.",
+    "triggerAria": "الإشعارات، {count} غير مقروءة"
+  },
   "collapseOption": "طي",
   "expandOption": "توسيع",
-  "openSidebar": "فتح الشريط الجانبي",
+  "openSidebar": "افتح الشريط الجانبي",
   "sidebarTitle": "الشريط الجانبي",
-  "sidebarDescription": "التنقل في الشريط الجانبي للجوال",
+  "sidebarDescription": "تنقل في الشريط الجانبي للجوال",
   "back": "رجوع",
   "next": "التالي",
   "previous": "السابق",
-  "actions": "الإجراءات",
+  "actions": "إجراءات",
   "optional": "اختياري",
   "required": "مطلوب",
   "all": "الكل",
-  "tabGuide": "الدليل",
-  "tabDashboard": "لوحة التحكم",
-  "tabForms": "المدخلات",
-  "tabDialogs": "الحوارات والتنبيهات",
-  "tabView": "عرض",
-  "tabTokenUsage": "نصائح الذكاء الاصطناعي",
-  "tabTechnicalGuide": "الدليل التقني",
-  "tabLanding": "صفحة هبوط",
   "themeLight": "فاتح",
   "themeDark": "داكن",
-  "themeCurrentLabel": "المظهر",
-  "localeHint": "يمكنك تغيير اللغة عبر ضبط ملف تعريف الارتباط NEXT_LOCALE إلى en أو es أو he أو ar.",
+  "themeCurrentLabel": "السمة",
+  "localeHint": "يمكنك تغيير اللغة عبر ضبط الكوكي NEXT_LOCALE.",
   "languageDialogTriggerAria": "تغيير اللغة",
   "languageDialogTitle": "اللغة",
-  "languageSettingsNote": "يتم حفظ لغتك حتى يفتح الموقع تلقائيًا باللغة التي اخترتها في المرة القادمة أيضًا.",
+  "languageSettingsNote": "سيتم حفظ لغتك للمرة القادمة.",
   "languages": {
     "en": "الإنجليزية",
     "he": "العبرية",
@@ -47,7 +56,7 @@
   "currentLabel": "الحالي",
   "clearSearchAria": "مسح البحث",
   "resultsCount": "{count, plural, one {# نتيجة} other {# نتائج}}",
-  "paginationAria": "التنقل بين الصفحات",
+  "paginationAria": "تنقل بين الصفحات",
   "previousPage": "الصفحة السابقة",
   "nextPage": "الصفحة التالية",
   "pageAria": "الصفحة {page}",
@@ -56,1176 +65,61 @@
   "themeLightMode": "الوضع الفاتح",
   "themeDarkMode": "الوضع الداكن",
   "home": {
-    "startHere": "أنشئ شيئًا رائعًا.",
-    "githubProject": "مشروع GitHub",
-    "showcasePage": "انتقل إلى صفحة العرض"
+    "startHere": "باناني كأس العالم 2026"
   },
-  "demo": {
-    "pageTitle": "تطبيق Skeleton",
-    "layoutSubtitle": "هذه الصفحات معاينة مباشرة لحزمة البداية. كل مكوّن هنا مصمم ليتم تخصيصه وإعادة استخدامه في مشاريعك.",
-    "productGuide": {
-      "eyebrow": "ابنِ باستخدام الذكاء الاصطناعي بطريقة منظمة",
-      "title": "ابنِ باستخدام الذكاء الاصطناعي من دون فوضى",
-      "subtitle": "هذه البنية مخصصة للمستخدمين غير التقنيين الذين يريدون بناء موقع أو تطبيق حقيقي باستخدام الذكاء الاصطناعي، ولكن بطريقة منظمة يستطيع المطور البشري فهمها ومتابعة العمل عليها لاحقًا.",
-      "shadcnUi": {
-        "title": "مكوّنات الواجهة (shadcn/ui)",
-        "description": "يستخدم المشروع shadcn/ui للأزرار والحوارات والنماذج وغيرها. المكوّنات تُنسَخ إلى مستودعك (ليست حزمة مغلقة)، لذا يمكنك تخصيصها بحرية.",
-        "install": "لإضافة مكوّنات من الكتالوج الرسمي: شغّل أداة CLI في جذر المشروع، مثلاً: pnpm dlx shadcn@latest add accordion — واختر المكوّنات من التوثيق.",
-        "docsLink": "توثيق مكوّنات shadcn/ui"
-      },
-      "purpose": {
-        "title": "لماذا يوجد هذا الموقع",
-        "description": "الهدف هو مساعدتك على البناء بسرعة أكبر باستخدام الذكاء الاصطناعي من دون التخلي عن التنظيم والوضوح والجودة على المدى الطويل.",
-        "points": {
-          "fast": {
-            "title": "التقدم بسرعة أكبر",
-            "description": "تبدأ من بنية جاهزة بدلًا من إنشاء كل شاشة وكل مجلد من الصفر."
-          },
-          "tokenSavings": {
-            "title": "توفير توكنات الذكاء الاصطناعي",
-            "description": "لا يحتاج الذكاء الاصطناعي إلى بناء كل شيء من الصفر، لأنه يملك بالفعل سياقًا ومكوّنات جاهزة وطريقة عمل واضحة."
-          },
-          "organized": {
-            "title": "البقاء منظمًا",
-            "description": "الواجهة والنماذج وطلبات الخادم والترجمات والحالة المشتركة كلها تتبع بالفعل بنية واضحة."
-          },
-          "conventions": {
-            "title": "العمل وفق معايير جيدة",
-            "description": "تعطي هذه البنية الذكاء الاصطناعي إطارًا أفضل، لذلك يكون الكود الناتج غالبًا أنظف وأكثر اتساقًا وأسهل في المتابعة."
-          },
-          "handoff": {
-            "title": "تمكين المطور من المتابعة بعدك",
-            "description": "سيتمكن المطور البشري من قراءة الكود وتحسينه ومواصلة البناء من دون البدء من جديد."
-          },
-          "aiReady": {
-            "title": "سياق جاهز للذكاء الاصطناعي",
-            "description": "يمنح CLAUDE.md و .claude/rules/ مساعد الذكاء الاصطناعي السياق الكامل للمشروع، فيتبع الأنماط الصحيحة دون الحاجة إلى شرحها في كل مرة."
-          }
-        }
-      },
-      "goodFit": {
-        "title": "متى يكون هذا مناسبًا جدًا",
-        "description": "هذه البنية مناسبة جدًا عندما تهمك سرعة الذكاء الاصطناعي وجودة النتيجة في الوقت نفسه.",
-        "items": {
-          "founder": {
-            "title": "مؤسس يبني MVP باستخدام الذكاء الاصطناعي",
-            "description": "مناسب لمؤسس غير تقني يريد إطلاق نسخة أولى جادة بسرعة."
-          },
-          "designer": {
-            "title": "مصمم يبني منتجًا حقيقيًا",
-            "description": "ممتاز للمصممين الذين يريدون الانتقال من الفكرة إلى منتج يعمل فعليًا."
-          },
-          "developer": {
-            "title": "مطور يريد بنية منظمة",
-            "description": "مناسب للمطورين الذين لا يريدون إعادة تعريف كل شيء من الصفر في كل مشروع."
-          },
-          "team": {
-            "title": "فريق يريد الاتساق",
-            "description": "مفيد للفرق التي تريد الاتساق بين الواجهة والنماذج وطلبات API والترجمات وإدارة الحالة."
-          }
-        }
-      },
-      "lessSuitable": {
-        "title": "متى يكون هذا أقل ملاءمة",
-        "description": "ليس كل مشروع يحتاج إلى هذا النوع من البنية، خاصة إذا لم تكن الصيانة المستقبلية مهمة.",
-        "items": {
-          "randomPages": {
-            "title": "إذا كان الهدف فقط إنشاء صفحات بسرعة",
-            "description": "إذا لم تكن البنية تهمك، فقد تبدو هذه البنية أكثر صرامة مما تحتاج."
-          },
-          "landingPage": {
-            "title": "إذا كنت تحتاج فقط إلى صفحة هبوط",
-            "description": "بالنسبة إلى صفحة هبوط بسيطة، فأنت على الأرجح لا تحتاج إلى حل بهذا القدر من الشمول والتعقيد."
-          },
-          "throwaway": {
-            "title": "إذا كانت تجربة لمرة واحدة",
-            "description": "بالنسبة لمشروع صغير موجود فقط لعرض قصير، قد لا تحتاج إلى كل هذه المعايير."
-          },
-          "noConventions": {
-            "title": "إذا لم تكن جودة الكود على المدى الطويل مهمة",
-            "description": "إذا لم يكن يهمك أن يكون الكود مقروءًا ومتسقًا وسهل المتابعة، فغالبًا هذا أكثر مما تحتاج."
-          }
-        }
-      },
-      "howToUse": {
-        "title": "كيفية تشغيله على جهازك",
-        "description": "تحقق أولًا من المتطلبات الأساسية، ثم اتبع الخطوات الـ 3.",
-        "stepLabel": "الخطوة {step}",
-        "prerequisites": {
-          "title": "قبل البدء — تحقق مما هو مثبَّت بالفعل",
-          "description": "افتح الطرفية وشغّل كل أمر. إذا رأيت رقم إصدار فهو مثبَّت. إذا ظهر خطأ، انقر على رابط التثبيت.",
-          "checkLabel": "شغّل في الطرفية للتحقق:",
-          "expectedLabel": "يجب أن ترى شيئًا مثل:",
-          "installLabel": "غير مثبَّت؟",
-          "installCommandLabel": "أو ثبّته بسرعة بهذا الأمر:",
-          "items": {
-            "git": {
-              "name": "Git",
-              "description": "مطلوب لتنزيل المشروع إلى جهازك."
-            },
-            "node": {
-              "name": "Node.js",
-              "description": "مطلوب لتشغيل المشروع محليًا."
-            },
-            "pnpm": {
-              "name": "pnpm",
-              "description": "مدير الحزم الذي يستخدمه هذا المشروع."
-            }
-          },
-          "editorTitle": "محرر كود — اختر أحدهما:",
-          "editorDescription": "تحتاج إلى محرر لفتح ملفات المشروع والعمل عليها."
-        },
-        "success": {
-          "title": "نجح الأمر! تطبيقك يعمل الآن.",
-          "body": "إذا ظهرت صفحة ويب على http://localhost:3000 — انتهيت! تطبيقك يعمل الآن على جهازك الخاص. يمكنك البدء في الاستكشاف أو البناء فورًا.",
-          "openLink": "فتح http://localhost:3000"
-        },
-        "troubleshooting": {
-          "title": "هل حدث خطأ ما؟",
-          "description": "إليك أكثر المشكلات شيوعًا التي يواجهها الناس، وكيفية إصلاح كل منها بالضبط.",
-          "items": {
-            "pnpmNotFound": {
-              "problem": "\"command not found: pnpm\" أو رسالة بأن الأمر غير معروف",
-              "fix": "Node.js غير مثبّت بعد. عد إلى الخطوة 1 وثبّته. بعد التثبيت، أغلق نافذة الطرفية تمامًا، أعد فتحها، وحاول مجددًا."
-            },
-            "portInUse": {
-              "problem": "\"Port 3000 is already in use\" أو خطأ EADDRINUSE",
-              "fix": "تطبيق آخر يستخدم ذلك المنفذ. أغلق البرامج الأخرى قيد التشغيل، ثم حاول pnpm dev مجددًا. أو استخدم منفذًا مختلفًا بهذا الأمر:"
-            },
-            "moduleNotFound": {
-              "problem": "\"Cannot find module\" أو أخطاء أثناء التثبيت",
-              "fix": "شغّل pnpm install مجددًا (الخطوة 3)، ثم حاول pnpm dev مرة أخرى. إذا استمر الفشل، احذف مجلد node_modules وشغّل pnpm install مرة أخرى."
-            },
-            "envError": {
-              "problem": "التطبيق يفتح لكنه يُظهر خطأ في الإعدادات",
-              "fix": "افتح ملف .env.local في المحرر. يمكن ترك سطر NEXT_PUBLIC_SERVER_URL فارغًا للاختبار المحلي — احفظ الملف، وأوقف الخادم بـ Ctrl+C، وشغّل pnpm dev مجددًا."
-            }
-          }
-        },
-        "steps": {
-          "installTools": {
-            "title": "ثبّت Git وNode.js وpnpm ومحرر كود",
-            "description": "قبل أن تبدأ، تأكد من أن الأدوات الأساسية مثبتة على جهازك. يمكنك استخدام صفحات التثبيت الرسمية، وبالنسبة إلى pnpm يمكنك أيضًا تثبيته بسرعة عبر npm. أما بالنسبة إلى المحرر، فكل من VS Code وCursor خياران ممتازان."
-          },
-          "cloneProject": {
-            "title": "أنشئ نسختك الخاصة على GitHub ونزّلها",
-            "description": "استخدم قالب GitHub لإنشاء مستودعك الخاص، ثم نزّله إلى جهازك باستخدام git clone.",
-            "githubNote": "تحتاج إلى حساب GitHub مجاني. ليس لديك؟ أنشئه على github.com — يستغرق دقيقتين.",
-            "commandNote": "بعد إنشاء مستودعك على GitHub، انقر على زر 'Code' الأخضر، انسخ الرابط، واستبدل <your-repository-url> في الأمر أدناه."
-          },
-          "openProject": {
-            "title": "افتح المشروع في المحرر وثبّت الاعتمادات",
-            "description": "افتح مجلد المشروع في محرر الكود، ثم شغّل أمر التثبيت حتى يصبح كل شيء جاهزًا.",
-            "commandNote": "نصيحة: يحتوي VS Code وCursor على طرفية مدمجة. افتحها من القائمة: View → Terminal. ستكون تلقائيًا داخل مجلد مشروعك."
-          },
-          "startProject": {
-            "title": "ابدأ التطبيق",
-            "description": "شغّل خادم التطوير وافتح التطبيق في المتصفح على localhost:3000.",
-            "commandNote": "الأمر الثاني ينسخ ملف الإعدادات المحلي (.env.local) عند الحاجة. يمكنك تخطيه في أول تشغيل — استخدمه إذا طلب التطبيق إعدادًا.",
-            "note": "بعد <code>pnpm dev</code>، وبمجرد أن يصبح المشروع قيد التشغيل، يمكنك فتحه في متصفح الكمبيوتر عبر <link>http://localhost:3000</link>."
-          }
-        }
-      },
-      "resources": {
-        "title": "روابط مفيدة",
-        "description": "هنا يمكنك العثور على رابط المشروع نفسه، بالإضافة إلى صفحات تثبيت الأدوات والمحررات الرئيسية.",
-        "linkLabel": "فتح الرابط",
-        "items": {
-          "github": {
-            "title": "مستودع GitHub",
-            "description": "هذا هو الرابط الرئيسي للقالب. يمكنك تحديثه لاحقًا إذا تغيّر المستودع."
-          },
-          "git": {
-            "title": "تثبيت Git",
-            "description": "تحتاج إلى Git لنسخ المشروع إلى جهازك والاحتفاظ بنسختك الخاصة."
-          },
-          "node": {
-            "title": "تثبيت Node.js",
-            "description": "تحتاج إلى Node.js لتشغيل المشروع محليًا إذا لم يكن مثبتًا بعد."
-          },
-          "pnpm": {
-            "title": "تثبيت pnpm",
-            "description": "تستخدم هذه البنية pnpm، ويمكنك تثبيته من الصفحة الرسمية أو بسرعة عبر npm."
-          },
-          "vscode": {
-            "title": "تنزيل VS Code",
-            "description": "محرر شائع مع منظومة كبيرة من الإضافات وطريقة عمل مألوفة."
-          },
-          "cursor": {
-            "title": "تنزيل Cursor",
-            "description": "محرر يركز على الذكاء الاصطناعي، يشبه VS Code ويعمل بشكل ممتاز للبناء الموجّه."
-          },
-          "claudeCode": {
-            "title": "تنزيل Claude Code",
-            "description": "Claude Code مساعد برمجة بالذكاء الاصطناعي يفهم بنية هذا المشروع ويكتب كودًا أفضل."
-          },
-          "githubSignup": {
-            "title": "إنشاء حساب GitHub مجاني",
-            "description": "تحتاج إلى حساب GitHub لإنشاء نسختك الخاصة من قالب المشروع."
-          }
-        }
-      },
-      "checklist": {
-        "title": "ابدأ خلال دقائق",
-        "description": "ضع علامة على كل خطوة عند إنجازها — يُحفظ تقدّمك في المتصفح.",
-        "progress": "{done} / {total} مكتمل",
-        "allDone": "اكتمل الإعداد! التطبيق يعمل.",
-        "openApp": "فتح localhost:3000",
-        "requiredBadge": "ضروري",
-        "optionalBadge": "اختياري",
-        "bonusBadge": "إضافي",
-        "checkLabel": "تحقق في <terminal>الطرفية</terminal>:",
-        "expectedLabel": "المخرجات المتوقعة:",
-        "notInstalledLabel": "غير مثبّت بعد؟",
-        "installCommandLabel": "أو ثبّته بسرعة بهذا الأمر:",
-        "commandLabel": "شغّل في <terminal>الطرفية</terminal>:",
-        "installOptionsLabel": "اختر أحدهما وثبّته:",
-        "orVersus": "— أو —",
-        "bonusTitle": "إضافي — مفيد",
-        "bonusDescription": "ليس مطلوبًا لتشغيل التطبيق، لكنه يحسّن العمل مع الذكاء الاصطناعي كثيرًا.",
-        "vibeTerms": {
-          "terminal": {
-            "term": "الطرفية",
-            "explanation": "نافذة نص تلصق فيها أوامر قصيرة لتنفيذها أدوات مثل Git وNode واحدًا تلو الآخر."
-          },
-          "lts": {
-            "term": "LTS",
-            "explanation": "اختصار Long Term Support أي دعم طويل الأمد: إصدار مستقر وموصى به لمعظم المستخدمين — وليس دائمًا الأحدث."
-          },
-          "packageManager": {
-            "term": "مدير الحزم",
-            "explanation": "برنامج يحمّل وينظم مكتبات الكود التي يعتمد عليها مشروعك — مثل تجهيز المكونات قبل الطبخ."
-          },
-          "codeEditor": {
-            "term": "محرر أكواد",
-            "explanation": "تطبيق مثل VS Code أو Cursor لفتح المجلدات، تعديل الملفات، وغالبًا فتح الطرفية في النافذة نفسها."
-          },
-          "github": {
-            "term": "GitHub",
-            "explanation": "موقع تُستضاف فيه المستودعات عبر الإنترنت. تنشئ نسختك هناك ثم تنزّلها إلى جهازك باستخدام Git (استنساخ)."
-          },
-          "localhost": {
-            "term": "localhost",
-            "explanation": "يعني «هذا الجهاز». عنوان مثل localhost:3000 يفتح التطبيق في المتصفح على جهازك فقط أثناء التطوير."
-          },
-          "envFile": {
-            "term": ".env / ملف الإعدادات",
-            "explanation": "ملف صغير للإعدادات مثل الروابط. يتضمّن المشروع مثالاً يمكن نسخه إلى `.env.local` عند الحاجة."
-          },
-          "git": {
-            "term": "Git",
-            "explanation": "برنامج للتحكم بالإصدارات: يحفظ لقطات من مشروعك مع الزمن لتتبع التغييرات، والرجوع عند الحاجة، ومزامنة الشيفرة مع الفريق أو مع مواقع مثل GitHub."
-          },
-          "javascript": {
-            "term": "JavaScript",
-            "explanation": "لغة البرمجة التي يُكتب بها هذا المشروع للمتصفح وأدوات الخادم. Node.js بيئة تشغيل تنفّذ JavaScript على جهازك حتى يُبنى المشروع ويُشغَّل محليًا."
-          }
-        },
-        "groups": {
-          "tools": "ثبّت الأدوات",
-          "setup": "اضبط مشروعك"
-        },
-        "items": {
-          "git": {
-            "title": "Git",
-            "description": "<git>Git</git> نظام للتحكم بالإصدارات — الأداة الأساسية لتتبع التغييرات وتاريخ المشروع. افتح <terminal>الطرفية</terminal> وشغّل أمر التحقق؛ إذا ظهر رقم إصدار، فالأمر سليم."
-          },
-          "node": {
-            "title": "Node.js",
-            "description": "بيئة تشغيل <javascript>JavaScript</javascript> مطلوبة لتشغيل هذا المشروع محليًا. نزّل إصدار <lts>LTS</lts> (المُوصى به) من الصفحة الرسمية."
-          },
-          "pnpm": {
-            "title": "pnpm",
-            "description": "<packageManager>مدير الحزم</packageManager> الذي يستخدمه هذا المشروع. إذا كان Node.js مثبتًا، يمكنك تثبيته بأمر واحد."
-          },
-          "editor": {
-            "title": "محرر أكواد",
-            "description": "تحتاج <codeEditor>محرر أكواد</codeEditor> لفتح ملفات المشروع. VS Code وCursor مجانيّان وممتازان."
-          },
-          "githubAccount": {
-            "title": "حساب GitHub ونسختك",
-            "description": "أنشئ حسابًا مجانيًا على <github>GitHub</github> إن لم يكن لديك. ثم افتح صفحة المشروع واستخدم «Use this template» لإنشاء نسخة لك."
-          },
-          "clone": {
-            "title": "استنسخ المشروع إلى جهازك",
-            "description": "على <github>GitHub</github> انقر الزر الأخضر Code، انسخ الرابط، ثم شغّل الأمر في <terminal>الطرفية</terminal> — استبدل العنصر النائب برابطك."
-          },
-          "install": {
-            "title": "ثبّت اعتماديات المشروع",
-            "description": "افتح <terminal>الطرفية</terminal> داخل مجلد المشروع (في VS Code أو Cursor: View → Terminal) وشغّل هذا الأمر."
-          },
-          "env": {
-            "title": "انسخ ملف الإعدادات",
-            "description": "بعد أن يعمل التطبيق (أو إذا ظهرت رسالة إعداد). يُنشئ <envFile>.env.local</envFile> من المثال — للاختبار المحلي لا حاجة للتعديل."
-          },
-          "run": {
-            "title": "شغّل التطبيق",
-            "description": "نفّذ الأمر وسيفتح التطبيق في المتصفح على <localhost>localhost:3000</localhost>. إذا رأيت هذه الصفحة، فقد انتهيت!"
-          },
-          "claudeCode": {
-            "title": "Claude Code",
-            "description": "مساعد ذكاء اصطناعي يقرأ CLAUDE.md ويكتب كودًا يتبع الأنماط الصحيحة. يسرّع العمل بشكل كبير."
-          },
-          "cursorBonus": {
-            "title": "محرر Cursor",
-            "description": "<codeEditor>محرر أكواد</codeEditor> مُصمَّم للبرمجة مع الذكاء الاصطناعي، قريب من VS Code. إذا لم تختر محرّرًا بعد، ابدأ هنا."
-          }
-        }
-      },
-      "actions": {
-        "howToAccordion": "طريقة الاستخدام",
-        "openLink": "فتح الرابط",
-        "copyCommand": "نسخ الأمر",
-        "copied": "تم النسخ!",
-        "commandLabel": "الأمر في الطرفية"
-      },
-      "builtWith": {
-        "title": "الاعتمادات / مبني باستخدام",
-        "description": "تعتمد هذه البنية على أدوات حديثة تساعدك على العمل بسرعة أكبر وبشكل أنظف ووفق معايير أفضل منذ اليوم الأول.",
-        "linkLabel": "زيارة الموقع",
-        "items": {
-          "nextjs": {
-            "name": "Next.js",
-            "description": "الإطار الرئيسي الذي يدير الصفحات والتنقل وبنية تطبيق جاهزة للإنتاج."
-          },
-          "react": {
-            "name": "React",
-            "description": "المكتبة التي بُنيت عليها الواجهة التفاعلية للمنتج."
-          },
-          "shadcn": {
-            "name": "shadcn/ui",
-            "description": "مجموعة مكونات عالية الجودة لبناء واجهة نظيفة وحديثة ومتسقة."
-          },
-          "tailwind": {
-            "name": "Tailwind CSS",
-            "description": "نظام تصميم يساعدك على العمل بسرعة مع الحفاظ على مظهر متسق."
-          },
-          "typescript": {
-            "name": "TypeScript",
-            "description": "يضيف بنية وأمانًا للكود حتى يصبح أسهل في الصيانة مع الوقت."
-          },
-          "nextIntl": {
-            "name": "next-intl",
-            "description": "يتولى الترجمة ودعم تعدد اللغات داخل التطبيق."
-          },
-          "zustand": {
-            "name": "Zustand",
-            "description": "أداة بسيطة وعملية لإدارة البيانات المشتركة داخل التطبيق."
-          },
-          "zod": {
-            "name": "Zod",
-            "description": "يُحقق من صحة البيانات بوضوح حتى تصبح النماذج والمنطق أكثر موثوقية."
-          },
-          "reactHookForm": {
-            "name": "React Hook Form",
-            "description": "نظام النماذج المستخدم في هذه البنية، مع تقليل الكود المتكرر."
-          },
-          "recharts": {
-            "name": "Recharts",
-            "description": "مكتبة الرسوم البيانية المستخدمة في لوحات التحكم وعرض البيانات في النسخة التجريبية."
-          },
-          "swr": {
-            "name": "SWR",
-            "description": "يتولى جلب البيانات والتخزين المؤقت بطريقة حديثة ومريحة."
-          },
-          "vercel": {
-            "name": "Vercel",
-            "description": "منصة نشر تعمل بشكل ممتاز مع مشاريع Next.js."
-          }
-        }
-      },
-      "ignoreAtFirst": {
-        "title": "ما يمكنك تجاهله في البداية",
-        "description": "يحتوي هذا المستودع على العديد من الملفات. معظمها بنية تحتية لا تلمسها أبداً، أو ميزات اختيارية يمكنك حذفها.",
-        "doNotRemove": "لا تحذف: src/app/api/proxy/ و src/lib/ و src/constants/ و src/components/form/ أو messages/en.json — هذه ملفات أساسية."
-      },
-      "addFeature": {
-        "title": "كيف تضيف ميزة جديدة",
-        "note": "سيعرف مساعد الذكاء الاصطناعي كيف ينفذ ذلك لك؛ هذا مجرد شرح يدوي.",
-        "description": "نموذج الاتصال في src/features/contact/ هو المثال المرجعي. اتبع نفس الخطوات لأي ميزة جديدة.",
-        "stepLabel": "الخطوة {step}"
-      },
-      "coreVsOptional": {
-        "title": "الأساسي مقابل الاختياري",
-        "coreTitle": "الأساسي — لا تحذف",
-        "coreDescription": "بنية تحتية أساسية. لا تحذف هذه الملفات.",
-        "optionalTitle": "اختياري — آمن للحذف",
-        "optionalDescription": "آمن للحذف أو التعديل عند بناء تطبيقك الحقيقي."
-      },
-      "mistakes": {
-        "title": "أخطاء شائعة يساعدك هذا الستارتر على تجنبها",
-        "description": "هذه هي الأخطاء التي تميل أدوات الذكاء الاصطناعي إلى ارتكابها في قواعد الكود غير المنظمة. الاتفاقيات هنا تمنع معظمها."
-      },
-      "devReference": "مرجع المطورين (تخطَّ هذا إذا لم تكن مبرمجًا)",
-      "resetTip": {
-        "title": "يُنصح بتشغيل هذا قبل البدء في تصميم منتجك",
-        "description": "قبل أن تبدأ في تصميم منتجك، شغّل هذا الأمر في الطرفية مع Claude Code أو Cursor أو أي مساعد ذكاء اصطناعي لإزالة كل محتوى العرض التوضيحي.",
-        "promptLabel": "الأمر للنسخ"
-      }
-    },
-    "guide": {
-      "heroDescription": "أساس جاهز لبناء المواقع والتطبيقات بطريقة مرتبة وواضحة وقابلة للتوسع. وهو مفيد جدًا عند العمل مع أدوات الذكاء الاصطناعي، بحيث يمكن حتى لغير التقنيين البناء بشكل أسرع من دون الوصول إلى كود فوضوي يصعب على المطورين صيانته لاحقًا.",
-      "heroStats": {
-        "hooks": "19 hook جاهزة",
-        "forms": "12 مكوّن نموذج",
-        "api": "اتصال منظم بالخادم",
-        "claude": "دليل AI في ملف CLAUDE.md"
-      },
-      "whatsIncluded": {
-        "title": "ما الذي يتضمنه",
-        "description": "ثمانية أنظمة جاهزة لمساعدتك على البدء فورًا دون الحاجة إلى إعادة اختراع كل شيء."
-      },
-      "features": {
-        "hooks": {
-          "title": "19 hook جاهزة",
-          "description": "أجزاء كود قابلة لإعادة الاستخدام توفّر الوقت في الأنماط الشائعة في الواجهة."
-        },
-        "forms": {
-          "title": "نظام النماذج",
-          "description": "نماذج منظمة مع التحقق من المدخلات وحقول جاهزة وترجمات مدمجة."
-        },
-        "api": {
-          "title": "الاتصال بالخادم",
-          "description": "طريقة مرتبة وآمنة للاتصال بالخلفية، مع معالجة الطلبات والأخطاء وحالات التحميل."
-        },
-        "ui": {
-          "title": "مكوّنات الواجهة",
-          "description": "مكوّنات جاهزة مثل الأزرار والجداول والحوارات والرسوم البيانية والحركات."
-        },
-        "i18n": {
-          "title": "متعدد اللغات",
-          "description": "دعم كامل لعدة لغات، بما في ذلك تبديل اللغة ودعم تخطيطات RTL بشكل صحيح."
-        },
-        "state": {
-          "title": "إدارة الحالة",
-          "description": "طريقة منظمة لإدارة البيانات والإعدادات المشتركة داخل التطبيق من دون فوضى في الكود."
-        },
-        "utilities": {
-          "title": "أدوات مساعدة",
-          "description": "دوال وأدوات مفيدة توفّر الوقت وتساعد على إبقاء الكود متسقًا."
-        },
-        "loading": {
-          "title": "حالات التحميل",
-          "description": "حالات تحميل واضحة ومتسقة حتى تبدو التجربة احترافية في كل شاشة."
-        }
-      },
-      "goldenRules": {
-        "title": "13 قاعدة ذهبية",
-        "description": "تساعد هذه القواعد في إبقاء الكود نظيفًا ومتسقًا وسهل الصيانة.",
-        "neverLabel": "أبدًا"
-      },
-      "rules": {
-        "useBoolean": "useState(false) لخيارات التفعيل",
-        "formatDate": "سلاسل تنسيق خام أو toLocaleDateString()",
-        "useTranslations": "نصوص hardcoded داخل JSX",
-        "useFetch": "useEffect + axios.get",
-        "useMutation": "axios.post/put/delete داخل المكوّنات",
-        "apiRoutes": "سلاسل API hardcoded داخل الكود",
-        "webRoutes": "مسارات hardcoded داخل الروابط",
-        "forms": "عناصر input خام",
-        "toasts": "استخدام Sonner بشكل مباشر",
-        "storage": "استخدام localStorage بشكل مباشر",
-        "config": "process.env داخل المكوّنات",
-        "styles": "أنماط inline ثابتة",
-        "icons": "مكتبات أيقونات أخرى"
-      },
-      "quickReference": {
-        "title": "مرجع سريع",
-        "description": "خريطة سريعة توضّح مكان كل جزء داخل المشروع.",
-        "keyDirectories": "المجلدات الرئيسية",
-        "techStack": "التقنيات المستخدمة",
-        "directories": {
-          "hooks": "Hooks مخصصة",
-          "form": "مكوّنات النماذج",
-          "utils": "أدوات التاريخ والنصوص والتنسيق",
-          "lib": "عميل API و toast والإعدادات",
-          "store": "مخازن Zustand",
-          "constants": "المسارات ومسارات API",
-          "types": "أنواع TypeScript المشتركة",
-          "messages": "ملفات الترجمة"
-        },
-        "layers": {
-          "framework": "Framework",
-          "language": "اللغة",
-          "styling": "التنسيق",
-          "ui": "الواجهة",
-          "forms": "النماذج",
-          "fetching": "جلب البيانات",
-          "state": "الحالة",
-          "i18n": "i18n",
-          "charts": "الرسوم البيانية",
-          "icons": "الأيقونات"
-        }
-      },
-      "gettingStarted": {
-        "title": "البدء",
-        "description": "ثلاث خطوات بسيطة لبدء العمل على مشروعك.",
-        "steps": {
-          "template": {
-            "title": "استخدم القالب",
-            "description": "أنشئ نسخة من القالب لتبدأ من مشروع نظيف ومنظم."
-          },
-          "install": {
-            "title": "التثبيت والإعداد",
-            "description": "ثبّت ما تحتاجه واضبط ملف البيئة الخاص بالمشروع."
-          },
-          "build": {
-            "title": "ابدأ البناء",
-            "description": "شغّل المشروع وابدأ البناء فوق أساس تم إعداده بالطريقة الصحيحة."
-          }
-        }
-      }
-    },
-    "roles": {
-      "admin": "مسؤول",
-      "editor": "محرر",
-      "viewer": "مشاهد"
-    },
-    "table": {
-      "role": "الدور"
-    },
-    "dashboard": {
-      "statsAndCharts": "الإحصائيات والرسوم البيانية",
-      "totalRevenue": "إجمالي الإيرادات",
-      "activeUsers": "المستخدمون النشطون",
-      "conversions": "التحويلات",
-      "windowWidth": "عرض النافذة",
-      "vsLastQuarter": "مقارنة بالربع السابق",
-      "vsLastMonth": "مقارنة بالشهر السابق",
-      "balanceOverTime": "الرصيد عبر الزمن",
-      "quarterlyRevenueVsExpenses": "الإيرادات مقابل المصروفات حسب الربع",
-      "revenue": "الإيرادات",
-      "expenses": "المصروفات",
-      "userRoles": "أدوار المستخدمين",
-      "animatedNumbers": "أرقام متحركة",
-      "animatedNumbersDescription": "حركة عدّ تصاعدي مع دعم لعدة صيغ عرض.",
-      "uptime": "التوفر",
-      "requestsPerDay": "الطلبات يوميًا",
-      "rating": "التقييم",
-      "dataTable": "جدول البيانات",
-      "searchUsers": "ابحث عن مستخدمين…"
-    },
-    "tokenUsage": {
-      "title": "نصائح الذكاء الاصطناعي",
-      "description": "أدوات وموارد من المجتمع تناسب التطوير بمساعدة الذكاء الاصطناعي. لا يأتي أي منها افتراضيًا مع هذا القالب أو Claude — كل رابط يوجّهك لمشروع مستقل لقراءة آلية العمل واتخاذ القرار.",
-      "disclaimer": "مشاريع خارجية ومجتمعية فقط. لا Anthropic ولا هذا القالب يصيانها. راجعوا التراخيص والأذونات وخطوات التثبيت قبل الاستخدام، وثبّتوا فقط ما تثقون به.",
-      "featuredLabel": "مختار",
-      "moreTipsTitle": "مزيد من اختيارات المجتمع",
-      "whyItMattersLabel": "لماذا يفيد",
-      "bestForLabel": "الأنسب لـ",
-      "examplesLabel": "أمثلة طلبات",
-      "linkGitHub": "GitHub",
-      "linkDocumentation": "التوثيق",
-      "cavemanTitle": "Caveman",
-      "cavemanDescription": "مهارة وحزمة إضافات مجتمعية تختصر ردود الوكيل بشكل منظم (غالبًا بأقل رموز كثيرًا) مع الحفاظ على الدقة التقنية. متاح لـ Claude Code وCodex وGemini CLI وCursor وغيرها — انظر جدول التثبيت وملف README على GitHub.",
-      "cavemanLinkLabel": "Caveman على GitHub",
-      "installCommandsTitle": "التثبيت حسب الوكيل",
-      "columnAgent": "الوكيل",
-      "columnInstall": "التثبيت",
-      "copyCommand": "نسخ",
-      "copied": "تم النسخ!",
-      "tips": {
-        "claudeMem": {
-          "title": "Claude Mem",
-          "description": "إضافة مجتمعية لـ Claude Code تخزّن سياق الجلسات لتستأنف العمل بأقل تكرار.",
-          "whyItMatters": "المشاريع الطويلة تتراكم فيها قرارات واتفاقيات يُفقد تتبعها بين الجلسات. طبقة ذاكرة مخصّصة تبقي ذلك السياق متاحًا دون إعادة كتابته.",
-          "useCases": [
-            "منتجات أو إعادة هيكلة طويلة الأمد",
-            "تصحيح الأخطاء عبر جلسات متعددة",
-            "الاحتفاظ باتفاقيات الفريق وملاحظات بنية المشروع",
-            "العودة للسرعة بعد انقطاع"
-          ],
-          "examples": [
-            "تابع من حيث توقفنا واسحب ما يرتبط بأحدث عمل على هذا المستودع.",
-            "تذكر البنية الأساسية وكيف ننسق أخطاء واجهة البرمجة في هذا المشروع."
-          ]
-        },
-        "uiUxProMax": {
-          "title": "UI UX Pro Max",
-          "description": "مهارة وأدوات مجتمعية تركز على الواجهة — التباعد، الطباعة، التسلسل البصري والأنماط — لتبدو المخرجات أكثر عناية من القالب العام.",
-          "whyItMatters": "النماذج تبني واجهات بسرعة، لكنها غالبًا متشابهة. مهارة بتوجيه تصميمي تدفع النتيجة نحو تسلسل أوضح ولمسة أكثر اتساقًا.",
-          "useCases": [
-            "لوحات بكثافة بيانات",
-            "نماذج وجداول وشاشات إعدادات",
-            "مظهر منتج حديث دون تسليم تصميم كامل",
-            "تجنب تباعد ونمط يبدو «افتراضيًا من الذكاء الاصطناعي»"
-          ],
-          "examples": [
-            "حسّن تخطيط هذه الصفحة لتبدو أنظف وأكثر حداثة دون تغيير السلوك.",
-            "اضبط التباعد والطباعة والتسلسل في هذا اللوح ليسهل مسحه بصريًا."
-          ]
-        },
-        "awesomeClaudeCode": {
-          "title": "Awesome Claude Code",
-          "description": "قائمة يصونها المجتمع لأدوات تتعلق بـ Claude Code: مهارات، خطافات، أوامر، إضافات وملاحظات سير العمل.",
-          "whyItMatters": "قبل كتابة طبقة أتمتة خاصة، مفيد أن ترى ما يستخدمه آخرون. مثل هذه القوائم تكشف أنماطًا صمدت في مشاريع حقيقية.",
-          "useCases": [
-            "تصفح الأدوات قبل بناء إعداد مخصص",
-            "استكشاف مسارات عمل وأوامر مائلة",
-            "البحث عن مهارات للواجهة أو التوثيق أو الأتمتة",
-            "معرفة ما يعتمده فرق أخرى"
-          ],
-          "examples": [
-            "اعثر على مهارات مجتمعية تساعد في صقل الواجهة الأمامية.",
-            "راجع أفكارًا للذاكرة أو الخطافات أو أتمتة المهام يمكن تبنيها دون إعادة الاختراع."
-          ]
-        }
-      },
-      "agents": {
-        "claudeCode": "Claude Code",
-        "codex": "Codex",
-        "geminiCli": "Gemini CLI",
-        "cursor": "Cursor",
-        "windsurf": "Windsurf",
-        "copilot": "Copilot",
-        "cline": "Cline",
-        "anyOther": "أي وكيل آخر"
-      }
-    },
-    "forms": {
-      "allFormattedInputs": "جميع المدخلات المنسقة",
-      "formattedInputsHint": "كل حقل يستخدم مُنسّقًا مختلفًا. كلها مطلوبة — أرسل فارغًا لرؤية كل رسالة خطأ. يستخدم الزر مؤشر نقاط ويحاكي تأخير 1.5 ثانية (يُعطّل الزر أثناء «الحفظ»).",
-      "textInputs": "حقول نصية",
-      "textInputsHint": "الاسم والبريد والملاحظات كلها مطلوبة — ستظهر عدة رسائل تحقق دفعة واحدة.",
-      "selectAndMultiSelect": "اختيار واختيار متعدد",
-      "selectSectionHint": "الفئة والحالة فقط مطلوبان. الاختيار المتعدد اختياري.",
-      "otpSliderAndToggles": "رمز التحقق، شريط التمرير، وخيارات التفعيل",
-      "otpSectionHint": "أدخل الرمز كاملًا وحدد مربع الشروط للإرسال.",
-      "dateAndFileUpload": "التاريخ ورفع الملفات",
-      "dateFileSectionHint": "اختر تاريخًا وأرفق ملفًا واحدًا على الأقل. نطاق التاريخ اختياري.",
-      "submit": "إرسال النموذج",
-      "submitFormatted": "حفظ القيم المنسقة",
-      "submitText": "حفظ الحقول النصية",
-      "submitSelect": "حفظ الاختيارات",
-      "submitOtp": "حفظ قسم الرمز",
-      "submitDateFiles": "حفظ التاريخ والملفات",
-      "submitSuccessTitle": "تم إرسال النموذج بنجاح",
-      "submitSuccessDescription": "يمكنك رؤية القيم المرسلة في وحدة التحكم.",
-      "searchSectionTitle": "Search inputs",
-      "searchSectionHint": "Debounced filter, autocomplete, and a simulated API lookup.",
-      "searchInputTitle": "Debounced search",
-      "searchInputHint": "Waits briefly after typing before firing the search callback.",
-      "searchInputPlaceholder": "Filter items…",
-      "searchInputResult": "Debounced query: “{query}”",
-      "searchAutocompleteTitle": "Autocomplete",
-      "searchAutocompleteHint": "Type to filter options and pick a result.",
-      "searchAutocompletePlaceholder": "Search documentation…",
-      "searchAutocompleteEmpty": "No matches.",
-      "searchAutocompleteSelected": "Selected: {label}",
-      "searchSimulationTitle": "Search simulation",
-      "searchSimulationHint": "Calls a demo API route (~1s delay) and shows matching results.",
-      "searchSimulationPlaceholder": "Try “react”, “form”, or “table”…",
-      "searchSimulationLoading": "Searching…",
-      "searchSimulationEmpty": "No results for that query.",
-      "calendarPreviewTitle": "Calendar preview",
-      "searchItemReactDocs": "React hooks guide",
-      "searchItemFormPatterns": "Form validation patterns",
-      "searchItemDataTable": "Data table component",
-      "searchItemI18n": "Internationalization setup",
-      "searchItemAuth": "Authentication flow",
-      "searchItemToasts": "Toasts and dialogs",
-      "searchCategoryDocs": "Documentation",
-      "searchCategoryGuide": "Guide",
-      "searchCategoryComponents": "Components"
-    },
-    "dialogs": {
-      "toastsAndDialogs": "الحوارات والتنبيهات",
-      "openDialog": "فتح حوار",
-      "areYouSure": "هل أنت متأكد أنك تريد المتابعة؟",
-      "actionCannotBeUndone": "لا يمكن التراجع عن هذا الإجراء.",
-      "confirmed": "تم التأكيد",
-      "actionExecuted": "تم تنفيذ الإجراء بنجاح.",
-      "deleteItemPermanently": "سيتم حذف هذا العنصر نهائيًا.",
-      "nestedDialog": "حوار داخلي",
-      "welcome": "مرحبًا",
-      "reusableDialog": "حوار قابل لإعادة الاستخدام مع زر تشغيل وأزرار إجراءات وأحجام مختلفة.",
-      "nestedBody": "يمكن استخدام هذا النمط للتأكيدات أو الخطوات المتتابعة أو النماذج داخل نافذة مودال.",
-      "success": "نجاح",
-      "operationCompleted": "اكتملت العملية بنجاح.",
-      "error": "خطأ",
-      "somethingWentWrong": "حدث خطأ ما.",
-      "info": "معلومة",
-      "someInformation": "إليك بعض المعلومات.",
-      "warning": "تحذير",
-      "pleaseBeCareful": "يرجى الانتباه.",
-      "loadingButton": "زر تحميل",
-      "copied": "تم النسخ!",
-      "copyText": "نسخ النص",
-      "resendIn": "إعادة الإرسال خلال {seconds} ث",
-      "startCountdown": "ابدأ العد التنازلي لـ 30 ثانية",
-      "spinnerInline": "مؤشر تحميل داخل المحتوى",
-      "demoSpinner": "مؤشر تحميل تجريبي",
-      "stopSpinner": "إيقاف المؤشر",
-      "startSpinner": "تشغيل المؤشر",
-      "skeletonRows": "Skeleton (3 صفوف)",
-      "hideSkeleton": "إخفاء Skeleton",
-      "showSkeleton": "إظهار Skeleton",
-      "disabledRegion": "منطقة معطلة",
-      "overlayAxios": "طبقة تحميل (Axios)",
-      "overlayDescription": "تظهر طبقة تحميل كاملة تلقائيًا أثناء تنفيذ النظام لطلبات في الخلفية.",
-      "disabledPlaceholder": "معطل أثناء التحميل…",
-      "action": "إجراء",
-      "reEnable": "إعادة التفعيل",
-      "disableRegion": "تعطيل المنطقة"
-    },
-    "typography": {
-      "eyebrow": "معاينة للقراءة فقط",
-      "title": "الطباعة",
-      "description": "عيّنات النص باللاتينية (لوريم إيبسوم) لمقارنة العناوين والنص الأساسي. غيّر اللغة لرؤية الخطوط الخاصة بكل لغة. عناصر المظهر واللغة تبقى في رأس الصفحة.",
-      "fontsNote": {
-        "title": "الخطوط في العرض التوضيحي",
-        "latin": "الإنجليزية والإسبانية: Space Grotesk للعناوين، Plus Jakarta Sans للنص الأساسي.",
-        "hebrew": "العبرية: Heebo للعناوين والنص الأساسي.",
-        "arabic": "العربية: Cairo للعناوين والنص الأساسي."
-      },
-      "shadcn": {
-        "title": "مكوّنات shadcn/ui",
-        "description": "العناصر الأساسية مثل الأزرار والبطاقات وحقول النماذج مبنية على shadcn/ui — مكوّنات يمكن الوصول إليها بأسلوب Tailwind تُنسَخ إلى src/components/ui ويمكن تعديلها في أي وقت.",
-        "install": "للإضافة: افتح التوثيق، اختر مكوّنًا، وشغّل CLI في جذر المشروع (مثلاً: pnpm dlx shadcn@latest add dialog).",
-        "docsLink": "استعراض كل المكوّنات"
-      },
-      "variants": {
-        "h1": "عنوان 1",
-        "h2": "عنوان 2",
-        "h3": "عنوان 3",
-        "h4": "عنوان 4",
-        "h5": "عنوان 5",
-        "h6": "عنوان 6",
-        "subtitle1": "عنوان فرعي 1",
-        "subtitle2": "عنوان فرعي 2",
-        "body1": "نص 1",
-        "body2": "نص 2",
-        "caption1": "تعليق 1",
-        "caption2": "تعليق 2",
-        "label1": "تسمية 1",
-        "label2": "تسمية 2",
-        "overline": "سطر علوي"
-      },
-      "lorem": {
-        "heading": "Lorem ipsum dolor sit amet",
-        "short": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
-        "label": "Lorem ipsum label",
-        "overline": "Lorem sample overline"
-      },
-      "showcase": {
-        "typeScale": "مقياس الطباعة",
-        "components": "عينات واجهة (للعرض فقط)",
-        "iconsTitle": "أيقونات (Iconify)",
-        "iconifyCatalogIntro": "تصفح آلاف مجموعات الأيقونات والأسماء على",
-        "iconifyLinkLabel": "كتالوج Iconify",
-        "lottieTitle": "Lottie",
-        "lottieHint": "حركة خفيفة للتحميل ولحظات السرور. إذا فشل تحميل الملف، يظهر بديل بسيط.",
-        "lottieFilesIntro": "استكشف الرسوم المتحركة المجانية على",
-        "lottieFilesLinkLabel": "LottieFiles",
-        "carouselTitle": "عرض دوّار",
-        "slide1": "الشريحة 1",
-        "slide2": "الشريحة 2",
-        "slide3": "الشريحة 3",
-        "contextMenuTitle": "قائمة سياق",
-        "contextMenuHint": "انقر بالزر الأيمن (أو اضغط مطولًا) على هذا المكان",
-        "contextCopy": "نسخ",
-        "contextDuplicate": "تكرار",
-        "contextDelete": "حذف",
-        "kbdTitle": "لوحة مفاتيح (kbd)",
-        "kbdHint": "لاختصارات وتلميحات المفاتيح.",
-        "badgesTitle": "شارات",
-        "badgeDefault": "افتراضي",
-        "badgeSecondary": "ثانوي",
-        "badgeOutline": "إطار",
-        "badgeSuccess": "نجاح",
-        "tabsTitle": "علامات تبويب",
-        "tabAlpha": "ألفا",
-        "tabBeta": "بيتا",
-        "tabGamma": "جاما",
-        "tabAlphaBody": "اللوحة الأولى: نص لوريم إيبسوم للمقارنة.",
-        "tabBetaBody": "اللوحة الثانية: نفس الأنماط ونص مختلف.",
-        "tabGammaBody": "اللوحة الثالثة: إيقاع ومسافات متناسقة.",
-        "accordionTitle": "الأكورديون",
-        "accordion1Trigger1": "التخطيط والمسافات",
-        "accordion1Content1": "حافظ على حشو وتباعد متسقين حتى تبدو الواجهات المزدحمة هادئة. فضّل رموز السمة على قيم البكسل لمرة واحدة.",
-        "accordion1Trigger2": "إيقاع الطباعة",
-        "accordion1Content2": "اجمع بين مقياس العناوين والنص الأساسي: عنوان واضح، نص داعم بخط أصغر، وتعليقات للبيانات الوصفية.",
-        "accordion2Trigger1": "اللون والتباين",
-        "accordion2Content1": "احتفظ بالألوان القوية للإجراءات والحالات. النص الثانوي بلون خافت يبقى مقروءًا دون منافسة المحتوى الرئيسي.",
-        "accordion2Trigger2": "الوضع الداكن",
-        "accordion2Content2": "اختبر حالات التركيز والتفاعل في كلا السمتين. يجب أن تبقى حلقات التركيز والحدود واضحة عند تبديل السمة.",
-        "accordion3Trigger1": "الحركة",
-        "accordion3Content1": "اجعل الحركة هادفة: مدد قصيرة للتغذية الراجعة، وتجنب تحريك تغييرات التخطيط الكبيرة إلا عند الضرورة.",
-        "accordion3Trigger2": "إمكانية الوصول",
-        "accordion3Content2": "فضّل ترتيب التركيز الطبيعي والتسميات على العناصر وأهداف لمس كافية — خاصة في الأدراج والأوراق والحوارات.",
-        "loadingStatesTitle": "حالات التحميل",
-        "tooltipTitle": "تلميح",
-        "tooltipTrigger": "مرر المؤشر أو ركّز",
-        "tooltipContent": "التلميحات تعطي سياقًا سريعًا دون ازدحام الواجهة. تعمل مع لوحة المفاتيح أيضًا.",
-        "popoverTitle": "نافذة منبثقة",
-        "popoverTrigger": "افتح النافذة",
-        "popoverHeading": "تفاصيل",
-        "popoverBody": "النوافذ المنبثقة تحمل أكثر قليلًا من التلميحات وتبقى حتى النقر خارجها.",
-        "progressFirst": "متحرك",
-        "progressSecond": "ثابت",
-        "drawerTitle": "درج (Drawer)",
-        "drawerTrigger": "افتح الدرج",
-        "drawerHeading": "ورقة سفلية",
-        "drawerBody": "الأدراج تنزلق من الأسفل على الجوال. مناسبة للإجراءات والنماذج القصيرة.",
-        "drawerClose": "إغلاق",
-        "scrollTitle": "منطقة تمرير",
-        "scrollLine": "سطر قابل للتمرير {n}",
-        "resizableTitle": "لوحات قابلة لتحجيم",
-        "resizableScrollSeparatorHint": "منطقة تمرير وفاصل في تقسيم واحد؛ اسحب المقبض لتحجيم اللوحات. على الشاشات الصغيرة يُرتب التقسيم عموديًا.",
-        "resizablePanelA": "اللوحة أ",
-        "resizablePanelB": "اللوحة ب",
-        "separatorTitle": "فاصل",
-        "separatorHint": "فواصل أفقية وعمودية.",
-        "separatorLeft": "يسار",
-        "separatorRight": "يمين",
-        "sheetTitle": "ورقة جانبية (Sheet)",
-        "sheetTrigger": "افتح الورقة",
-        "sheetHeading": "لوحة جانبية",
-        "sheetBody": "الأوراق تنزلق من الحافة. مفيدة للتنقل والمحتوى الثانوي.",
-        "skeletonLoaderHint": "مؤشر التحميل يعكس التحميل العام عندما يكون مفتاح العرض التوضيحي نشطًا.",
-        "sliderTitle": "منزلق",
-        "sliderHint": "معطّل هنا ليبقى العرض للقراءة فقط.",
-        "animationsTitle": "الحركة",
-        "breathingTitle": "نبض خفيف",
-        "breathingHint": "حلقة CSS لطيفة — للتمييز عند السكون، جذب الانتباه، أو إيحاء بأن العنصر «حي».",
-        "animatedNumberTitle": "رقم متحرك",
-        "animatedNumberLabel": "إجمالي تجريبي",
-        "animatedNumberHint": "عدّ من الصفر بتليين — مناسب للوحات والمؤشرات والأرقام التي تتغير مع البيانات.",
-        "animatedNumberRerun": "إعادة التشغيل",
-        "emptyStateSection": "حالة فارغة",
-        "emptyHeading": "لا توجد عناصر بعد",
-        "emptyDescription": "الحالة الفارغة توضّح ماذا حدث وماذا يمكن فعله عندما لا توجد بيانات.",
-        "emptyAction": "إجراء رئيسي",
-        "termTipTitle": "TermTip — تعريفات بأسلوب ويكيبيديا",
-        "termTipHint": "مرّر المؤشر فوق المصطلحات المسطرة أو اضغط عليها لرؤية تعريفها.",
-        "termTipDemo1": "يستخدم هذا المشروع",
-        "termTipDemo2": "لجلب البيانات،",
-        "termTipDemo3": "لإدارة الحالة العامة، و",
-        "termTipDemo4": "للنماذج — وكلها موثقة باستخدام",
-        "termTipDemo5": ".",
-        "termSwr": "SWR",
-        "termZustand": "Zustand",
-        "termRhf": "react-hook-form",
-        "termZod": "Zod",
-        "defSwr": "مكتبة لجلب البيانات في React. اختصارها Stale-While-Revalidate: تعرض البيانات المخزنة فورًا ثم تحدّثها بهدوء في الخلفية.",
-        "defZustand": "مكتبة خفيفة لإدارة الحالة العامة في React. أبسط بكثير من Redux: لا actions ولا reducers ولا تعقيد زائد. فقط store و hook.",
-        "defRhf": "مكتبة نماذج عالية الأداء لـ React. تستخدم مدخلات غير متحكم بها و refs لتقليل إعادة التصيير والحفاظ على سرعة النماذج الكبيرة.",
-        "defZod": "مكتبة تحقق من المخططات موجهة لـ TypeScript. تعرّف شكل البيانات مرة واحدة وتحصل على تحقق وقت التشغيل واستنتاج الأنواع وقت البناء.",
-        "identityControlsRowTitle": "Identity & controls",
-        "identityControlsRowHint": "Avatar stack, view toggle, and notification bell — common header toolbar patterns on one row.",
-        "avatarTitle": "Avatar & team stack",
-        "avatarHint": "User identity with optional presence badge and stacked avatars for collaborators.",
-        "breadcrumbTitle": "Breadcrumb",
-        "breadcrumbHome": "Home",
-        "breadcrumbDemo": "Demo",
-        "breadcrumbCurrent": "View",
-        "paginationTitle": "Pagination",
-        "commandTitle": "Command palette",
-        "commandHint": "Press ⌘K (Ctrl+K) or use the button to open quick navigation.",
-        "commandOpen": "Open command palette",
-        "commandGroupNav": "Navigation",
-        "commandGroupActions": "Actions",
-        "commandItemHome": "Go to home",
-        "commandItemSettings": "Open settings",
-        "commandItemDocs": "View documentation",
-        "alertTitle": "Alerts",
-        "alertInfoTitle": "Heads up",
-        "alertInfoBody": "Use alerts for product updates, tips, and non-blocking information.",
-        "alertErrorTitle": "Something went wrong",
-        "alertErrorBody": "Destructive alerts highlight errors that need attention.",
-        "spinnerVsSkeletonTitle": "Spinner vs skeleton",
-        "spinnerVsSkeletonHint": "Spinners suit short waits; skeletons preserve layout during longer loads.",
-        "spinnerLabel": "Inline spinner",
-        "toggleGroupTitle": "Toggle group",
-        "toggleList": "List view",
-        "toggleGrid": "Grid view",
-        "calendarTitle": "Calendar",
-        "fadeInTitle": "Fade in on scroll",
-        "fadeInBody": "Reveals content when it enters the viewport—great for marketing sections.",
-        "stepperTitle": "Stepper",
-        "stepperStep1": "Account",
-        "stepperStep1Desc": "Create your profile",
-        "stepperStep2": "Workspace",
-        "stepperStep2Desc": "Invite your team",
-        "stepperStep3": "Launch",
-        "stepperStep3Desc": "Ship your first project",
-        "stepperBack": "Back",
-        "stepperNext": "Next",
-        "timelineTitle": "Timeline / activity",
-        "timelineItem1Title": "Deployed to production",
-        "timelineItem1Desc": "Release v1.2.0 is live.",
-        "timelineItem1Time": "2h ago",
-        "timelineItem2Title": "New teammate joined",
-        "timelineItem2Desc": "Alex was added to the workspace.",
-        "timelineItem2Time": "Yesterday",
-        "timelineItem3Title": "Project created",
-        "timelineItem3Desc": "Acme dashboard initialized.",
-        "timelineItem3Time": "3 days ago",
-        "announcementTitle": "Announcement banner",
-        "announcementTitleText": "We shipped new reusable components",
-        "announcementDescription": "Dismissible banner for changelogs, GDPR notices, or maintenance.",
-        "testimonialTitle": "Testimonial cards",
-        "testimonialQuote": "This skeleton cut our setup time from weeks to days.",
-        "testimonialAuthor": "Jordan Lee",
-        "testimonialRole": "Engineering lead",
-        "testimonialQuote2": "The conventions made our AI tooling far more consistent.",
-        "testimonialAuthor2": "Sam Rivera",
-        "testimonialRole2": "Product designer",
-        "aiSkeletonTitle": "AI message skeleton",
-        "aiSkeletonHint": "Shimmer placeholder while an LLM response streams in.",
-        "notificationTitle": "Notification dropdown",
-        "notification1Title": "Build finished",
-        "notification1Body": "Preview deployment is ready.",
-        "notification1Time": "5m ago",
-        "notification2Title": "Comment on your PR",
-        "notification2Body": "“Looks good—ship it.”",
-        "notification2Time": "1h ago",
-        "stepperPanel1Title": "Set up your profile",
-        "stepperPanel1Badge": "Account",
-        "stepperPanel1Body": "Add your name, avatar, and timezone so teammates know who you are.",
-        "stepperPanel1Item1": "Upload a profile photo",
-        "stepperPanel1Item2": "Choose your preferred language",
-        "stepperPanel1Item3": "Enable email notifications",
-        "stepperPanel2Title": "Configure your workspace",
-        "stepperPanel2Badge": "Workspace",
-        "stepperPanel2Body": "Invite collaborators and pick defaults for new projects in this space.",
-        "stepperPanel2Item1": "Invite up to 5 teammates",
-        "stepperPanel2Item2": "Connect Slack or email digests",
-        "stepperPanel2Item3": "Set default project template",
-        "stepperPanel3Title": "Ready to launch",
-        "stepperPanel3Badge": "Launch",
-        "stepperPanel3Body": "Review your setup, publish your first project, and share it with stakeholders.",
-        "stepperPanel3Item1": "Run a quick accessibility check",
-        "stepperPanel3Item2": "Deploy to preview environment",
-        "stepperPanel3Item3": "Copy share link for feedback",
-        "stepperProgress": "Step {current} of {total}"
-      }
-    },
-    "landing": {
-      "heroBadge": "كل قسم هنا قابل لإعادة الاستخدام والتخصيص بسهولة",
-      "heroBackgroundAlt": "مشهد زخرفي للأرض من الفضاء مع خطوط شبكة مضيئة.",
-      "heroTitle": "ابنِ بسرعة أكبر.",
-      "heroAccentPrefix": "أطلق بثقة مع",
-      "heroAccentRotate1": "الثقة.",
-      "heroAccentRotate2": "أفضل الممارسات.",
-      "heroAccentRotate3": "قابلية التوسع.",
-      "typewriterPhrase1": "تقنيات حديثة، بلا إعداد معقد.",
-      "typewriterPhrase2": "انشر خلال دقائق.",
-      "typewriterPhrase3": "جاهز للذكاء الاصطناعي من اليوم الأول.",
-      "typewriterPhrase4": "مبني لمنتجات حقيقية.",
-      "heroCta": "ابدأ الآن",
-      "heroSecondary": "عرض الكود المصدري",
-      "marqueeTitle": "مبني باستخدام",
-      "motionMarqueeAria": "شريط عناوين متحرك",
-      "motionMarqueeText": "بداية منظمة • إطلاق أسرع • أنماط قابلة للتوسع • ",
-      "motionStackIntroTitle": "بطاقات متراكبة بالحركة",
-      "motionStackIntroHint": "مرر للأسفل — تتدرج الحزمة بينما تثبت كل طبقة في مكانها.",
-      "motionStackCard1Title": "أقسام قابلة للتركيب",
-      "motionStackCard1Desc": "Hero، إثبات اجتماعي، تسعير، وأسئلة شائعة — كل كتلة قابلة لإعادة الاستخدام حتى ينمو التسويق مع المنتج.",
-      "motionStackCard2Title": "نماذج تعمل كما يجب",
-      "motionStackCard2Desc": "react-hook-form مع تحقق Zod يحافظان على التدفقات المعقدة واضحة من دون حلول مخصصة زائدة.",
-      "motionStackCard3Title": "طبقة بيانات مدمجة",
-      "motionStackCard3Desc": "useFetch و useMutation يغلّفان القراءة والكتابة حتى تبقى الشاشات متسقة من البداية للنهاية.",
-      "motionStackImageAlt": "صورة زخرفية مستخدمة في عرض البطاقات المتراكبة",
-      "motionStackSeeMore": "اعرف المزيد",
-      "motionRandomizedText": "اتفاقيات منظمة. تكرارات أسرع.",
-      "statsTitle": "بالأرقام",
-      "stat1Label": "دقائق لأول صفحة",
-      "stat2Label": "مكوّنات واجهة",
-      "stat3Label": "hooks مخصصة",
-      "stat4Label": "TypeScript",
-      "featureTitle": "ما الموجود بالداخل",
-      "feature1Title": "نظام النماذج",
-      "feature1Desc": "react-hook-form + Zod + مكوّنات حقول مشتركة. نمط واحد لكل نموذج.",
-      "feature2Title": "جلب البيانات",
-      "feature2Desc": "useFetch و useMutation مبنيان على SWR. لا حاجة لتكرار منطق حالة التحميل.",
-      "feature3Title": "i18n مدمج",
-      "feature3Desc": "next-intl مع تبديل اللغة عبر cookie. كل النصوص مركزية.",
-      "ctaTitle": "جاهز للإطلاق؟",
-      "ctaSubtitle": "استنسخ skeleton وابدأ مشروعك التالي خلال دقائق.",
-      "ctaButton": "استنسخ من GitHub",
-      "faqTitle": "الأسئلة الشائعة",
-      "faqSubtitle": "إجابات مباشرة حول القالب — التخصيص، i18n، البيانات، والمصادقة.",
-      "faq1Q": "ما فائدة هذا القالب؟",
-      "faq1A": "إنه starter مبني على Next.js مع واجهة مشتركة، نماذج، اتفاقيات لجلب البيانات، i18n، وأنماط توجيه حتى تركز على ميزات المنتج بدل بناء الأساسيات من الصفر.",
-      "faq2Q": "هل يمكنني إزالة صفحات العرض أو استبدالها؟",
-      "faq2A": "نعم. مسارات العرض موجودة داخل مجلد app demo مع مكوّنات تبويبات مطابقة. احذفها أو استبدل محتواها عندما تكون جاهزًا — وسيبقى باقي skeleton مفيدًا.",
-      "faq3Q": "كيف تعمل الترجمة وتعدد اللغات؟",
-      "faq3A": "النصوص محفوظة في ملفات اللغة وتُحمّل عبر next-intl. أضف مفاتيح لكل نص جديد في كل لغة، واستخدم أدوات الترجمة من المكوّنات — لا تكتب نصوصًا ظاهرة مباشرة داخل JSX.",
-      "faq4Q": "كيف يجب أن أجلب البيانات وأحدّثها؟",
-      "faq4A": "استخدم hook المشترك useFetch للقراءة و useMutation للكتابة. هذه الأدوات تغلّف طبقة البيانات بحالات تحميل وأخطاء متسقة — تجنب استدعاء fetch أو axios مباشرة داخل المكوّنات.",
-      "faq5Q": "هل يتضمن القالب مصادقة؟",
-      "faq5A": "يوجد نمط لمجموعة مسارات auth وتخطيطات يمكنك توسيعها. صِل مزود الهوية أو طبقة الجلسات الحقيقية المناسبة للإنتاج — يركز skeleton على الواجهة وبنية التطبيق.",
-      "heroSlide1Title": "أطلق خلال دقائق",
-      "heroSlide1Desc": "استنسخ، اضبط، وانشر.",
-      "heroSlide1Cta": "اعرف المزيد",
-      "heroSlide2Title": "نظام نماذج جاهز",
-      "heroSlide2Desc": "react-hook-form + Zod + مكوّنات حقول مشتركة.",
-      "heroSlide2Cta": "استكشف النماذج",
-      "heroSlide3Title": "متعدد اللغات من اليوم الأول",
-      "heroSlide3Desc": "next-intl مع دعم RTL و4 لغات مدمجة.",
-      "heroSlide3Cta": "شاهد الطريقة",
-      "heroSlide4Title": "مصمم للعمل مع الذكاء الاصطناعي",
-      "heroSlide4Desc": "CLAUDE.md يمنح مساعد الذكاء الاصطناعي سياق المشروع كاملًا.",
-      "heroSlide4Cta": "ابدأ الآن",
-      "splitNarrativeEyebrow": "الأساس",
-      "splitNarrativeTitle": "من صفحة جميلة إلى أساس حقيقي للمنتج",
-      "splitNarrativeStep1Eyebrow": "القصة أولًا",
-      "splitNarrativeStep1Title": "ابدأ بالقصة",
-      "splitNarrativeStep1Desc": "يجب أن تشرح صفحة الهبوط لماذا يهم منتجك قبل أن تشرح كل ميزة.",
-      "splitNarrativeStep2Eyebrow": "أقسام معيارية",
-      "splitNarrativeStep2Title": "ركّب من الأقسام",
-      "splitNarrativeStep2Desc": "Hero، إثبات اجتماعي، مشكلة، منتج، تسعير، وأسئلة شائعة — كل كتلة قابلة لإعادة الاستخدام، ومكتوبة بأنواع، وسهلة النقل.",
-      "splitNarrativeStep3Eyebrow": "متصل",
-      "splitNarrativeStep3Title": "صِل الصفحة بالتطبيق",
-      "splitNarrativeStep3Desc": "لا ينبغي أن تكون صفحة الهبوط صفحة مؤقتة. يجب أن تعيش بجانب المسارات، والمصادقة، والنماذج، ولوحة التحكم، وتدفقات المنتج المستقبلية.",
-      "splitNarrativeStep4Eyebrow": "جاهز للنمو",
-      "splitNarrativeStep4Title": "توسع من دون إعادة كتابة",
-      "splitNarrativeStep4Desc": "مع نمو المنتج، ينمو نظام التسويق معه — أقسام جديدة، إعدادات جاهزة جديدة، صفحات جديدة، ونفس البنية.",
-      "pricingSubtitle": "خطط بسيطة وشفافة لكل حجم فريق",
-      "pricingTitle": "Pricing table",
-      "pricingStarterName": "Starter",
-      "pricingStarterDesc": "For side projects",
-      "pricingStarterMonthly": "$9/mo",
-      "pricingStarterYearly": "$90/yr",
-      "pricingProName": "Pro",
-      "pricingProDesc": "For growing teams",
-      "pricingProMonthly": "$29/mo",
-      "pricingProYearly": "$290/yr",
-      "pricingTeamName": "Team",
-      "pricingTeamDesc": "For organizations",
-      "pricingTeamMonthly": "$79/mo",
-      "pricingTeamYearly": "$790/yr",
-      "pricingFeature1": "Unlimited projects",
-      "pricingFeature2": "Priority support",
-      "pricingFeature3": "Advanced analytics",
-      "pricingCta": "Get started"
-    }
-  },
+  "breadcrumbMore": "المزيد",
   "forms": {
     "errors": {
       "required": "هذا الحقل مطلوب",
-      "min": "القيمة منخفضة جدًا",
+      "min": "القيمة منخفضة جداً",
       "min0": "يجب أن تكون القيمة 0 على الأقل",
-      "max": "القيمة مرتفعة جدًا",
-      "minLength": "قصير جدًا",
-      "maxLength": "طويل جدًا",
-      "minLen": "الطول غير صالح",
-      "maxLen": "عدد الأحرف كبير جدًا",
+      "max": "القيمة عالية جداً",
+      "minLength": "قصير جداً",
+      "maxLength": "طويل جداً",
+      "minLen": "عدد أحرف قليل جداً",
+      "maxLen": "عدد أحرف كثير جداً",
       "pattern": "تنسيق غير صالح",
       "invalid": "قيمة غير صالحة",
       "invalidDate": "تاريخ غير صالح",
       "invalidFile": "ملف غير صالح",
-      "fileTooLarge": "الملف كبير جدًا",
+      "fileTooLarge": "الملف كبير جداً",
       "fileTypeNotAllowed": "نوع الملف غير مدعوم",
       "passwordMin8": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل",
-      "passwordMax64": "يمكن أن تحتوي كلمة المرور على 64 حرفًا كحد أقصى",
-      "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
-      "passwordLowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
-      "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
-      "passwordSpecial": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل (!@#$%^&*)",
-      "emailrequired": "يرجى إدخال عنوان بريد إلكتروني",
-      "emailNotValid": "عنوان البريد الإلكتروني غير صالح",
+      "passwordMax64": "يمكن أن تحتوي كلمة المرور على 64 حرفاً كحد أقصى",
+      "passwordUppercase": "يجب أن تحتوي على حرف كبير واحد على الأقل",
+      "passwordLowercase": "يجب أن تحتوي على حرف صغير واحد على الأقل",
+      "passwordNumber": "يجب أن تحتوي على رقم واحد على الأقل",
+      "passwordSpecial": "يجب أن تحتوي على رمز خاص (!@#$%^&*)",
+      "emailrequired": "البريد الإلكتروني مطلوب",
+      "emailNotValid": "البريد الإلكتروني غير صالح",
       "invalidPhoneNumber": "رقم الهاتف غير صالح",
-      "invalidUrl": "رابط URL غير صالح",
+      "invalidUrl": "الرابط غير صالح",
       "editorRequired": "يرجى تعبئة هذا الحقل",
       "fieldRequired": "هذا الحقل مطلوب",
       "switchRequired": "يرجى اختيار خيار",
       "fileRequired": "يرجى إرفاق ملف",
       "filesRequired": "يرجى إرفاق ملفات",
-      "minFilesCount": "مطلوب {count} عناصر على الأقل",
+      "minFilesCount": "مطلوب على الأقل {count} عناصر",
       "passwordsDoNotMatch": "كلمات المرور غير متطابقة"
     },
     "labels": {
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور",
       "name": "الاسم",
-      "amount": "المبلغ",
-      "volume": "مستوى الصوت",
-      "date": "التاريخ",
-      "startDate": "تاريخ البدء",
-      "dateRange": "مجال التاريخ",
-      "endDate": "تاريخ الانتهاء",
-      "otp": "رمز التحقق",
-      "upload": "رفع ملف",
-      "chooseFile": "اختر ملفًا",
-      "noFileChosen": "لم يتم اختيار ملف",
-      "notes": "ملاحظات",
-      "message": "رسالة",
-      "category": "الفئة",
-      "status": "الحالة",
-      "agree": "أوافق على شروط الاستخدام",
-      "enableNotifications": "تفعيل الإشعارات",
-      "darkMode": "الوضع الداكن",
-      "technologyStack": "التقنيات المستخدمة",
-      "categoryTechnology": "تقنية",
-      "categoryDesign": "تصميم",
-      "categoryMarketing": "تسويق",
-      "categoryFinance": "تمويل",
-      "statusActive": "نشط",
-      "statusInactive": "غير نشط",
-      "statusPending": "قيد الانتظار",
-      "stackReact": "React",
-      "stackNextjs": "Next.js",
-      "stackTypescript": "TypeScript",
-      "stackNodejs": "Node.js",
-      "stackPostgres": "PostgreSQL",
-      "stackRedis": "Redis",
-      "formatUsd": "USD (دولار)",
-      "formatEur": "EUR (يورو)",
-      "formatPercent": "نسبة مئوية",
-      "formatPhone": "هاتف",
-      "formatSsn": "SSN",
-      "formatCreditCard": "بطاقة ائتمان",
-      "formatInteger": "عدد صحيح",
-      "formatBytes": "بايت",
       "confirmPassword": "تأكيد كلمة المرور"
-    },
-    "groups": {
-      "frontend": "الواجهة الأمامية",
-      "backend": "الواجهة الخلفية"
     },
     "placeholders": {
       "email": "أدخل بريدك الإلكتروني",
       "password": "أدخل كلمة المرور",
       "name": "أدخل اسمك",
-      "amount": "0.00",
-      "date": "اختر تاريخًا",
-      "otp": "أدخل الرمز",
-      "upload": "اسحب الملفات إلى هنا أو اضغط للرفع",
-      "notes": "اكتب شيئًا…",
-      "message": "اكتب رسالتك هنا…",
-      "search": "بحث…",
-      "formatUsd": "1,234.56",
-      "formatEur": "1234.56",
-      "formatPercent": "12.5",
-      "formatPhone": "(555) 123-4567",
-      "formatSsn": "123-45-6789",
-      "formatCreditCard": "4242 4242 4242 4242",
-      "formatInteger": "1000000",
-      "formatBytes": "1048576"
+      "search": "بحث…"
     },
     "helpers": {
       "optional": "اختياري",
       "required": "مطلوب",
-      "maxSize": "الحد الأقصى للحجم: {size}",
-      "acceptedTypes": "الأنواع المدعومة: {types}",
-      "clearFiles": "مسح الكل",
       "showPassword": "إظهار كلمة المرور",
-      "hidePassword": "إخفاء كلمة المرور",
-      "removeFile": "إزالة الملف"
+      "hidePassword": "إخفاء كلمة المرور"
     }
-  },
-  "contact": {
-    "pageTitle": "اتصل بنا",
-    "submit": "إرسال الرسالة",
-    "successTitle": "تم إرسال الرسالة!",
-    "successMessage": "شكرًا للتواصل معنا.",
-    "successHeading": "تم استلام رسالتك",
-    "successDescription": "سنتواصل معك قريبًا.",
-    "sendAnother": "إرسال رسالة أخرى"
   },
   "errorBoundary": {
     "title": "حدث خطأ ما",
@@ -1237,59 +131,113 @@
     "description": "الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
     "back": "العودة إلى الرئيسية"
   },
-  "commandPalette": {
-    "title": "Command palette",
-    "description": "Search commands and navigate quickly",
-    "searchPlaceholder": "Type a command…",
-    "empty": "No results found.",
-    "defaultGroup": "Suggestions"
-  },
-  "announcementBanner": {
-    "learnMore": "Learn more",
-    "dismissAria": "Dismiss announcement",
-    "regionAria": "Site announcement"
-  },
-  "pricingTable": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "popular": "Popular"
-  },
-  "notificationDropdown": {
-    "title": "Notifications",
-    "empty": "You're all caught up.",
-    "triggerAria": "Notifications, {count} unread"
-  },
-  "breadcrumbMore": "المزيد",
   "authSupabase": {
-    "loginTitle": "مرحبًا بعودتك",
-    "loginSubtitle": "سجّل الدخول للمتابعة",
+    "loginTitle": "مرحباً بعودتك",
+    "loginSubtitle": "سجل الدخول للمتابعة",
     "signupTitle": "أنشئ حسابك",
-    "signupSubtitle": "لن يستغرق الأمر سوى دقيقة",
+    "signupSubtitle": "لن يستغرق سوى دقيقة",
     "login": "تسجيل الدخول",
     "signup": "إنشاء حساب",
     "logout": "تسجيل الخروج",
     "loginFailed": "فشل تسجيل الدخول",
     "signupFailed": "فشل إنشاء الحساب",
-    "googleFailed": "فشل تسجيل الدخول عبر جوجل",
+    "googleFailed": "فشل تسجيل الدخول بجوجل",
     "or": "أو",
     "continueWithGoogle": "المتابعة مع جوجل",
-    "noAccount": "لا تملك حسابًا؟",
+    "noAccount": "لا تملك حساباً؟",
     "haveAccount": "لديك حساب بالفعل؟",
     "supabaseNotConfiguredTitle": "Supabase غير متصل",
-    "supabaseNotConfiguredHint": "أضف NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_ANON_KEY إلى ملف .env.local — تجدهما في صفحة Settings → API لمشروع Supabase الخاص بك."
+    "supabaseNotConfiguredHint": "أضف NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_ANON_KEY إلى .env.local."
   },
-  "todos": {
-    "pageTitle": "مهامك",
-    "pageSubtitle": "عرض سريع لمصادقة Supabase مع RLS",
-    "placeholder": "ما الذي يجب فعله؟",
-    "add": "إضافة",
-    "delete": "حذف",
-    "empty": "لا توجد مهام بعد. أضف واحدة في الأعلى.",
-    "addFailed": "تعذّر إضافة المهمة",
-    "updateFailed": "تعذّر تحديث المهمة",
-    "deleteFailed": "تعذّر حذف المهمة",
-    "loadFailed": "تعذّر تحميل المهام",
-    "unconfiguredTitle": "Supabase غير متصل",
-    "unconfiguredHint": "بعد ضبط NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_ANON_KEY، أنشئ جدول `todos` باستخدام شفرة SQL أدناه."
+  "album": {
+    "title": "ألبوم باناني كأس العالم 2026",
+    "subtitle": "تتبع مجموعة الملصقات الخاصة بك",
+    "appName": "متعقب الألبوم",
+    "stats": {
+      "albumProgress": "تقدم الألبوم",
+      "unique": "فريدة",
+      "missing": "مفقودة",
+      "duplicates": "مكررة",
+      "completedTeams": "فرق مكتملة",
+      "fwcProgress": "تقدم FWC",
+      "bonusProgress": "مجموعة الإضافية",
+      "overall": "إجمالي"
+    },
+    "filters": {
+      "all": "الكل",
+      "missing": "مفقودة",
+      "owned": "ممتلكة",
+      "duplicates": "مكررة",
+      "completedTeams": "فرق مكتملة",
+      "incompleteTeams": "فرق ناقصة"
+    },
+    "search": {
+      "placeholder": "ابحث بالرمز أو الفريق أو اللاعب…",
+      "noMatches": "لا توجد ملصقات تطابق البحث"
+    },
+    "quickActions": {
+      "title": "إجراءات سريعة",
+      "showMissing": "عرض المفقودة",
+      "showDuplicates": "عرض المكررة",
+      "collapseAll": "طي الكل",
+      "expandIncomplete": "توسيع الناقصة",
+      "expandAll": "توسيع الكل"
+    },
+    "team": {
+      "progress": "{owned}/{total}",
+      "complete": "إكمال الفريق",
+      "clear": "مسح الفريق",
+      "clearConfirmTitle": "مسح هذا الفريق؟",
+      "clearConfirmDescription": "ستتم إعادة تعيين كل ملصقات الفريق إلى 0 نسخ.",
+      "completedBadge": "مكتمل!",
+      "groupLabel": "المجموعة {group}"
+    },
+    "sticker": {
+      "decrement": "إنقاص {code}",
+      "increment": "زيادة {code}",
+      "toggle": "تبديل {code}",
+      "duplicateBadge": "+{count}"
+    },
+    "sections": {
+      "openingFwc": "افتتاح كأس العالم (FWC1–FWC8)",
+      "openingFwcDescription": "ملصقات افتتاح البطولة — تحسب ضمن 980.",
+      "closingFwc": "ختام FWC (FWC9–FWC19)",
+      "closingFwcDescription": "ملصقات الملاعب والمدن — تحسب ضمن 980.",
+      "paniniLogo": "شعار باناني",
+      "paniniLogoDescription": "أول ملصق في الألبوم.",
+      "teams": "المنتخبات الوطنية",
+      "specials": "إضافات الألبوم",
+      "bonus": "مجموعة كوكا كولا الإضافية",
+      "bonusDescription": "12 ملصق خاص — لا تحسب ضمن 980."
+    },
+    "menu": {
+      "title": "قائمة الألبوم",
+      "importExport": "استيراد / تصدير",
+      "exportExcel": "تصدير إلى Excel",
+      "reset": "إعادة تعيين المجموعة",
+      "about": "حول"
+    },
+    "importExport": {
+      "title": "استيراد وتصدير",
+      "description": "احتفظ بنسخة احتياطية أو انقلها إلى جهاز آخر.",
+      "exportJson": "تصدير JSON",
+      "exportExcel": "تصدير إلى Excel",
+      "exportMissingTxt": "تصدير المفقودة (TXT)",
+      "exportDuplicatesCsv": "تصدير المكررة (CSV)",
+      "importJson": "استيراد JSON",
+      "importHelper": "الصق JSON أو ارفع ملف .json.",
+      "importPlaceholder": "الصق JSON هنا…",
+      "uploadFile": "رفع ملف",
+      "imported": "تم استيراد المجموعة",
+      "exported": "تم التصدير",
+      "invalidJson": "هذا الملف ليس تصديراً صالحاً"
+    },
+    "reset": {
+      "title": "إعادة تعيين المجموعة بالكامل؟",
+      "description": "ستتم إعادة جميع الملصقات إلى 0 نسخ. لا يمكن التراجع.",
+      "confirm": "إعادة تعيين",
+      "done": "تم مسح المجموعة"
+    },
+    "footerNote": "صنع من قبل المعجبين — غير تابع لباناني أو الفيفا."
   }
 }

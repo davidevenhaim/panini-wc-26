@@ -1,0 +1,19 @@
+{
+  "name": "Panini WC 2026 Album Tracker",
+  "short_name": "Panini WC26",
+  "description": "Track your Panini FIFA World Cup 2026 sticker album collection.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0f1e",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
