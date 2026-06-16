@@ -1,6 +1,9 @@
 export { AppDialog } from "./app-dialog";
+export { AppSettingsDialog } from "./app-settings-dialog";
 export { DirectionProvider, useDirection } from "./direction-provider";
 export { LocaleDialog } from "./locale-dialog";
+export { LocalePicker } from "./locale-picker";
+export { ThemePicker } from "./theme-picker";
 export { ThemeProvider } from "./theme-provider";
 export { PageContainer } from "./page-container";
 export { ErrorBoundary } from "./error-boundary";

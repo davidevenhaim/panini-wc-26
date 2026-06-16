@@ -64,6 +64,10 @@
   "themeSwitchToDarkAria": "עבור למצב כהה",
   "themeLightMode": "מצב בהיר",
   "themeDarkMode": "מצב כהה",
+  "settings": {
+    "dialogTitle": "הגדרות",
+    "dialogDescription": "התאימו מראה ושפה."
+  },
   "home": {
     "startHere": "פאניני מונדיאל 2026"
   },
@@ -225,6 +229,7 @@
       "title": "תפריט אלבום",
       "importExport": "ייבוא / ייצוא",
       "exportExcel": "ייצוא ל-Excel",
+      "settings": "הגדרות",
       "reset": "אפס אוסף",
       "about": "אודות"
     },

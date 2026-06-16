@@ -64,6 +64,10 @@
   "themeSwitchToDarkAria": "Cambiar a modo oscuro",
   "themeLightMode": "Modo claro",
   "themeDarkMode": "Modo oscuro",
+  "settings": {
+    "dialogTitle": "Ajustes",
+    "dialogDescription": "Personaliza la apariencia y el idioma."
+  },
   "home": {
     "startHere": "Panini Mundial 2026"
   },
@@ -225,6 +229,7 @@
       "title": "Menú del álbum",
       "importExport": "Importar / exportar",
       "exportExcel": "Exportar a Excel",
+      "settings": "Ajustes",
       "reset": "Reiniciar colección",
       "about": "Acerca de"
     },

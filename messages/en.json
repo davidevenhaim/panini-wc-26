@@ -64,6 +64,10 @@
   "themeSwitchToDarkAria": "Switch to dark mode",
   "themeLightMode": "Light mode",
   "themeDarkMode": "Dark mode",
+  "settings": {
+    "dialogTitle": "Settings",
+    "dialogDescription": "Customize appearance and language."
+  },
   "home": {
     "startHere": "Panini WC 2026"
   },
@@ -225,6 +229,7 @@
       "title": "Album menu",
       "importExport": "Import / export",
       "exportExcel": "Export to Excel",
+      "settings": "Settings",
       "reset": "Reset collection",
       "about": "About"
     },

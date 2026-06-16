@@ -64,6 +64,10 @@
   "themeSwitchToDarkAria": "التبديل إلى الوضع الداكن",
   "themeLightMode": "الوضع الفاتح",
   "themeDarkMode": "الوضع الداكن",
+  "settings": {
+    "dialogTitle": "الإعدادات",
+    "dialogDescription": "خصّص المظهر واللغة."
+  },
   "home": {
     "startHere": "باناني كأس العالم 2026"
   },
@@ -225,6 +229,7 @@
       "title": "قائمة الألبوم",
       "importExport": "استيراد / تصدير",
       "exportExcel": "تصدير إلى Excel",
+      "settings": "الإعدادات",
       "reset": "إعادة تعيين المجموعة",
       "about": "حول"
     },
