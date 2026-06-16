@@ -9,6 +9,7 @@ import { Form, TextInput } from "@/components/form";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/ui/typography";
 import { toastError } from "@/lib/toast";
+import { CONFIG } from "@/lib/app-config";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { loginSchema, type LoginFormValues } from "../validation/auth.schema";
 import { loginAction } from "../actions";
@@ -19,6 +20,7 @@ import { SupabaseConfigNotice } from "./SupabaseConfigNotice";
 export function LoginForm() {
   const t = useTranslations("authSupabase");
   const [pending, start] = useTransition();
+  const googleOnly = CONFIG.isGoogleOnlyAuth;
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -31,40 +33,50 @@ export function LoginForm() {
       fd.set("email", data.email);
       fd.set("password", data.password);
       const result = await loginAction(null, fd);
-      if (result?.error) toastError(t("loginFailed"), result.error);
+      if (result?.error) {
+        const message = result.error === "googleOnlyAuth" ? t("googleOnlyAuth") : result.error;
+        toastError(t("loginFailed"), message);
+      }
     });
   };
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
-      <AuthBranding title={t("loginTitle")} subtitle={t("loginSubtitle")} />
+      <AuthBranding
+        title={t("loginTitle")}
+        subtitle={googleOnly ? t("googleOnlyLoginSubtitle") : t("loginSubtitle")}
+      />
 
       <SupabaseConfigNotice />
 
       <GoogleButton label={t("continueWithGoogle")} />
 
-      <div className="flex items-center gap-2">
-        <div className="bg-border h-px flex-1" />
-        <Typography variant="caption2" color="muted">
-          {t("or")}
-        </Typography>
-        <div className="bg-border h-px flex-1" />
-      </div>
+      {!googleOnly && (
+        <>
+          <div className="flex items-center gap-2">
+            <div className="bg-border h-px flex-1" />
+            <Typography variant="caption2" color="muted">
+              {t("or")}
+            </Typography>
+            <div className="bg-border h-px flex-1" />
+          </div>
 
-      <Form form={form} onSubmit={onSubmit} className="space-y-4">
-        <TextInput name="email" label="labels.email" type="email" required />
-        <TextInput name="password" label="labels.password" type="password" required />
-        <Button type="submit" loading={pending} className="w-full">
-          {t("login")}
-        </Button>
-      </Form>
+          <Form form={form} onSubmit={onSubmit} className="space-y-4">
+            <TextInput name="email" label="labels.email" type="email" required />
+            <TextInput name="password" label="labels.password" type="password" required />
+            <Button type="submit" loading={pending} className="w-full">
+              {t("login")}
+            </Button>
+          </Form>
 
-      <Typography variant="caption2" color="muted" className="text-center">
-        {t("noAccount")}{" "}
-        <Link href={WEB_ROUTES.SIGNUP} className="text-primary underline">
-          {t("signup")}
-        </Link>
-      </Typography>
+          <Typography variant="caption2" color="muted" className="text-center">
+            {t("noAccount")}{" "}
+            <Link href={WEB_ROUTES.SIGNUP} className="text-primary underline">
+              {t("signup")}
+            </Link>
+          </Typography>
+        </>
+      )}
     </div>
   );
 }

@@ -134,6 +134,8 @@
   "authSupabase": {
     "loginTitle": "Welcome back",
     "loginSubtitle": "Let's go sticker hunting",
+    "googleOnlyLoginSubtitle": "Sign in with Google to continue",
+    "googleOnlyAuth": "Email sign-in is disabled. Please use Google.",
     "signupTitle": "Create your account",
     "signupSubtitle": "It only takes a minute",
     "login": "Sign in",
@@ -152,6 +154,8 @@
   "album": {
     "title": "Panini FIFA WC 2026",
     "subtitle": "Track your sticker collection",
+    "myCollectionEyebrow": "Your album",
+    "myCollectionTitle": "My collection",
     "appName": "Album Tracker",
     "stats": {
       "albumProgress": "Album progress",
@@ -186,6 +190,9 @@
     "team": {
       "progress": "{owned}/{total}",
       "complete": "Mark team complete",
+      "completeGroup": "Mark group complete",
+      "completeGroupShort": "Complete group",
+      "completeGroupSuccess": "Group marked complete",
       "clear": "Clear team",
       "clearConfirmTitle": "Clear this team?",
       "clearConfirmDescription": "All stickers in this team will be reset to 0 copies.",
@@ -197,6 +204,10 @@
       "increment": "Increment {code}",
       "toggle": "Toggle {code}",
       "duplicateBadge": "+{count}"
+    },
+    "special": {
+      "complete": "Mark all complete",
+      "completeSuccess": "Section marked complete"
     },
     "sections": {
       "openingFwc": "World Cup intro (FWC1–FWC8)",
@@ -280,7 +291,9 @@
     "missingLabel": "Missing",
     "empty": "No public collectors yet — be the first to share your profile.",
     "noMatches": "No public collectors have duplicates that match your missing list yet.",
-    "browse": "Browse collectors"
+    "browse": "Browse collectors",
+    "homeEyebrow": "Trade & swap",
+    "viewAll": "View all ({count})"
   },
   "share": {
     "eyebrow": "Panini WC 2026 collection",
@@ -292,7 +305,21 @@
     "missingTitle": "Missing — looking for",
     "missingEmpty": "Nothing missing — full album!",
     "duplicatesTitle": "Duplicates — available to swap",
-    "duplicatesEmpty": "No duplicates yet."
+    "duplicatesEmpty": "No duplicates yet.",
+    "matchEyebrow": "Swap match",
+    "matchHero": "{count} cards waiting for you",
+    "matchSubtitle": "{name} has duplicates of these stickers you're missing.",
+    "contactPrefilled": "{method} with message",
+    "copyMessage": "Copy message",
+    "messageCopied": "Message copied",
+    "message": {
+      "greeting": "Hi {name}!",
+      "intro": "I'm collecting Panini WC 2026 too and saw your share link — we have {count} matching cards.",
+      "needLine": "Cards I'm missing that you have as duplicates:",
+      "more": "(+{count} more)",
+      "swap": "Want to swap?",
+      "signoff": "— @{me}"
+    }
   },
   "metadata": {
     "siteTitle": "Panini WC 2026 Album Tracker",

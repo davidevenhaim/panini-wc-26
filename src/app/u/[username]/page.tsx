@@ -8,13 +8,22 @@ import { Typography } from "@/components/ui/typography";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { CONFIG } from "@/lib/app-config";
 import { createClient } from "@/lib/supabase/server";
-import { fetchProfileByUsername, fetchUserStickers } from "@/lib/album/supabase-sync";
+import {
+  fetchProfileById,
+  fetchProfileByUsername,
+  fetchUserStickers,
+} from "@/lib/album/supabase-sync";
+import { ALBUM_STICKERS } from "@/constants/album";
 import { computeAlbumStats, computeBonusStats } from "@/lib/album/collection";
 import { groupDuplicatesByTeam, groupMissingByTeam } from "@/lib/album/grouped";
 import { contactHref, contactIcon, contactLabel } from "@/lib/album/contact";
+import { viewerMissingSet } from "@/lib/album/listings";
+import { ShareContactActions } from "@/features/profile/share-contact-actions";
 import { buildSiteMetadata } from "@/lib/site-metadata";
 
 type RouteParams = { params: Promise<{ username: string }> };
+
+const MESSAGE_CODE_LIMIT = 60;
 
 export default async function UserSharePage({ params }: RouteParams) {
   const { username } = await params;
@@ -32,8 +41,56 @@ export default async function UserSharePage({ params }: RouteParams) {
   const missing = groupMissingByTeam(quantities);
   const duplicates = groupDuplicatesByTeam(quantities);
 
-  const href = contactHref(profile.contact_method, profile.contact_value);
   const displayName = profile.display_name?.trim() || profile.username;
+
+  // ── Match computation against the logged-in viewer ───────────────────
+  const { data: userData } = await supabase.auth.getUser();
+  const viewerUser = userData.user;
+  const isOwnProfile = viewerUser?.id === profile.id;
+  let matchedCodes: string[] = [];
+  let viewerUsername: string | null = null;
+
+  if (viewerUser && !isOwnProfile) {
+    const viewerStickers = await fetchUserStickers(supabase, viewerUser.id);
+    const myMissing = viewerMissingSet(viewerStickers);
+    const albumOrderIndex = new Map<string, number>(ALBUM_STICKERS.map((s, i) => [s.code, i]));
+    const matches: string[] = [];
+    for (const sticker of ALBUM_STICKERS) {
+      const ownerQty = quantities[sticker.code] ?? 0;
+      if (ownerQty >= 2 && myMissing.has(sticker.code)) matches.push(sticker.code);
+    }
+    matches.sort((a, b) => (albumOrderIndex.get(a) ?? 0) - (albumOrderIndex.get(b) ?? 0));
+    matchedCodes = matches;
+
+    const viewerProfile = await fetchProfileById(supabase, viewerUser.id);
+    viewerUsername = viewerProfile?.username ?? null;
+  }
+
+  // ── Prefilled message ────────────────────────────────────────────────
+  const messageCodes = matchedCodes.slice(0, MESSAGE_CODE_LIMIT);
+  const remaining = matchedCodes.length - messageCodes.length;
+  const messageLines: string[] = [];
+  if (matchedCodes.length > 0) {
+    messageLines.push(t("share.message.greeting", { name: displayName }));
+    messageLines.push("");
+    messageLines.push(t("share.message.intro", { count: matchedCodes.length }));
+    messageLines.push("");
+    messageLines.push(t("share.message.needLine"));
+    messageLines.push(
+      messageCodes.join(", ") +
+        (remaining > 0 ? " " + t("share.message.more", { count: remaining }) : "")
+    );
+    messageLines.push("");
+    messageLines.push(t("share.message.swap"));
+    if (viewerUsername) {
+      messageLines.push("");
+      messageLines.push(t("share.message.signoff", { me: viewerUsername }));
+    }
+  }
+  const prefilledMessage = messageLines.join("\n");
+
+  const matchedSet = new Set(matchedCodes);
+  const heroPlainHref = contactHref(profile.contact_method, profile.contact_value);
 
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-10">
@@ -85,14 +142,14 @@ export default async function UserSharePage({ params }: RouteParams) {
             </div>
           </div>
 
-          {href ? (
+          {heroPlainHref && matchedCodes.length === 0 ? (
             <Button asChild className="bg-white text-emerald-700 hover:bg-white/90">
-              <a href={href} target="_blank" rel="noreferrer">
+              <a href={heroPlainHref} target="_blank" rel="noreferrer">
                 <Iconify icon={contactIcon(profile.contact_method)} className="size-4" />
                 {t("share.contact", { method: contactLabel(profile.contact_method) })}
               </a>
             </Button>
-          ) : (
+          ) : !heroPlainHref ? (
             <Typography
               variant="caption2"
               as="span"
@@ -100,9 +157,76 @@ export default async function UserSharePage({ params }: RouteParams) {
             >
               {t("share.noContact")}
             </Typography>
-          )}
+          ) : null}
         </div>
       </header>
+
+      {/* ── Match banner ───────────────────────────────────────────── */}
+      {matchedCodes.length > 0 && (
+        <section
+          aria-labelledby="match-heading"
+          className="mt-4 overflow-hidden rounded-3xl border-2 border-emerald-500/60 bg-gradient-to-br from-emerald-50 to-sky-50 p-5 shadow-md dark:from-emerald-950/40 dark:to-sky-950/40"
+        >
+          <div className="flex items-start gap-3">
+            <span
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-sky-500 text-white shadow-md"
+              aria-hidden
+            >
+              <Iconify icon="lucide:sparkles" className="size-6" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <Typography
+                variant="overline"
+                as="span"
+                className="text-[10px] font-bold tracking-[0.18em] text-emerald-700 uppercase dark:text-emerald-300"
+              >
+                {t("share.matchEyebrow")}
+              </Typography>
+              <Typography
+                id="match-heading"
+                variant="h6"
+                as="h2"
+                className="font-heading text-2xl leading-tight font-extrabold"
+              >
+                {t("share.matchHero", { count: matchedCodes.length })}
+              </Typography>
+              <Typography variant="caption2" as="p" color="muted" className="mt-1">
+                {t("share.matchSubtitle", { name: displayName })}
+              </Typography>
+            </div>
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {matchedCodes.slice(0, 50).map((code) => (
+              <span
+                key={code}
+                className="rounded-full bg-emerald-500/15 px-2.5 py-1 font-mono text-[12px] font-bold text-emerald-800 ring-1 ring-emerald-500/30 dark:bg-emerald-400/15 dark:text-emerald-200"
+              >
+                {code}
+              </span>
+            ))}
+            {matchedCodes.length > 50 && (
+              <span className="bg-foreground/10 rounded-full px-2.5 py-1 font-mono text-[12px] font-semibold">
+                {t("share.message.more", { count: matchedCodes.length - 50 })}
+              </span>
+            )}
+          </div>
+
+          {heroPlainHref && prefilledMessage ? (
+            <div className="mt-4">
+              <ShareContactActions
+                method={profile.contact_method}
+                value={profile.contact_value}
+                message={prefilledMessage}
+              />
+            </div>
+          ) : !heroPlainHref ? (
+            <Typography variant="caption2" as="p" color="muted" className="mt-3">
+              {t("share.noContact")}
+            </Typography>
+          ) : null}
+        </section>
+      )}
 
       <section className="mt-6 grid gap-4 md:grid-cols-2">
         <div className="bg-card rounded-3xl border p-4 shadow-sm">
@@ -184,13 +308,27 @@ export default async function UserSharePage({ params }: RouteParams) {
                   <div className="mt-1 flex flex-wrap gap-1.5">
                     {bucket.codes.map((code) => {
                       const dup = bucket.counts?.[code] ?? 0;
+                      const isMatch = matchedSet.has(code);
                       return (
                         <span
                           key={code}
-                          className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber-900 dark:bg-amber-900/30 dark:text-amber-200"
+                          className={
+                            isMatch
+                              ? "inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 font-mono text-[11px] font-bold text-emerald-800 ring-1 ring-emerald-500/40 dark:text-emerald-200"
+                              : "inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber-900 dark:bg-amber-900/30 dark:text-amber-200"
+                          }
                         >
+                          {isMatch && (
+                            <Iconify icon="lucide:sparkles" className="size-3" aria-hidden />
+                          )}
                           {code}
-                          <span className="rounded-full bg-amber-500 px-1.5 text-[10px] text-white">
+                          <span
+                            className={
+                              isMatch
+                                ? "rounded-full bg-emerald-500 px-1.5 text-[10px] text-white"
+                                : "rounded-full bg-amber-500 px-1.5 text-[10px] text-white"
+                            }
+                          >
                             +{dup}
                           </span>
                         </span>

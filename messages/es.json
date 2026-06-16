@@ -134,6 +134,8 @@
   "authSupabase": {
     "loginTitle": "Bienvenido de nuevo",
     "loginSubtitle": "Vamos a cazar cromos",
+    "googleOnlyLoginSubtitle": "Inicia sesión con Google para continuar",
+    "googleOnlyAuth": "El inicio de sesión por correo está deshabilitado. Usa Google.",
     "signupTitle": "Crea tu cuenta",
     "signupSubtitle": "Solo lleva un minuto",
     "login": "Iniciar sesión",
@@ -152,6 +154,8 @@
   "album": {
     "title": "Álbum Panini Mundial 2026",
     "subtitle": "Gestiona tu colección de cromos",
+    "myCollectionEyebrow": "Tu álbum",
+    "myCollectionTitle": "Mi colección",
     "appName": "Álbum Tracker",
     "stats": {
       "albumProgress": "Progreso del álbum",
@@ -186,6 +190,9 @@
     "team": {
       "progress": "{owned}/{total}",
       "complete": "Marcar equipo completo",
+      "completeGroup": "Marcar grupo completo",
+      "completeGroupShort": "Completar grupo",
+      "completeGroupSuccess": "Grupo marcado como completo",
       "clear": "Vaciar equipo",
       "clearConfirmTitle": "¿Vaciar este equipo?",
       "clearConfirmDescription": "Todos los cromos del equipo se reiniciarán a 0.",
@@ -197,6 +204,10 @@
       "increment": "Aumentar {code}",
       "toggle": "Alternar {code}",
       "duplicateBadge": "+{count}"
+    },
+    "special": {
+      "complete": "Marcar todo completo",
+      "completeSuccess": "Sección marcada como completa"
     },
     "sections": {
       "openingFwc": "Apertura del Mundial (FWC1–FWC8)",
@@ -280,7 +291,9 @@
     "missingLabel": "Faltantes",
     "empty": "Aún no hay coleccionistas públicos — sé el primero.",
     "noMatches": "Nadie tiene aún repetidos que coincidan con tus faltantes.",
-    "browse": "Explorar coleccionistas"
+    "browse": "Explorar coleccionistas",
+    "homeEyebrow": "Intercambia",
+    "viewAll": "Ver todos ({count})"
   },
   "share": {
     "eyebrow": "Colección Panini Mundial 2026",
@@ -292,7 +305,21 @@
     "missingTitle": "Faltantes — busco",
     "missingEmpty": "¡Álbum completo!",
     "duplicatesTitle": "Repetidos — para intercambio",
-    "duplicatesEmpty": "Sin repetidos por ahora."
+    "duplicatesEmpty": "Sin repetidos por ahora.",
+    "matchEyebrow": "Coincidencia",
+    "matchHero": "{count} cromos esperándote",
+    "matchSubtitle": "{name} tiene repetidos de estos cromos que te faltan.",
+    "contactPrefilled": "{method} con mensaje",
+    "copyMessage": "Copiar mensaje",
+    "messageCopied": "Mensaje copiado",
+    "message": {
+      "greeting": "¡Hola {name}!",
+      "intro": "Yo también colecciono Panini Mundial 2026 y vi tu álbum — tenemos {count} cromos coincidentes.",
+      "needLine": "Cromos que me faltan y tú tienes repetidos:",
+      "more": "(+{count} más)",
+      "swap": "¿Intercambiamos?",
+      "signoff": "— @{me}"
+    }
   },
   "metadata": {
     "siteTitle": "Rastreador del álbum Panini Mundial 2026",

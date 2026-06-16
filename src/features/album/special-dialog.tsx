@@ -9,7 +9,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
+import { toastSuccess } from "@/lib/toast";
 import { cn } from "@/lib/utils";
 import type { SpecialSection } from "@/types/album.types";
 import { getQuantity } from "@/lib/album/collection";
@@ -51,6 +53,7 @@ export function SpecialDialog({
   const increment = useCollectionStore((s) => s.increment);
   const decrement = useCollectionStore((s) => s.decrement);
   const toggle = useCollectionStore((s) => s.toggle);
+  const markSectionComplete = useCollectionStore((s) => s.markSectionComplete);
 
   if (!section) return null;
 
@@ -157,6 +160,21 @@ export function SpecialDialog({
               ))}
             </div>
           )}
+        </div>
+
+        <div className="bg-background flex justify-end border-t p-3 sm:p-4">
+          <Button
+            size="sm"
+            onClick={() => {
+              markSectionComplete(section);
+              toastSuccess(t("album.special.completeSuccess"));
+            }}
+            disabled={isComplete}
+            className="gap-1"
+          >
+            <Iconify icon="lucide:check-check" className="size-4" />
+            {t("album.special.complete")}
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

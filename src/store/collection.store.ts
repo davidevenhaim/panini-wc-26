@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { getStorage, setStorage, removeStorage } from "@/hooks/use-local-storage";
-import type { Team } from "@/types/album.types";
+import type { Team, SpecialSection } from "@/types/album.types";
 import {
   COLLECTION_STORAGE_KEY,
   COLLECTION_VERSION,
@@ -11,6 +11,8 @@ import {
   decrementSticker as decrementPure,
   incrementSticker as incrementPure,
   markTeamComplete as markTeamPure,
+  markGroupComplete as markGroupPure,
+  markSectionComplete as markSectionPure,
   setStickerQuantity as setQtyPure,
   toggleSticker as togglePure,
   type Quantities,
@@ -44,6 +46,8 @@ interface CollectionState {
   toggle: (code: string) => void;
   setQuantity: (code: string, value: number) => void;
   markTeamComplete: (team: Team) => void;
+  markGroupComplete: (group: string) => void;
+  markSectionComplete: (section: Pick<SpecialSection, "stickers">) => void;
   clearTeam: (team: Team) => void;
   replaceAll: (next: Quantities) => void;
   resetAll: () => void;
@@ -194,6 +198,20 @@ export const useCollectionStore = create<CollectionState>((set, get) => {
     markTeamComplete: (team) => {
       const prev = get().quantities;
       const next = markTeamPure(team, prev);
+      persist(next);
+      set({ quantities: next });
+      markDirty(diff(prev, next));
+    },
+    markGroupComplete: (group) => {
+      const prev = get().quantities;
+      const next = markGroupPure(group, prev);
+      persist(next);
+      set({ quantities: next });
+      markDirty(diff(prev, next));
+    },
+    markSectionComplete: (section) => {
+      const prev = get().quantities;
+      const next = markSectionPure(section, prev);
       persist(next);
       set({ quantities: next });
       markDirty(diff(prev, next));

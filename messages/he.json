@@ -134,6 +134,8 @@
   "authSupabase": {
     "loginTitle": "אני אתפוס את כולם",
     "loginSubtitle": "נצא לציד מדבקות",
+    "googleOnlyLoginSubtitle": "התחבר עם Google כדי להמשיך",
+    "googleOnlyAuth": "התחברות באימייל אינה זמינה. השתמש ב-Google.",
     "signupTitle": "צור חשבון",
     "signupSubtitle": "זה לוקח רק דקה",
     "login": "התחבר",
@@ -152,11 +154,13 @@
   "album": {
     "title": "אלבום פאניני מונדיאל 2026",
     "subtitle": "ניהול אוסף המדבקות שלך",
+    "myCollectionEyebrow": "האלבום שלך",
+    "myCollectionTitle": "האוסף שלי",
     "appName": "אלבום מדבקות",
     "stats": {
       "albumProgress": "התקדמות באלבום",
       "unique": "ייחודיות",
-      "missing": "חסרות",
+      "missing": "חוסרים",
       "duplicates": "כפולים",
       "completedTeams": "נבחרות שהושלמו",
       "fwcProgress": "התקדמות FWC",
@@ -165,11 +169,11 @@
     },
     "filters": {
       "all": "הכול",
-      "missing": "חסרות",
+      "missing": "חוסרים",
       "owned": "שיש לי",
       "duplicates": "כפולים",
       "completedTeams": "נבחרות מלאות",
-      "incompleteTeams": "נבחרות חסרות"
+      "incompleteTeams": "נבחרות חוסרים"
     },
     "search": {
       "placeholder": "חיפוש קוד, נבחרת או שחקן…",
@@ -177,15 +181,18 @@
     },
     "quickActions": {
       "title": "פעולות מהירות",
-      "showMissing": "הצג חסרות",
+      "showMissing": "הצג חוסרים",
       "showDuplicates": "הצג כפולים",
       "collapseAll": "סגור הכול",
-      "expandIncomplete": "פתח חסרות",
+      "expandIncomplete": "פתח חוסרים",
       "expandAll": "פתח הכול"
     },
     "team": {
       "progress": "{owned}/{total}",
       "complete": "סמן נבחרת כמלאה",
+      "completeGroup": "סמן בית כמושלם",
+      "completeGroupShort": "סמן בית",
+      "completeGroupSuccess": "הבית סומן כמושלם",
       "clear": "אפס נבחרת",
       "clearConfirmTitle": "לאפס את הנבחרת?",
       "clearConfirmDescription": "כל המדבקות בנבחרת יחזרו ל-0 עותקים.",
@@ -197,6 +204,10 @@
       "increment": "הוסף {code}",
       "toggle": "החלף {code}",
       "duplicateBadge": "+{count}"
+    },
+    "special": {
+      "complete": "סמן הכול כמושלם",
+      "completeSuccess": "המדבקות סומנו כמושלמות"
     },
     "sections": {
       "openingFwc": "פתיחת המונדיאל (FWC1–FWC8)",
@@ -222,7 +233,7 @@
       "description": "גבה את האוסף או העבר למכשיר אחר.",
       "exportJson": "ייצוא JSON",
       "exportExcel": "ייצוא ל-Excel",
-      "exportMissingTxt": "ייצוא חסרות (TXT)",
+      "exportMissingTxt": "ייצוא חוסרים (TXT)",
       "exportDuplicatesCsv": "ייצוא כפולים (CSV)",
       "importJson": "ייבוא JSON",
       "importHelper": "הדבק JSON או העלה קובץ .json.",
@@ -245,7 +256,7 @@
   },
   "profile": {
     "title": "הפרופיל שלך",
-    "subtitle": "בחר שם משתמש, הוסף דרך ליצור איתך קשר, ושתף את רשימת החסרות.",
+    "subtitle": "בחר שם משתמש, הוסף דרך ליצור איתך קשר, ושתף את רשימת החוסרים.",
     "usernameLabel": "שם משתמש",
     "usernameHint": "3-20 תווים, אותיות אנגליות קטנות, ספרות, _ ו--.",
     "displayNameLabel": "שם תצוגה",
@@ -272,15 +283,17 @@
     "title": "מצא אספנים",
     "subtitle": "דפדף בין אספנים ציבוריים ומצא אנשים עם הקלפים שאתה צריך.",
     "filterAll": "הכול ({count})",
-    "filterMatch": "התאמה לחסרות שלי",
+    "filterMatch": "התאמה לחוסרים שלי",
     "loginToMatch": "התחבר להתאמה",
     "matchBadge": "{count} התאמות",
-    "viewerHint": "חסרות לך {missing} מדבקות",
+    "viewerHint": "חוסרים לך {missing} מדבקות",
     "viewCollection": "צפה באוסף",
-    "missingLabel": "חסרות",
+    "missingLabel": "חוסרים",
     "empty": "אין אספנים ציבוריים עדיין — היה הראשון לשתף את הפרופיל שלך.",
-    "noMatches": "אין כרגע אספנים עם כפולים שמתאימים לחסרות שלך.",
-    "browse": "דפדף בין אספנים"
+    "noMatches": "אין כרגע אספנים עם כפולים שמתאימים לחוסרים שלך.",
+    "browse": "דפדף בין אספנים",
+    "homeEyebrow": "החלפות ומסחר",
+    "viewAll": "הצג הכול ({count})"
   },
   "share": {
     "eyebrow": "אוסף פאניני מונדיאל 2026",
@@ -289,16 +302,30 @@
     "bonus": "בונוס",
     "contact": "צור קשר ב-{method}",
     "noContact": "לא הוגדר אמצעי קשר",
-    "missingTitle": "חסרות — מחפש",
-    "missingEmpty": "אין חסרות — אלבום מלא!",
+    "missingTitle": "חוסרים — מחפש",
+    "missingEmpty": "אין חוסרים — אלבום מלא!",
     "duplicatesTitle": "כפולים — להחלפה",
-    "duplicatesEmpty": "אין כפולים כרגע."
+    "duplicatesEmpty": "אין כפולים כרגע.",
+    "matchEyebrow": "התאמה להחלפה",
+    "matchHero": "{count} מדבקות מחכות לך",
+    "matchSubtitle": "ל-{name} יש כפולים שאתה מחפש.",
+    "contactPrefilled": "{method} עם הודעה",
+    "copyMessage": "העתק הודעה",
+    "messageCopied": "ההודעה הועתקה",
+    "message": {
+      "greeting": "היי {name}!",
+      "intro": "גם אני אוסף פאניני מונדיאל 2026 וראיתי את האוסף שלך — יש לנו {count} מדבקות שמתאימות.",
+      "needLine": "המדבקות שחסרות לי ויש לך כפולות:",
+      "more": "(+{count} נוספות)",
+      "swap": "רוצה להחליף?",
+      "signoff": "— @{me}"
+    }
   },
   "metadata": {
     "siteTitle": "מעקב אלבום פאניני מונדיאל 2026",
     "siteTitleTemplate": "%s · פאניני מונדיאל 2026",
-    "siteDescription": "עקבו אחרי אלבום המדבקות של פאניני למונדיאל 2026. נהלו 980 מדבקות, סמנו כפולים, מצאו שותפים להחלפה ושתפו את רשימת החסרות.",
+    "siteDescription": "עקבו אחרי אלבום המדבקות של פאניני למונדיאל 2026. נהלו 980 מדבקות, סמנו כפולים, מצאו שותפים להחלפה ושתפו את רשימת החוסרים.",
     "shareTitle": "@{username} — אוסף פאניני מונדיאל 2026",
-    "shareDescription": "ראו אילו מדבקות חסרות ל-@{username} ואילו כפולים יש להחלפה."
+    "shareDescription": "ראו אילו חוסרים יש ל-@{username} ואילו כפולים יש להחלפה."
   }
 }

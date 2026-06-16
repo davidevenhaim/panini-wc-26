@@ -134,6 +134,8 @@
   "authSupabase": {
     "loginTitle": "مرحباً بعودتك",
     "loginSubtitle": "هيا لصيد الملصقات",
+    "googleOnlyLoginSubtitle": "سجّل الدخول عبر Google للمتابعة",
+    "googleOnlyAuth": "تسجيل الدخول بالبريد غير متاح. استخدم Google.",
     "signupTitle": "أنشئ حسابك",
     "signupSubtitle": "لن يستغرق سوى دقيقة",
     "login": "تسجيل الدخول",
@@ -152,6 +154,8 @@
   "album": {
     "title": "ألبوم باناني كأس العالم 2026",
     "subtitle": "تتبع مجموعة الملصقات الخاصة بك",
+    "myCollectionEyebrow": "ألبومك",
+    "myCollectionTitle": "مجموعتي",
     "appName": "متعقب الألبوم",
     "stats": {
       "albumProgress": "تقدم الألبوم",
@@ -186,6 +190,9 @@
     "team": {
       "progress": "{owned}/{total}",
       "complete": "إكمال الفريق",
+      "completeGroup": "إكمال المجموعة",
+      "completeGroupShort": "إكمال المجموعة",
+      "completeGroupSuccess": "تم إكمال المجموعة",
       "clear": "مسح الفريق",
       "clearConfirmTitle": "مسح هذا الفريق؟",
       "clearConfirmDescription": "ستتم إعادة تعيين كل ملصقات الفريق إلى 0 نسخ.",
@@ -197,6 +204,10 @@
       "increment": "زيادة {code}",
       "toggle": "تبديل {code}",
       "duplicateBadge": "+{count}"
+    },
+    "special": {
+      "complete": "إكمال الكل",
+      "completeSuccess": "تم إكمال القسم"
     },
     "sections": {
       "openingFwc": "افتتاح كأس العالم (FWC1–FWC8)",
@@ -280,7 +291,9 @@
     "missingLabel": "مفقودة",
     "empty": "لا يوجد جامعون عموميون بعد — كن الأول.",
     "noMatches": "لا يوجد حالياً جامعون لديهم مكررات تطابق مفقوداتك.",
-    "browse": "تصفح الجامعين"
+    "browse": "تصفح الجامعين",
+    "homeEyebrow": "تبادل ومقايضة",
+    "viewAll": "عرض الكل ({count})"
   },
   "share": {
     "eyebrow": "مجموعة باناني كأس العالم 2026",
@@ -292,7 +305,21 @@
     "missingTitle": "مفقودة — أبحث عن",
     "missingEmpty": "لا توجد ملصقات مفقودة!",
     "duplicatesTitle": "مكررة — متاحة للتبادل",
-    "duplicatesEmpty": "لا توجد مكررات بعد."
+    "duplicatesEmpty": "لا توجد مكررات بعد.",
+    "matchEyebrow": "تطابق للتبادل",
+    "matchHero": "{count} بطاقات بانتظارك",
+    "matchSubtitle": "لدى {name} مكررات لهذه الملصقات التي تنقصك.",
+    "contactPrefilled": "{method} مع رسالة",
+    "copyMessage": "نسخ الرسالة",
+    "messageCopied": "تم نسخ الرسالة",
+    "message": {
+      "greeting": "مرحباً {name}!",
+      "intro": "أنا أيضاً أجمع باناني كأس العالم 2026 ورأيت ألبومك — لدينا {count} بطاقة متطابقة.",
+      "needLine": "البطاقات التي تنقصني وتملكها كمكررة:",
+      "more": "(+{count} أخرى)",
+      "swap": "نتبادل؟",
+      "signoff": "— @{me}"
+    }
   },
   "metadata": {
     "siteTitle": "متتبع ألبوم باناني كأس العالم 2026",

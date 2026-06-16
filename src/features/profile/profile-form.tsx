@@ -55,6 +55,19 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
     setSaving(true);
     try {
       const supabase = createClient();
+      // Pull Google avatar from auth metadata when present; backfilled on every save.
+      let avatarUrl: string | null = initialProfile?.avatar_url ?? null;
+      try {
+        const { data } = await supabase.auth.getUser();
+        const meta = (data.user?.user_metadata ?? {}) as Record<string, unknown>;
+        const fromMeta =
+          (typeof meta.avatar_url === "string" && meta.avatar_url) ||
+          (typeof meta.picture === "string" && meta.picture) ||
+          null;
+        if (fromMeta) avatarUrl = fromMeta;
+      } catch {
+        // ignore — keep existing avatar
+      }
       await upsertProfile(supabase, userId, {
         username,
         display_name: displayName.trim() || null,
@@ -62,6 +75,7 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
         contact_method: method,
         contact_value: value.trim() || null,
         is_public: isPublic,
+        avatar_url: avatarUrl,
       });
       toastSuccess(t("profile.saved"));
       router.refresh();

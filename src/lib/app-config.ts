@@ -9,6 +9,8 @@ export type AppConfig = {
   supportEmail: string;
   isProd: boolean;
   isDev: boolean;
+  /** When true, only Google OAuth is allowed (email/password disabled). */
+  isGoogleOnlyAuth: boolean;
   supabaseUrl: string;
   /**
    * Browser-safe Supabase API key. Prefers `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
@@ -38,6 +40,7 @@ export const CONFIG: AppConfig = {
   supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL || "",
   isProd: process.env.NODE_ENV === "production",
   isDev: process.env.NODE_ENV === "development",
+  isGoogleOnlyAuth: process.env.NODE_ENV === "production",
   supabaseUrl,
   supabasePublishableKey,
   supabaseAnonKey: supabasePublishableKey,

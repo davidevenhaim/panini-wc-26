@@ -7,7 +7,7 @@ import { Typography } from "@/components/ui/typography";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { CONFIG } from "@/lib/app-config";
 import { createClient } from "@/lib/supabase/server";
-import { fetchProfileById } from "@/lib/album/supabase-sync";
+import { fetchProfileById, upsertProfile } from "@/lib/album/supabase-sync";
 import { ProfileForm } from "@/features/profile/profile-form";
 import { SupabaseConfigNotice } from "@/features/auth-supabase";
 
@@ -26,7 +26,27 @@ export default async function ProfilePage() {
   const { data: userData } = await supabase.auth.getUser();
   if (!userData.user) redirect(WEB_ROUTES.LOGIN);
 
-  const profile = await fetchProfileById(supabase, userData.user.id);
+  let profile = await fetchProfileById(supabase, userData.user.id);
+
+  // Backfill Google avatar onto existing profile if missing.
+  if (profile && !profile.avatar_url) {
+    const meta = (userData.user.user_metadata ?? {}) as Record<string, unknown>;
+    const avatar =
+      (typeof meta.avatar_url === "string" && meta.avatar_url) ||
+      (typeof meta.picture === "string" && meta.picture) ||
+      null;
+    if (avatar) {
+      try {
+        profile = await upsertProfile(supabase, userData.user.id, {
+          username: profile.username,
+          avatar_url: avatar,
+        });
+      } catch {
+        // ignore — non-blocking
+      }
+    }
+  }
+
   const defaultUsername =
     (userData.user.email?.split("@")[0] ?? "")
       .toLowerCase()

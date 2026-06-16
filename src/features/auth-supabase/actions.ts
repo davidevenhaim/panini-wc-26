@@ -14,6 +14,7 @@ export async function loginAction(
   formData: FormData
 ): Promise<AuthActionResult> {
   if (!CONFIG.isSupabaseConfigured) return { error: "supabaseNotConfigured" };
+  if (CONFIG.isGoogleOnlyAuth) return { error: "googleOnlyAuth" };
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword({
@@ -32,6 +33,7 @@ export async function signupAction(
   formData: FormData
 ): Promise<AuthActionResult> {
   if (!CONFIG.isSupabaseConfigured) return { error: "supabaseNotConfigured" };
+  if (CONFIG.isGoogleOnlyAuth) return { error: "googleOnlyAuth" };
 
   const supabase = await createClient();
   const origin = (await headers()).get("origin") ?? CONFIG.webUrl;

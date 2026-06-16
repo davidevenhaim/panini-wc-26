@@ -1,8 +1,9 @@
-import type { Sticker, Team, PersistedCollection } from "@/types/album.types";
+import type { Sticker, Team, SpecialSection, PersistedCollection } from "@/types/album.types";
 import {
   ALBUM_STICKERS,
   BONUS_STICKERS,
   TEAMS,
+  TEAMS_BY_GROUP,
   TOTAL_ALBUM_STICKERS,
   TOTAL_BONUS_STICKERS,
 } from "@/constants/album";
@@ -104,6 +105,32 @@ export function toggleSticker(quantities: Quantities, code: string): Quantities 
 export function markTeamComplete(team: Team, quantities: Quantities): Quantities {
   const next = { ...quantities };
   for (const sticker of team.stickers) {
+    if (getQuantity(next, sticker.code) === 0) {
+      next[sticker.code] = 1;
+    }
+  }
+  return next;
+}
+
+export function isGroupComplete(group: string, quantities: Quantities): boolean {
+  const teams = TEAMS_BY_GROUP[group] ?? [];
+  if (teams.length === 0) return false;
+  return teams.every((team) => computeTeamStats(team, quantities).isComplete);
+}
+
+/** Mark every missing sticker in all teams of a group as owned (qty 1). */
+export function markGroupComplete(group: string, quantities: Quantities): Quantities {
+  const teams = TEAMS_BY_GROUP[group] ?? [];
+  return teams.reduce((acc, team) => markTeamComplete(team, acc), quantities);
+}
+
+/** Mark every missing sticker in a section as owned (qty 1). */
+export function markSectionComplete(
+  section: Pick<SpecialSection, "stickers">,
+  quantities: Quantities
+): Quantities {
+  const next = { ...quantities };
+  for (const sticker of section.stickers) {
     if (getQuantity(next, sticker.code) === 0) {
       next[sticker.code] = 1;
     }

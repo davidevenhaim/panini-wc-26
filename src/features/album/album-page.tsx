@@ -53,7 +53,11 @@ function sectionMatchesQuery(section: SpecialSection, lcQuery: string): boolean 
   return section.stickers.some((s) => s.code.toLowerCase().includes(lcQuery));
 }
 
-export function AlbumPage() {
+type AlbumPageProps = {
+  collectors?: React.ReactNode;
+};
+
+export function AlbumPage({ collectors }: AlbumPageProps) {
   const t = useTranslations();
 
   const hydrate = useCollectionStore((s) => s.hydrate);
@@ -200,73 +204,90 @@ export function AlbumPage() {
         bonusTotal={bonusStats.total}
       />
 
-      <div className="mt-4">
-        <FilterBar
-          filter={filter}
-          onFilterChange={setFilter}
-          teamFilter={teamFilter}
-          onTeamFilterChange={setTeamFilter}
-          query={queryRaw}
-          onQueryChange={setQueryRaw}
-        />
-      </div>
+      {collectors}
 
-      {/* Special sections row (Panini logo + FWC + Bonus) */}
-      {visibleSpecials.length > 0 && (
-        <section className="mt-2">
+      <section className="mt-6 border-t pt-6">
+        <header className="mb-4">
+          <Typography
+            variant="overline"
+            as="span"
+            className="text-foreground/50 block text-[10px] font-bold tracking-[0.18em] uppercase"
+          >
+            {t("album.myCollectionEyebrow")}
+          </Typography>
+          <Typography variant="h6" as="h2" className="font-heading text-xl font-black sm:text-2xl">
+            {t("album.myCollectionTitle")}
+          </Typography>
+        </header>
+
+        <div className="mt-4">
+          <FilterBar
+            filter={filter}
+            onFilterChange={setFilter}
+            teamFilter={teamFilter}
+            onTeamFilterChange={setTeamFilter}
+            query={queryRaw}
+            onQueryChange={setQueryRaw}
+          />
+        </div>
+
+        {/* Special sections row (Panini logo + FWC + Bonus) */}
+        {visibleSpecials.length > 0 && (
+          <section className="mt-2">
+            <Typography
+              variant="overline"
+              as="span"
+              className="text-foreground/50 mb-3 block text-[10px] font-bold tracking-[0.18em] uppercase"
+            >
+              {t("album.sections.specials")}
+            </Typography>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {visibleSpecials.map((entry) => {
+                const owned = entry.section.stickers.reduce(
+                  (acc, s) => acc + (getQuantity(quantities, s.code) >= 1 ? 1 : 0),
+                  0
+                );
+                return (
+                  <SpecialTile
+                    key={entry.section.id}
+                    title={entry.title}
+                    shortCode={entry.shortCode}
+                    icon={entry.icon}
+                    imageSrc={entry.imageSrc}
+                    accentColor={entry.accentColor}
+                    owned={owned}
+                    total={entry.section.stickers.length}
+                    onClick={() => setSelectedSpecialId(entry.section.id)}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* Teams */}
+        <section className="mt-6">
           <Typography
             variant="overline"
             as="span"
             className="text-foreground/50 mb-3 block text-[10px] font-bold tracking-[0.18em] uppercase"
           >
-            {t("album.sections.specials")}
+            {t("album.sections.teams")} · {visibleTeamCodes.size}/{TEAMS.length}
           </Typography>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            {visibleSpecials.map((entry) => {
-              const owned = entry.section.stickers.reduce(
-                (acc, s) => acc + (getQuantity(quantities, s.code) >= 1 ? 1 : 0),
-                0
-              );
-              return (
-                <SpecialTile
-                  key={entry.section.id}
-                  title={entry.title}
-                  shortCode={entry.shortCode}
-                  icon={entry.icon}
-                  imageSrc={entry.imageSrc}
-                  accentColor={entry.accentColor}
-                  owned={owned}
-                  total={entry.section.stickers.length}
-                  onClick={() => setSelectedSpecialId(entry.section.id)}
-                />
-              );
-            })}
-          </div>
+          {visibleTeamCodes.size === 0 ? (
+            <div className="bg-card rounded-3xl border p-6 text-center">
+              <Typography variant="body2" as="p" color="muted">
+                {t("album.search.noMatches")}
+              </Typography>
+            </div>
+          ) : (
+            <TeamGrid
+              visibleTeamCodes={visibleTeamCodes}
+              onSelectTeam={(code) => setSelectedTeamCode(code)}
+              filter={filter}
+            />
+          )}
         </section>
-      )}
-
-      {/* Teams */}
-      <section className="mt-6">
-        <Typography
-          variant="overline"
-          as="span"
-          className="text-foreground/50 mb-3 block text-[10px] font-bold tracking-[0.18em] uppercase"
-        >
-          {t("album.sections.teams")} · {visibleTeamCodes.size}/{TEAMS.length}
-        </Typography>
-        {visibleTeamCodes.size === 0 ? (
-          <div className="bg-card rounded-3xl border p-6 text-center">
-            <Typography variant="body2" as="p" color="muted">
-              {t("album.search.noMatches")}
-            </Typography>
-          </div>
-        ) : (
-          <TeamGrid
-            visibleTeamCodes={visibleTeamCodes}
-            onSelectTeam={(code) => setSelectedTeamCode(code)}
-            filter={filter}
-          />
-        )}
       </section>
 
       <AlbumFooter />

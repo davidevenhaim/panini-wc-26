@@ -8,6 +8,7 @@ export type Profile = {
   contact_method: ContactMethod | null;
   contact_value: string | null;
   is_public: boolean;
+  avatar_url: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -19,6 +20,7 @@ export type ProfileUpsert = {
   contact_method?: ContactMethod | null;
   contact_value?: string | null;
   is_public?: boolean;
+  avatar_url?: string | null;
 };
 
 export const CONTACT_METHODS: ContactMethod[] = [
