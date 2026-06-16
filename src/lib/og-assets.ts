@@ -14,7 +14,7 @@ let cachedLogoDataUrl: string | null = null;
 export function getLogoDataUrl(): string {
   if (cachedLogoDataUrl) return cachedLogoDataUrl;
   try {
-    const filePath = join(process.cwd(), "public", "logo.png");
+    const filePath = join(process.cwd(), "public", "app-logo.png");
     const buffer = readFileSync(filePath);
     cachedLogoDataUrl = `data:image/png;base64,${buffer.toString("base64")}`;
     return cachedLogoDataUrl;

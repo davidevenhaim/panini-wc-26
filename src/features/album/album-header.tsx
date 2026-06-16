@@ -49,6 +49,7 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
           height={48}
           className="h-full w-full object-contain p-1"
           priority
+          unoptimized
         />
       </div>
       <div className="min-w-0 flex-1">

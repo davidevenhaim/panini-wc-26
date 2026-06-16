@@ -133,8 +133,8 @@ export async function PublicCollectorsSection({
           ) : (
             <Button asChild variant="outline" size="sm" className="rounded-full">
               <Link href={WEB_ROUTES.LOGIN}>
-                <Iconify icon="lucide:log-in" className="size-4" />
                 {t("users.loginToMatch")}
+                <Iconify icon="si:ai-duotone" className="size-4" />
               </Link>
             </Button>
           )}

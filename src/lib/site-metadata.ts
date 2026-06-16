@@ -41,11 +41,20 @@ export function buildSiteMetadata({
       url: canonicalUrl,
       siteName: CONFIG.appName || "Panini WC 2026 Album Tracker",
       locale: "en_US",
+      images: [
+        {
+          url: SITE_METADATA.ogShareImagePath,
+          width: SITE_METADATA.ogShareImageWidth,
+          height: SITE_METADATA.ogShareImageHeight,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [SITE_METADATA.ogShareImagePath],
     },
   };
 }

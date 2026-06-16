@@ -20,6 +20,7 @@ export function AuthBranding({ title, subtitle }: Props) {
           height={80}
           className="h-full w-full object-contain p-1.5"
           priority
+          unoptimized
         />
       </div>
       <div className="space-y-1">
