@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useDirection } from "@/components/app";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
@@ -55,7 +54,6 @@ export function Pagination({
   className,
 }: PaginationProps) {
   const t = useTranslations();
-  const dir = useDirection();
   if (totalPages <= 1) return null;
 
   const pages = generatePages(currentPage, totalPages, siblingCount);
@@ -69,10 +67,7 @@ export function Pagination({
         disabled={currentPage <= 1}
         aria-label={t("previousPage")}
       >
-        <Iconify
-          icon={dir === "rtl" ? "lucide:chevron-right" : "lucide:chevron-left"}
-          className="size-4"
-        />
+        <Iconify icon="lucide:chevron-left" className="size-4" />
       </Button>
 
       {pages.map((page, i) =>
@@ -107,10 +102,7 @@ export function Pagination({
         disabled={currentPage >= totalPages}
         aria-label={t("nextPage")}
       >
-        <Iconify
-          icon={dir === "rtl" ? "lucide:chevron-left" : "lucide:chevron-right"}
-          className="size-4"
-        />
+        <Iconify icon="lucide:chevron-right" className="size-4" />
       </Button>
     </nav>
   );

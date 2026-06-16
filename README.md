@@ -500,8 +500,10 @@ The starter ships with **Supabase Auth** wired in via `@supabase/ssr`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 ```
+
+> Grab both from **Supabase → Settings → API Keys**. The publishable key replaces the legacy `anon` JWT — `NEXT_PUBLIC_SUPABASE_ANON_KEY` is still accepted as a fallback.
 
 Without these the app still runs — auth pages show a friendly "not configured" notice and the Google button surfaces setup instructions on click.
 

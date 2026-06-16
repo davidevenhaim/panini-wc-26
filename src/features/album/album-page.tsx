@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useTranslations } from "next-intl";
 import { AreYouSureDialog } from "@/components/ui/are-you-sure-dialog";
+import { AlbumFooter } from "./album-footer";
 import { Typography } from "@/components/ui/typography";
 import { useBoolean } from "@/hooks/use-boolean";
 import { useDebounce } from "@/hooks/use-debounce";
@@ -34,6 +35,7 @@ import { SpecialTile } from "./special-tile";
 import { TeamDialog } from "./team-dialog";
 import { TeamGrid } from "./team-grid";
 import type { FilterMode } from "./types";
+import { useSyncWithUser } from "./use-sync-with-user";
 
 type TeamFilter = "all" | "completed" | "incomplete";
 
@@ -62,6 +64,8 @@ export function AlbumPage() {
   React.useEffect(() => {
     hydrate();
   }, [hydrate]);
+
+  useSyncWithUser();
 
   const importExport = useBoolean();
   const resetConfirm = useBoolean();
@@ -265,11 +269,7 @@ export function AlbumPage() {
         )}
       </section>
 
-      <footer className="mt-8 text-center">
-        <Typography variant="caption2" as="p" color="muted">
-          {t("album.footerNote")}
-        </Typography>
-      </footer>
+      <AlbumFooter />
 
       <TeamDialog
         team={selectedTeam}

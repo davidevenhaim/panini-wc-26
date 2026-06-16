@@ -147,7 +147,7 @@
     "noAccount": "אין לך חשבון?",
     "haveAccount": "כבר יש לך חשבון?",
     "supabaseNotConfiguredTitle": "Supabase לא מחובר",
-    "supabaseNotConfiguredHint": "הוסף את NEXT_PUBLIC_SUPABASE_URL ו-NEXT_PUBLIC_SUPABASE_ANON_KEY לקובץ .env.local."
+    "supabaseNotConfiguredHint": "הוסף את NEXT_PUBLIC_SUPABASE_URL ו-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY לקובץ .env.local — קח אותם מ-Settings → API Keys בפרויקט שלך (publishable key מתחיל ב-sb_publishable_…)."
   },
   "album": {
     "title": "אלבום פאניני מונדיאל 2026",
@@ -238,6 +238,49 @@
       "confirm": "אפס אוסף",
       "done": "האוסף נמחק"
     },
-    "footerNote": "בנוי על ידי אוהדים — לא קשור לפאניני או פיפ\"א."
+    "footerNote": "בנוי על ידי אוהדים בשביל האוהדים. לא קשור לפאניני או פיפ\"א.",
+    "buyMeACoffee": "קנו לי קפה"
+  },
+  "profile": {
+    "title": "הפרופיל שלך",
+    "subtitle": "בחר שם משתמש, הוסף דרך ליצור איתך קשר, ושתף את רשימת החסרות.",
+    "usernameLabel": "שם משתמש",
+    "usernameHint": "3-20 תווים, אותיות אנגליות קטנות, ספרות, _ ו--.",
+    "displayNameLabel": "שם תצוגה",
+    "bioLabel": "תיאור קצר",
+    "contactMethodLabel": "אמצעי קשר",
+    "contactValueLabel": "מזהה / מספר ליצירת קשר",
+    "contactNone": "אל תציג פרטי קשר",
+    "shareLink": "לינק לשיתוף",
+    "openShare": "פתח",
+    "copy": "העתק",
+    "copied": "הקישור הועתק",
+    "copyFailed": "לא ניתן להעתיק",
+    "saved": "הפרופיל נשמר",
+    "saveFailed": "שמירת הפרופיל נכשלה",
+    "usernameTaken": "שם המשתמש תפוס",
+    "invalidUsername": "בחר שם משתמש תקין",
+    "myProfile": "הפרופיל שלי",
+    "login": "התחבר",
+    "loginToSync": "התחבר לסנכרון ושיתוף"
+  },
+  "share": {
+    "eyebrow": "אוסף פאניני מונדיאל 2026",
+    "albumProgress": "אלבום",
+    "duplicates": "כפולים",
+    "bonus": "בונוס",
+    "contact": "צור קשר ב-{method}",
+    "noContact": "לא הוגדר אמצעי קשר",
+    "missingTitle": "חסרות — מחפש",
+    "missingEmpty": "אין חסרות — אלבום מלא!",
+    "duplicatesTitle": "כפולים — להחלפה",
+    "duplicatesEmpty": "אין כפולים כרגע."
+  },
+  "metadata": {
+    "siteTitle": "מעקב אלבום פאניני מונדיאל 2026",
+    "siteTitleTemplate": "%s · פאניני מונדיאל 2026",
+    "siteDescription": "עקבו אחרי אלבום המדבקות של פאניני למונדיאל 2026. נהלו 980 מדבקות, סמנו כפולים, מצאו שותפים להחלפה ושתפו את רשימת החסרות.",
+    "shareTitle": "@{username} — אוסף פאניני מונדיאל 2026",
+    "shareDescription": "ראו אילו מדבקות חסרות ל-@{username} ואילו כפולים יש להחלפה."
   }
 }

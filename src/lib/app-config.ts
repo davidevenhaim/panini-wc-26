@@ -10,13 +10,23 @@ export type AppConfig = {
   isProd: boolean;
   isDev: boolean;
   supabaseUrl: string;
+  /**
+   * Browser-safe Supabase API key. Prefers `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+   * (current Supabase convention — values look like `sb_publishable_*`).
+   * Falls back to the legacy `NEXT_PUBLIC_SUPABASE_ANON_KEY` JWT for back-compat.
+   */
+  supabasePublishableKey: string;
+  /** @deprecated Alias for `supabasePublishableKey`. Kept for back-compat. */
   supabaseAnonKey: string;
   /** True when both supabase env vars are present. */
   isSupabaseConfigured: boolean;
 };
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+const supabasePublishableKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "";
 
 export const CONFIG: AppConfig = {
   appName: process.env.NEXT_PUBLIC_APP_NAME || "",
@@ -29,8 +39,9 @@ export const CONFIG: AppConfig = {
   isProd: process.env.NODE_ENV === "production",
   isDev: process.env.NODE_ENV === "development",
   supabaseUrl,
-  supabaseAnonKey,
-  isSupabaseConfigured: Boolean(supabaseUrl && supabaseAnonKey),
+  supabasePublishableKey,
+  supabaseAnonKey: supabasePublishableKey,
+  isSupabaseConfigured: Boolean(supabaseUrl && supabasePublishableKey),
 };
 
 // Warn in development if required env vars are not set.

@@ -11,7 +11,7 @@ export async function updateSession(request: NextRequest) {
 
   if (!CONFIG.isSupabaseConfigured) return supabaseResponse;
 
-  const supabase = createServerClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey, {
+  const supabase = createServerClient(CONFIG.supabaseUrl, CONFIG.supabasePublishableKey, {
     cookies: {
       getAll() {
         return request.cookies.getAll();

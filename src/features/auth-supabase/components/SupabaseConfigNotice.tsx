@@ -7,7 +7,8 @@ import { Typography } from "@/components/ui/typography";
 
 /**
  * Inline notice shown on auth pages when Supabase env vars are missing.
- * Hidden once NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_ANON_KEY are set.
+ * Hidden once NEXT_PUBLIC_SUPABASE_URL + NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+ * (or the legacy NEXT_PUBLIC_SUPABASE_ANON_KEY) are set.
  */
 export function SupabaseConfigNotice() {
   const t = useTranslations("authSupabase");

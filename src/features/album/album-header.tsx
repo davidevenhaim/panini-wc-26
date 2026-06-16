@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { LocaleDialog } from "@/components/app";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toastSuccess } from "@/lib/toast";
 import { useCollectionStore } from "@/store/collection.store";
+import { usePermissions } from "@/hooks/use-permissions";
+import { CONFIG } from "@/lib/app-config";
+import WEB_ROUTES from "@/constants/web-routes.constants";
 import { exportExcel } from "./exporters";
 
 type Props = {
@@ -26,6 +30,7 @@ type Props = {
 export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
   const t = useTranslations();
   const quantities = useCollectionStore((s) => s.quantities);
+  const { user, isAuthenticated, isLoading } = usePermissions();
 
   const handleExportExcel = () => {
     exportExcel(quantities);
@@ -61,6 +66,27 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
         </Button>
         <ThemeToggle />
         <LocaleDialog />
+
+        {CONFIG.isSupabaseConfigured &&
+          !isLoading &&
+          (isAuthenticated ? (
+            <Button asChild variant="outline" size="sm" className="rounded-full">
+              <Link href={WEB_ROUTES.PROFILE}>
+                <Iconify icon="lucide:user" className="size-4" />
+                <span className="hidden max-w-[10ch] truncate sm:inline">
+                  {user?.email?.split("@")[0] ?? t("profile.myProfile")}
+                </span>
+              </Link>
+            </Button>
+          ) : (
+            <Button asChild variant="outline" size="sm" className="rounded-full">
+              <Link href={WEB_ROUTES.LOGIN}>
+                <Iconify icon="lucide:log-in" className="size-4" />
+                <span className="hidden sm:inline">{t("profile.login")}</span>
+              </Link>
+            </Button>
+          ))}
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="icon-sm" aria-label={t("album.menu.title")}>
@@ -76,6 +102,14 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
               <Iconify icon="lucide:download" className="size-4" />
               {t("album.menu.importExport")}
             </DropdownMenuItem>
+            {CONFIG.isSupabaseConfigured && isAuthenticated && (
+              <DropdownMenuItem asChild>
+                <Link href={WEB_ROUTES.PROFILE}>
+                  <Iconify icon="lucide:user" className="size-4" />
+                  {t("profile.myProfile")}
+                </Link>
+              </DropdownMenuItem>
+            )}
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={onOpenReset}>
               <Iconify icon="lucide:trash-2" className="size-4" />

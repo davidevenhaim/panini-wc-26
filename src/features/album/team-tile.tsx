@@ -76,8 +76,7 @@ export const TeamTile = React.memo(function TeamTile({
 
       <div className="mt-3 flex flex-col items-center gap-1.5">
         <span
-          className="flex h-14 w-14 items-center justify-center rounded-2xl text-4xl shadow-sm ring-2 ring-white/40 sm:h-16 sm:w-16"
-          style={{ backgroundColor: team.primaryColor }}
+          className="ring-border/30 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 text-4xl shadow-sm ring-2 sm:h-16 sm:w-16 dark:bg-gray-700"
           aria-hidden
         >
           <span className="drop-shadow-sm">{team.flag}</span>

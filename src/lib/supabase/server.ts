@@ -10,7 +10,9 @@ export async function createClient() {
   const cookieStore = await cookies();
 
   const url = CONFIG.isSupabaseConfigured ? CONFIG.supabaseUrl : "https://placeholder.supabase.co";
-  const key = CONFIG.isSupabaseConfigured ? CONFIG.supabaseAnonKey : "placeholder-anon-key";
+  const key = CONFIG.isSupabaseConfigured
+    ? CONFIG.supabasePublishableKey
+    : "sb_publishable_placeholder";
 
   return createServerClient(url, key, {
     cookies: {

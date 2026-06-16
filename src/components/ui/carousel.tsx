@@ -188,7 +188,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <Iconify icon="lucide:arrow-left" className="size-4 rtl:rotate-180" />
+      <Iconify icon="lucide:arrow-left" className="size-4" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -218,7 +218,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <Iconify icon="lucide:arrow-right" className="size-4 rtl:rotate-180" />
+      <Iconify icon="lucide:arrow-right" className="size-4" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

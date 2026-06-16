@@ -24,8 +24,12 @@ The app boots fine without Supabase keys — auth UI shows a friendly "not confi
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 ```
+
+Grab both from your project's **Settings → API Keys**. The publishable key replaces the legacy `anon` JWT in Supabase's current convention — `NEXT_PUBLIC_SUPABASE_ANON_KEY` still works as a fallback for back-compat, but prefer the new name.
+
+Server-only keys (`sb_secret_…` / `service_role`) must NEVER appear in `NEXT_PUBLIC_*` vars.
 
 Check `CONFIG.isSupabaseConfigured` from `@/lib/app-config` when you need to branch on whether keys are present.
 

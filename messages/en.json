@@ -147,7 +147,7 @@
     "noAccount": "No account yet?",
     "haveAccount": "Already have an account?",
     "supabaseNotConfiguredTitle": "Supabase is not connected",
-    "supabaseNotConfiguredHint": "Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to .env.local — get them from your Supabase project's Settings → API page."
+    "supabaseNotConfiguredHint": "Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY to .env.local — grab them from your Supabase project's Settings → API Keys (the publishable key looks like sb_publishable_…)."
   },
   "album": {
     "title": "Panini FIFA WC 2026",
@@ -238,6 +238,49 @@
       "confirm": "Reset collection",
       "done": "Collection cleared"
     },
-    "footerNote": "Made by fans — not affiliated with Panini or FIFA."
+    "footerNote": "Made by fans for the fans. Not affiliated with Panini or FIFA.",
+    "buyMeACoffee": "Buy me a coffee"
+  },
+  "profile": {
+    "title": "Your profile",
+    "subtitle": "Pick a username, add a way to contact you, and share your missing list.",
+    "usernameLabel": "Username",
+    "usernameHint": "3–20 chars, lowercase letters, numbers, _ and -.",
+    "displayNameLabel": "Display name",
+    "bioLabel": "Short bio",
+    "contactMethodLabel": "Contact method",
+    "contactValueLabel": "Contact handle / number",
+    "contactNone": "Don't show contact",
+    "shareLink": "Your share link",
+    "openShare": "Open",
+    "copy": "Copy",
+    "copied": "Link copied",
+    "copyFailed": "Could not copy",
+    "saved": "Profile saved",
+    "saveFailed": "Could not save profile",
+    "usernameTaken": "That username is taken",
+    "invalidUsername": "Pick a valid username",
+    "myProfile": "My profile",
+    "login": "Sign in",
+    "loginToSync": "Sign in to sync & share"
+  },
+  "share": {
+    "eyebrow": "Panini WC 2026 collection",
+    "albumProgress": "Album",
+    "duplicates": "Duplicates",
+    "bonus": "Bonus",
+    "contact": "Contact via {method}",
+    "noContact": "No contact set",
+    "missingTitle": "Missing — looking for",
+    "missingEmpty": "Nothing missing — full album!",
+    "duplicatesTitle": "Duplicates — available to swap",
+    "duplicatesEmpty": "No duplicates yet."
+  },
+  "metadata": {
+    "siteTitle": "Panini WC 2026 Album Tracker",
+    "siteTitleTemplate": "%s · Panini WC 2026",
+    "siteDescription": "Track your Panini FIFA World Cup 2026 sticker album. Manage 980 stickers, mark duplicates, find swap partners, and share your missing list.",
+    "shareTitle": "@{username} — Panini WC 2026 collection",
+    "shareDescription": "See which stickers @{username} still needs and which duplicates they have for swapping."
   }
 }

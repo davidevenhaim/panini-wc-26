@@ -147,7 +147,7 @@
     "noAccount": "¿Aún no tienes cuenta?",
     "haveAccount": "¿Ya tienes cuenta?",
     "supabaseNotConfiguredTitle": "Supabase no está conectado",
-    "supabaseNotConfiguredHint": "Añade NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY a .env.local."
+    "supabaseNotConfiguredHint": "Añade NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY a .env.local — desde Settings → API Keys (la clave empieza por sb_publishable_…)."
   },
   "album": {
     "title": "Álbum Panini Mundial 2026",
@@ -238,6 +238,49 @@
       "confirm": "Reiniciar colección",
       "done": "Colección borrada"
     },
-    "footerNote": "Hecho por aficionados — no afiliado con Panini ni FIFA."
+    "footerNote": "Hecho por aficionados para los aficionados. No afiliado con Panini ni FIFA.",
+    "buyMeACoffee": "Invítame a un café"
+  },
+  "profile": {
+    "title": "Tu perfil",
+    "subtitle": "Elige un usuario, añade un contacto y comparte tu lista de faltantes.",
+    "usernameLabel": "Usuario",
+    "usernameHint": "3-20 caracteres, minúsculas, números, _ y -.",
+    "displayNameLabel": "Nombre",
+    "bioLabel": "Bio corta",
+    "contactMethodLabel": "Método de contacto",
+    "contactValueLabel": "Usuario / número",
+    "contactNone": "No mostrar contacto",
+    "shareLink": "Tu enlace para compartir",
+    "openShare": "Abrir",
+    "copy": "Copiar",
+    "copied": "Enlace copiado",
+    "copyFailed": "No se pudo copiar",
+    "saved": "Perfil guardado",
+    "saveFailed": "No se pudo guardar",
+    "usernameTaken": "Ese usuario ya existe",
+    "invalidUsername": "Elige un usuario válido",
+    "myProfile": "Mi perfil",
+    "login": "Iniciar sesión",
+    "loginToSync": "Inicia sesión para sincronizar"
+  },
+  "share": {
+    "eyebrow": "Colección Panini Mundial 2026",
+    "albumProgress": "Álbum",
+    "duplicates": "Repetidos",
+    "bonus": "Bonus",
+    "contact": "Contactar por {method}",
+    "noContact": "Sin contacto",
+    "missingTitle": "Faltantes — busco",
+    "missingEmpty": "¡Álbum completo!",
+    "duplicatesTitle": "Repetidos — para intercambio",
+    "duplicatesEmpty": "Sin repetidos por ahora."
+  },
+  "metadata": {
+    "siteTitle": "Rastreador del álbum Panini Mundial 2026",
+    "siteTitleTemplate": "%s · Panini Mundial 2026",
+    "siteDescription": "Lleva tu álbum de cromos Panini del Mundial 2026. Gestiona 980 cromos, marca repetidos, encuentra intercambios y comparte tu lista de faltantes.",
+    "shareTitle": "@{username} — colección Panini Mundial 2026",
+    "shareDescription": "Mira qué cromos le faltan a @{username} y qué repetidos tiene para intercambiar."
   }
 }

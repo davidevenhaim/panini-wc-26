@@ -84,8 +84,7 @@ export function TeamDialog({ team, open, onOpenChange, filter, query }: Props) {
             <DialogHeader>
               <div className="flex items-center gap-3 pe-8">
                 <span
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-4xl shadow-sm ring-2 ring-white/40"
-                  style={{ backgroundColor: team.primaryColor }}
+                  className="ring-border/30 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gray-100 text-4xl shadow-sm ring-2 dark:bg-gray-700"
                   aria-hidden
                 >
                   <span className="drop-shadow-sm">{team.flag}</span>

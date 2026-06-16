@@ -1,5 +1,6 @@
 import { Icon, type IconProps } from "@iconify/react";
 import { cn } from "@/lib/utils";
+import { shouldFlipRtlIcon } from "@/utils/rtl-icon";
 
 export type IconifyColor =
   | "foreground"
@@ -13,6 +14,11 @@ export type IconifyColor =
 export type IconifyProps = {
   icon: string;
   className?: string;
+  /**
+   * Mirror the icon horizontally in RTL (`dir="rtl"`).
+   * Defaults to auto for known directional icons (arrows, chevrons, log-in/out, etc.).
+   */
+  flipRtl?: boolean;
   /**
    * When omitted, the icon uses `text-inherit` so it follows the parent `color`
    * (e.g. `text-primary-foreground` on a solid primary `Button`).
@@ -31,12 +37,18 @@ const colorClasses: Record<IconifyColor, string> = {
   black: "text-black",
 };
 
-export default function Iconify({ icon, className, color, ...props }: IconifyProps) {
+export default function Iconify({ icon, className, color, flipRtl, ...props }: IconifyProps) {
+  const mirrorRtl = flipRtl ?? shouldFlipRtlIcon(icon);
+
   return (
     <Icon
       {...props}
       icon={icon}
-      className={cn(color ? colorClasses[color] : "text-inherit", className)}
+      className={cn(
+        color ? colorClasses[color] : "text-inherit",
+        mirrorRtl && "rtl:scale-x-[-1]",
+        className
+      )}
     />
   );
 }

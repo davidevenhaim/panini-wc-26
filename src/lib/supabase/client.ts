@@ -8,7 +8,7 @@ import { CONFIG } from "@/lib/app-config";
  */
 export function createClient() {
   if (!CONFIG.isSupabaseConfigured) {
-    return createBrowserClient("https://placeholder.supabase.co", "placeholder-anon-key");
+    return createBrowserClient("https://placeholder.supabase.co", "sb_publishable_placeholder");
   }
-  return createBrowserClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+  return createBrowserClient(CONFIG.supabaseUrl, CONFIG.supabasePublishableKey);
 }

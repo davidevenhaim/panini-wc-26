@@ -3,9 +3,9 @@ import type { ReactNode } from "react";
 import { cookies } from "next/headers";
 import { Cairo, Geist_Mono, Heebo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { LOCALE_COOKIE, getLocaleDirection, isAppLocale, type AppLocale } from "@/constants/locale";
-import { CONFIG } from "@/lib/app-config";
+import { buildSiteMetadata } from "@/lib/site-metadata";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DirectionProvider } from "@/components/app/direction-provider";
@@ -60,32 +60,23 @@ function fontVariableClasses(locale: AppLocale): string {
   return `${mono} ${spaceGrotesk.variable} ${plusJakarta.variable}`;
 }
 
-const ogDescription =
-  "Track your Panini FIFA World Cup 2026 sticker album. Manage 980 stickers, mark duplicates, and never miss a swap.";
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const raw = cookieStore.get(LOCALE_COOKIE)?.value ?? "en";
+  const locale = isAppLocale(raw) ? raw : "en";
+  const t = await getTranslations({ locale, namespace: "metadata" });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(CONFIG.siteUrl),
-  title: "Panini WC 2026 Album Tracker",
-  description: ogDescription,
-  manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, title: "Panini WC26", statusBarStyle: "default" },
-  icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
-  },
-  openGraph: {
-    title: "Panini WC 2026 Album Tracker",
-    description: ogDescription,
-    type: "website",
-    images: [{ url: "/logo.png", alt: "Panini WC 2026 Album Tracker" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Panini WC 2026 Album Tracker",
-    description: ogDescription,
-    images: ["/logo.png"],
-  },
-};
+  return {
+    ...buildSiteMetadata({
+      title: t("siteTitle"),
+      description: t("siteDescription"),
+    }),
+    title: {
+      default: t("siteTitle"),
+      template: t("siteTitleTemplate"),
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

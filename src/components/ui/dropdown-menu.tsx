@@ -193,7 +193,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <Iconify icon="lucide:chevron-right" className="ms-auto size-4 rtl:rotate-180" />
+      <Iconify icon="lucide:chevron-right" className="ms-auto size-4" />
     </DropdownMenuPrimitive.SubTrigger>
   );
 }

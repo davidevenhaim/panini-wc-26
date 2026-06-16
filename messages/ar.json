@@ -147,7 +147,7 @@
     "noAccount": "لا تملك حساباً؟",
     "haveAccount": "لديك حساب بالفعل؟",
     "supabaseNotConfiguredTitle": "Supabase غير متصل",
-    "supabaseNotConfiguredHint": "أضف NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_ANON_KEY إلى .env.local."
+    "supabaseNotConfiguredHint": "أضف NEXT_PUBLIC_SUPABASE_URL و NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY إلى .env.local — من Settings → API Keys (المفتاح يبدأ بـ sb_publishable_…)."
   },
   "album": {
     "title": "ألبوم باناني كأس العالم 2026",
@@ -238,6 +238,49 @@
       "confirm": "إعادة تعيين",
       "done": "تم مسح المجموعة"
     },
-    "footerNote": "صنع من قبل المعجبين — غير تابع لباناني أو الفيفا."
+    "footerNote": "صنع من قبل المعجبين للمعجبين. غير تابع لباناني أو الفيفا.",
+    "buyMeACoffee": "اشترِ لي قهوة"
+  },
+  "profile": {
+    "title": "ملفك الشخصي",
+    "subtitle": "اختر اسم مستخدم، أضف طريقة للتواصل، وشارك قائمة المفقودات.",
+    "usernameLabel": "اسم المستخدم",
+    "usernameHint": "3-20 حرفًا، أحرف صغيرة وأرقام و _ و -.",
+    "displayNameLabel": "اسم العرض",
+    "bioLabel": "نبذة قصيرة",
+    "contactMethodLabel": "طريقة التواصل",
+    "contactValueLabel": "المعرّف / الرقم",
+    "contactNone": "لا تعرض جهة الاتصال",
+    "shareLink": "رابط المشاركة",
+    "openShare": "فتح",
+    "copy": "نسخ",
+    "copied": "تم نسخ الرابط",
+    "copyFailed": "تعذر النسخ",
+    "saved": "تم حفظ الملف",
+    "saveFailed": "تعذر حفظ الملف",
+    "usernameTaken": "اسم المستخدم مأخوذ",
+    "invalidUsername": "اختر اسم مستخدم صالح",
+    "myProfile": "ملفي",
+    "login": "تسجيل الدخول",
+    "loginToSync": "سجل الدخول للمزامنة والمشاركة"
+  },
+  "share": {
+    "eyebrow": "مجموعة باناني كأس العالم 2026",
+    "albumProgress": "الألبوم",
+    "duplicates": "المكررة",
+    "bonus": "الإضافية",
+    "contact": "تواصل عبر {method}",
+    "noContact": "لا توجد جهة اتصال",
+    "missingTitle": "مفقودة — أبحث عن",
+    "missingEmpty": "لا توجد ملصقات مفقودة!",
+    "duplicatesTitle": "مكررة — متاحة للتبادل",
+    "duplicatesEmpty": "لا توجد مكررات بعد."
+  },
+  "metadata": {
+    "siteTitle": "متتبع ألبوم باناني كأس العالم 2026",
+    "siteTitleTemplate": "%s · باناني كأس العالم 2026",
+    "siteDescription": "تتبع ألبوم ملصقات باناني لكأس العالم 2026. أدر 980 ملصقًا، حدّد المكررة، اعثر على شركاء للتبادل وشارك قائمة المفقود.",
+    "shareTitle": "@{username} — مجموعة باناني كأس العالم 2026",
+    "shareDescription": "اطّلع على الملصقات التي ينقص @{username} والمكررة المتاحة للتبادل."
   }
 }
