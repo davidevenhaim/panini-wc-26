@@ -45,7 +45,6 @@ function getUserInitial(user: User): string {
 }
 
 type Props = {
-  onOpenImportExport: () => void;
   onOpenReset: () => void;
 };
 
@@ -93,7 +92,7 @@ function AccountNavButton({
   );
 }
 
-export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
+export function AlbumHeader({ onOpenReset }: Props) {
   const t = useTranslations();
   const quantities = useCollectionStore((s) => s.quantities);
   const { user, isAuthenticated, isLoading } = usePermissions();
@@ -131,16 +130,6 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
           </Typography>
         </div>
         <div className="flex items-center gap-1">
-          <Button
-            size="sm"
-            onClick={handleExportExcel}
-            className="hidden bg-emerald-600 hover:bg-emerald-700 sm:inline-flex"
-            aria-label={t("album.menu.exportExcel")}
-          >
-            <Iconify icon="lucide:file-spreadsheet" className="size-4" />
-            <span>{t("album.menu.exportExcel")}</span>
-          </Button>
-
           {CONFIG.isSupabaseConfigured && !isLoading && (
             <AccountNavButton
               user={user}
@@ -166,18 +155,6 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
                 <Iconify icon="lucide:file-spreadsheet" className="size-4" />
                 {t("album.menu.exportExcel")}
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={onOpenImportExport}>
-                <Iconify icon="lucide:download" className="size-4" />
-                {t("album.menu.importExport")}
-              </DropdownMenuItem>
-              {CONFIG.isSupabaseConfigured && (
-                <DropdownMenuItem asChild>
-                  <Link href={WEB_ROUTES.USERS}>
-                    <Iconify icon="lucide:users" className="size-4" />
-                    {t("users.browse")}
-                  </Link>
-                </DropdownMenuItem>
-              )}
               {CONFIG.isSupabaseConfigured && isAuthenticated && (
                 <DropdownMenuItem asChild>
                   <Link href={WEB_ROUTES.PROFILE}>

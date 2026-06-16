@@ -28,7 +28,6 @@ import type { SpecialSection } from "@/types/album.types";
 import { useCollectionStore } from "@/store/collection.store";
 import { AlbumHeader } from "./album-header";
 import { FilterBar } from "./filter-bar";
-import { ImportExportDialog } from "./import-export-dialog";
 import { ProgressSummary } from "./progress-summary";
 import { SpecialDialog } from "./special-dialog";
 import { SpecialTile } from "./special-tile";
@@ -71,7 +70,6 @@ export function AlbumPage({ collectors }: AlbumPageProps) {
 
   useSyncWithUser();
 
-  const importExport = useBoolean();
   const resetConfirm = useBoolean();
 
   const [filter, setFilter] = React.useState<FilterMode>("all");
@@ -188,7 +186,7 @@ export function AlbumPage({ collectors }: AlbumPageProps) {
         "from-background via-background bg-gradient-to-b to-emerald-50/40 dark:to-emerald-950/20"
       )}
     >
-      <AlbumHeader onOpenImportExport={importExport.onTrue} onOpenReset={resetConfirm.onTrue} />
+      <AlbumHeader onOpenReset={resetConfirm.onTrue} />
 
       <ProgressSummary
         albumOwned={albumStats.unique}
@@ -315,7 +313,6 @@ export function AlbumPage({ collectors }: AlbumPageProps) {
         query={query}
       />
 
-      <ImportExportDialog open={importExport.value} onOpenChange={importExport.onToggle} />
       <AreYouSureDialog
         open={resetConfirm.value}
         onOpenChange={resetConfirm.onToggle}

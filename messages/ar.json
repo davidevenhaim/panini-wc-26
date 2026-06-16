@@ -228,7 +228,7 @@
     "menu": {
       "title": "قائمة الألبوم",
       "importExport": "استيراد / تصدير",
-      "exportExcel": "تصدير إلى Excel",
+      "exportExcel": "تصدير تفاصيل المجموعة",
       "settings": "الإعدادات",
       "reset": "إعادة تعيين المجموعة",
       "about": "حول"

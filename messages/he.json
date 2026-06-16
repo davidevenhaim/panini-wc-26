@@ -228,7 +228,7 @@
     "menu": {
       "title": "תפריט אלבום",
       "importExport": "ייבוא / ייצוא",
-      "exportExcel": "ייצוא ל-Excel",
+      "exportExcel": "ייצוא פרטי האוסף",
       "settings": "הגדרות",
       "reset": "אפס אוסף",
       "about": "אודות"

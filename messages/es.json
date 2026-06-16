@@ -228,7 +228,7 @@
     "menu": {
       "title": "Menú del álbum",
       "importExport": "Importar / exportar",
-      "exportExcel": "Exportar a Excel",
+      "exportExcel": "Exportar detalles de la colección",
       "settings": "Ajustes",
       "reset": "Reiniciar colección",
       "about": "Acerca de"
