@@ -152,27 +152,32 @@ export function TeamDialog({ team, open, onOpenChange, filter, query }: Props) {
             )}
           </div>
 
-          <div className="bg-background flex flex-wrap justify-end gap-2 border-t p-3 sm:p-4">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => confirmClear.onTrue()}
-              className="gap-1"
-            >
-              <Iconify icon="lucide:trash-2" className="size-4" />
-              {t("album.team.clear")}
-            </Button>
-            <Button
-              size="sm"
-              onClick={() => {
-                markComplete(team);
-                toastSuccess(t("album.team.complete"));
-              }}
-              disabled={isComplete}
-              className="gap-1"
-            >
-              <Iconify icon="lucide:check-check" className="size-4" />
-              {t("album.team.complete")}
+          <div className="bg-background flex flex-col gap-2 border-t p-3 sm:p-4">
+            <div className="flex flex-wrap justify-end gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => confirmClear.onTrue()}
+                className="gap-1"
+              >
+                <Iconify icon="lucide:trash-2" className="size-4" />
+                {t("album.team.clear")}
+              </Button>
+              <Button
+                size="sm"
+                onClick={() => {
+                  markComplete(team);
+                  toastSuccess(t("album.team.complete"));
+                }}
+                disabled={isComplete}
+                className="gap-1"
+              >
+                <Iconify icon="lucide:check-check" className="size-4" />
+                {t("album.team.complete")}
+              </Button>
+            </div>
+            <Button className="w-full sm:hidden" onClick={() => onOpenChange(false)}>
+              {t("confirm")}
             </Button>
           </div>
         </DialogContent>

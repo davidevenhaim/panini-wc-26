@@ -193,7 +193,7 @@
     },
     "team": {
       "progress": "{owned}/{total}",
-      "complete": "סמן נבחרת כמלאה",
+      "complete": "סמן הכל",
       "completeGroup": "סמן בית כמושלם",
       "completeGroupShort": "סמן בית",
       "completeGroupSuccess": "הבית סומן כמושלם",
