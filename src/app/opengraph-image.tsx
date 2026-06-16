@@ -1,13 +1,13 @@
 import { ImageResponse } from "next/og";
-import { CONFIG } from "@/lib/app-config";
+import { getLogoDataUrl } from "@/lib/og-assets";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "Panini WC 2026 Album Tracker";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const logoUrl = new URL("/logo.png", CONFIG.siteUrl).toString();
+  const logoSrc = getLogoDataUrl();
 
   return new ImageResponse(
     <div
@@ -22,14 +22,15 @@ export default async function OpenGraphImage() {
         padding: 48,
       }}
     >
-      {}
-      <img
-        src={logoUrl}
-        width={160}
-        height={160}
-        alt=""
-        style={{ borderRadius: 28, marginBottom: 28 }}
-      />
+      {logoSrc && (
+        <img
+          src={logoSrc}
+          width={160}
+          height={160}
+          alt=""
+          style={{ borderRadius: 28, marginBottom: 28 }}
+        />
+      )}
       <div
         style={{
           fontSize: 68,

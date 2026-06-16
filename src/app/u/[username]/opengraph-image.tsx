@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
-import { CONFIG } from "@/lib/app-config";
+import { getLogoDataUrl } from "@/lib/og-assets";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -9,7 +9,7 @@ type Props = { params: Promise<{ username: string }> };
 
 export default async function ShareOpenGraphImage({ params }: Props) {
   const { username } = await params;
-  const logoUrl = new URL("/logo.png", CONFIG.siteUrl).toString();
+  const logoSrc = getLogoDataUrl();
 
   return new ImageResponse(
     <div
@@ -24,14 +24,15 @@ export default async function ShareOpenGraphImage({ params }: Props) {
         padding: 48,
       }}
     >
-      {}
-      <img
-        src={logoUrl}
-        width={120}
-        height={120}
-        alt=""
-        style={{ borderRadius: 24, marginBottom: 24 }}
-      />
+      {logoSrc && (
+        <img
+          src={logoSrc}
+          width={120}
+          height={120}
+          alt=""
+          style={{ borderRadius: 24, marginBottom: 24 }}
+        />
+      )}
       <div
         style={{
           fontSize: 56,
