@@ -1,3 +1,5 @@
+import { DEFAULT_LOCALE } from "@/constants/locale";
+
 const TRANSLATIONS = {
   en: { toastServerError: "Server error", toastRequestFailed: "Request failed" },
   he: { toastServerError: "שגיאת שרת", toastRequestFailed: "הבקשה נכשלה" },
@@ -14,7 +16,7 @@ type ClientKey = keyof (typeof TRANSLATIONS)["en"];
 export function clientT(key: ClientKey): string {
   const locale =
     typeof document !== "undefined"
-      ? (document.cookie.match(/NEXT_LOCALE=([^;]+)/)?.[1] ?? "en")
-      : "en";
-  return (TRANSLATIONS[locale as keyof typeof TRANSLATIONS] ?? TRANSLATIONS.en)[key];
+      ? (document.cookie.match(/NEXT_LOCALE=([^;]+)/)?.[1] ?? DEFAULT_LOCALE)
+      : DEFAULT_LOCALE;
+  return (TRANSLATIONS[locale as keyof typeof TRANSLATIONS] ?? TRANSLATIONS[DEFAULT_LOCALE])[key];
 }

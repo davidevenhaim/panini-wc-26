@@ -239,7 +239,9 @@
       "done": "Collection cleared"
     },
     "footerNote": "Made by fans for the fans. Not affiliated with Panini or FIFA.",
-    "buyMeACoffee": "Buy me a coffee"
+    "buyMeACoffee": "Buy me a coffee",
+    "skeletonCredit": "Built with",
+    "skeletonCreditLink": "Skeleton UI App"
   },
   "profile": {
     "title": "Your profile",

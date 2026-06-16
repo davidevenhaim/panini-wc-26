@@ -192,13 +192,17 @@ describe("import / export", () => {
     expect(rows).toHaveLength(980 + 12);
   });
 
-  it("buildExcelXml produces valid SpreadsheetML wrapper", async () => {
-    const { buildExcelXml } = await import("@/lib/album/collection");
-    const xml = buildExcelXml({ MEX1: 1 });
-    expect(xml).toContain("<?xml");
-    expect(xml).toContain("<Workbook");
-    expect(xml).toContain("Panini WC 2026");
-    expect(xml).toContain("MEX1");
+  it("buildExcelCsv produces BOM + quoted rows + CRLF", async () => {
+    const { buildExcelCsv } = await import("@/lib/album/collection");
+    const csv = buildExcelCsv({ MEX1: 2 });
+    // UTF-8 BOM
+    expect(csv.charCodeAt(0)).toBe(0xfeff);
+    // header row, quoted
+    expect(csv).toContain('"Section","Group","Team","Code","Quantity","Status","Duplicates"');
+    // CRLF line endings
+    expect(csv).toContain("\r\n");
+    // The duplicate Mexico row should be present
+    expect(csv).toMatch(/"Mexico \(MEX\)","MEX1","2","duplicate","1"/);
   });
 
   it("duplicates CSV lists qty - 1", () => {

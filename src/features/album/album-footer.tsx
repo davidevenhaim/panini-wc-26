@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
 import { Typography } from "@/components/ui/typography";
-import { BUY_ME_A_COFFEE_URL } from "@/constants/app.constants";
+import { BUY_ME_A_COFFEE_URL, SKELETON_URL } from "@/constants/app.constants";
 
 export function AlbumFooter() {
   const t = useTranslations();
@@ -30,6 +30,19 @@ export function AlbumFooter() {
           {t("album.buyMeACoffee")}
         </a>
       </Button>
+
+      <Typography variant="caption2" as="p" color="muted" className="max-w-sm">
+        <Iconify icon="lucide:layers-2" className="me-1 inline size-3 opacity-70" aria-hidden />
+        {t("album.skeletonCredit")}{" "}
+        <a
+          href={SKELETON_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="text-foreground/60 hover:text-foreground underline underline-offset-2 transition-colors"
+        >
+          {t("album.skeletonCreditLink")}
+        </a>
+      </Typography>
     </footer>
   );
 }

@@ -4,6 +4,7 @@ import * as React from "react";
 import { useTranslations } from "next-intl";
 import Iconify from "@/components/ui/iconify";
 import { cn } from "@/lib/utils";
+import { readableOnDarkSurface } from "@/utils/color.utils";
 import type { Team } from "@/types/album.types";
 
 type Props = {
@@ -38,7 +39,7 @@ export const TeamTile = React.memo(function TeamTile({
         className
       )}
       style={{
-        background: `linear-gradient(155deg, ${team.primaryColor}28 0%, ${team.accentColor}18 60%, transparent 100%)`,
+        background: `linear-gradient(155deg, ${team.primaryColor}28 0%, ${team.accentColor}18 60%, transparent 100%), var(--card)`,
         borderColor: isComplete ? "#10b981" : `${team.primaryColor}55`,
       }}
     >
@@ -58,7 +59,7 @@ export const TeamTile = React.memo(function TeamTile({
           isComplete
             ? "bg-emerald-500 text-white"
             : owned === 0
-              ? "bg-foreground/10 text-foreground/70"
+              ? "bg-muted/90 text-foreground"
               : "bg-background/90 text-foreground"
         )}
       >
@@ -76,21 +77,26 @@ export const TeamTile = React.memo(function TeamTile({
 
       <div className="mt-3 flex flex-col items-center gap-1.5">
         <span
-          className="ring-border/30 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 text-4xl shadow-sm ring-2 sm:h-16 sm:w-16 dark:bg-gray-700"
+          className="ring-border/30 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-4xl shadow-sm ring-2 sm:h-16 sm:w-16"
           aria-hidden
         >
           <span className="drop-shadow-sm">{team.flag}</span>
         </span>
         <span
-          className="font-heading text-lg font-black tracking-wider sm:text-xl"
-          style={{ color: team.primaryColor }}
+          className="font-heading text-lg font-black tracking-wider [color:var(--team-fg-light)] sm:text-xl dark:[color:var(--team-fg-dark)]"
+          style={
+            {
+              "--team-fg-light": team.primaryColor,
+              "--team-fg-dark": readableOnDarkSurface(team.primaryColor),
+            } as React.CSSProperties
+          }
         >
           {team.code}
         </span>
       </div>
 
       {/* Progress bar */}
-      <div className="bg-foreground/10 mt-1 h-1.5 w-full overflow-hidden rounded-full">
+      <div className="bg-muted mt-1 h-1.5 w-full overflow-hidden rounded-full">
         <div
           className="h-full rounded-full transition-all duration-500"
           style={{

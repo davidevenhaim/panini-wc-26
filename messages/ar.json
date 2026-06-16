@@ -239,7 +239,9 @@
       "done": "تم مسح المجموعة"
     },
     "footerNote": "صنع من قبل المعجبين للمعجبين. غير تابع لباناني أو الفيفا.",
-    "buyMeACoffee": "اشترِ لي قهوة"
+    "buyMeACoffee": "اشترِ لي قهوة",
+    "skeletonCredit": "مُبني باستخدام",
+    "skeletonCreditLink": "Skeleton UI App"
   },
   "profile": {
     "title": "ملفك الشخصي",

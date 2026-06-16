@@ -193,15 +193,6 @@ type ExcelRow = {
   duplicates: number;
 };
 
-function escapeXml(value: string | number): string {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&apos;");
-}
-
 function statusFor(qty: number): ExcelRow["status"] {
   if (qty === 0) return "missing";
   if (qty === 1) return "owned";
@@ -260,45 +251,35 @@ export function buildExcelRows(quantities: Quantities): ExcelRow[] {
   return rows;
 }
 
+function csvCell(value: string | number): string {
+  const str = String(value);
+  // Always quote — safe with commas, quotes, newlines, leading +/=/-/@.
+  return `"${str.replace(/"/g, '""')}"`;
+}
+
 /**
- * Build SpreadsheetML 2003 XML — Excel opens it natively without any
- * runtime dependency. Suffix the file with `.xls`.
+ * Build an Excel-friendly CSV.
+ * - Starts with UTF-8 BOM so Excel reads accents/non-ASCII correctly.
+ * - CRLF line endings (Excel convention).
+ * - All fields quoted so embedded commas/newlines are safe.
+ *
+ * Suffix the file with `.csv`. Excel, Numbers, and Google Sheets open this
+ * natively with a double-click.
  */
-export function buildExcelXml(quantities: Quantities): string {
+export function buildExcelCsv(quantities: Quantities): string {
   const rows = buildExcelRows(quantities);
   const header = ["Section", "Group", "Team", "Code", "Quantity", "Status", "Duplicates"];
-
-  const cell = (value: string | number, type: "String" | "Number") =>
-    `<Cell><Data ss:Type="${type}">${escapeXml(value)}</Data></Cell>`;
-
-  const headerRow = `<Row>${header
-    .map((h) => `<Cell ss:StyleID="hdr"><Data ss:Type="String">${escapeXml(h)}</Data></Cell>`)
-    .join("")}</Row>`;
-
-  const dataRows = rows
-    .map(
-      (r) =>
-        `<Row>${cell(r.section, "String")}${cell(r.group, "String")}${cell(
-          r.team,
-          "String"
-        )}${cell(r.code, "String")}${cell(r.quantity, "Number")}${cell(
-          r.status,
-          "String"
-        )}${cell(r.duplicates, "Number")}</Row>`
-    )
-    .join("");
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<?mso-application progid="Excel.Sheet"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
- xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">
- <Styles>
-  <Style ss:ID="hdr"><Font ss:Bold="1"/><Interior ss:Color="#E5E7EB" ss:Pattern="Solid"/></Style>
- </Styles>
- <Worksheet ss:Name="Panini WC 2026">
-  <Table>${headerRow}${dataRows}</Table>
- </Worksheet>
-</Workbook>`;
+  const lines: string[] = [];
+  lines.push(header.map(csvCell).join(","));
+  for (const r of rows) {
+    lines.push(
+      [r.section, r.group, r.team, r.code, r.quantity, r.status, r.duplicates]
+        .map(csvCell)
+        .join(",")
+    );
+  }
+  // UTF-8 BOM + CRLF lines.
+  return "﻿" + lines.join("\r\n") + "\r\n";
 }
 
 export { TOTAL_ALBUM_STICKERS, TOTAL_BONUS_STICKERS };

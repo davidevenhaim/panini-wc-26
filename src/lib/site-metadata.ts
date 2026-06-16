@@ -31,30 +31,8 @@ export function buildSiteMetadata({
       statusBarStyle: "default",
     },
     icons: {
-      icon: [
-        { url: SITE_METADATA.icons.favicon },
-        {
-          url: SITE_METADATA.icons.favicon16,
-          sizes: "16x16",
-          type: "image/png",
-        },
-        {
-          url: SITE_METADATA.icons.favicon32,
-          sizes: "32x32",
-          type: "image/png",
-        },
-      ],
-      apple: SITE_METADATA.icons.appleTouch,
-      other: [
-        {
-          rel: "android-chrome-192x192",
-          url: SITE_METADATA.icons.android192,
-        },
-        {
-          rel: "android-chrome-512x512",
-          url: SITE_METADATA.icons.android512,
-        },
-      ],
+      icon: SITE_METADATA.logoPath,
+      apple: SITE_METADATA.logoPath,
     },
     openGraph: {
       title,

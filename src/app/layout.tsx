@@ -4,7 +4,12 @@ import { cookies } from "next/headers";
 import { Cairo, Geist_Mono, Heebo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
-import { LOCALE_COOKIE, getLocaleDirection, isAppLocale, type AppLocale } from "@/constants/locale";
+import {
+  LOCALE_COOKIE,
+  getLocaleDirection,
+  resolveAppLocale,
+  type AppLocale,
+} from "@/constants/locale";
 import { buildSiteMetadata } from "@/lib/site-metadata";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -62,8 +67,7 @@ function fontVariableClasses(locale: AppLocale): string {
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
-  const raw = cookieStore.get(LOCALE_COOKIE)?.value ?? "en";
-  const locale = isAppLocale(raw) ? raw : "en";
+  const locale = resolveAppLocale(cookieStore.get(LOCALE_COOKIE)?.value);
   const t = await getTranslations({ locale, namespace: "metadata" });
 
   return {
@@ -85,8 +89,7 @@ export default async function RootLayout({
 }>) {
   const messages = await getMessages();
   const cookieStore = await cookies();
-  const raw = cookieStore.get(LOCALE_COOKIE)?.value ?? "en";
-  const htmlLang: AppLocale = isAppLocale(raw) ? raw : "en";
+  const htmlLang: AppLocale = resolveAppLocale(cookieStore.get(LOCALE_COOKIE)?.value);
   const htmlDir = getLocaleDirection(htmlLang);
 
   return (

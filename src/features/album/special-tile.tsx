@@ -3,6 +3,7 @@
 import * as React from "react";
 import Iconify from "@/components/ui/iconify";
 import { cn } from "@/lib/utils";
+import { readableOnDarkSurface } from "@/utils/color.utils";
 
 type Props = {
   title: string;
@@ -45,7 +46,7 @@ export const SpecialTile = React.memo(function SpecialTile({
         className
       )}
       style={{
-        background: `linear-gradient(155deg, ${accentColor}30 0%, ${accentColor}10 60%, transparent 100%)`,
+        background: `linear-gradient(155deg, ${accentColor}30 0%, ${accentColor}10 60%, transparent 100%), var(--card)`,
         borderColor: isComplete ? "#10b981" : `${accentColor}55`,
       }}
     >
@@ -63,7 +64,7 @@ export const SpecialTile = React.memo(function SpecialTile({
           isComplete
             ? "bg-emerald-500 text-white"
             : owned === 0
-              ? "bg-foreground/10 text-foreground/70"
+              ? "bg-muted/90 text-foreground"
               : "bg-background/90 text-foreground"
         )}
       >
@@ -101,14 +102,19 @@ export const SpecialTile = React.memo(function SpecialTile({
           )}
         </span>
         <span
-          className="font-heading text-lg font-black tracking-wider sm:text-xl"
-          style={{ color: accentColor }}
+          className="font-heading text-lg font-black tracking-wider [color:var(--team-fg-light)] sm:text-xl dark:[color:var(--team-fg-dark)]"
+          style={
+            {
+              "--team-fg-light": accentColor,
+              "--team-fg-dark": readableOnDarkSurface(accentColor),
+            } as React.CSSProperties
+          }
         >
           {shortCode}
         </span>
       </div>
 
-      <div className="bg-foreground/10 mt-1 h-1.5 w-full overflow-hidden rounded-full">
+      <div className="bg-muted mt-1 h-1.5 w-full overflow-hidden rounded-full">
         <div
           className="h-full rounded-full transition-all duration-500"
           style={{

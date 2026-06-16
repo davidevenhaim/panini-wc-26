@@ -239,7 +239,9 @@
       "done": "האוסף נמחק"
     },
     "footerNote": "בנוי על ידי אוהדים בשביל האוהדים. לא קשור לפאניני או פיפ\"א.",
-    "buyMeACoffee": "קנו לי קפה"
+    "buyMeACoffee": "קנו לי קפה",
+    "skeletonCredit": "נבנה בעזרת",
+    "skeletonCreditLink": "Skeleton UI App"
   },
   "profile": {
     "title": "הפרופיל שלך",

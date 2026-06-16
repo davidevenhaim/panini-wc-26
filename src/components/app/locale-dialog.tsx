@@ -19,7 +19,7 @@ import {
   LOCALE_COOKIE_MAX_AGE,
   SUPPORTED_LOCALES,
   getLocaleDirection,
-  isAppLocale,
+  resolveAppLocale,
   type AppLocale,
 } from "@/constants/locale";
 import Cookies from "js-cookie";
@@ -39,7 +39,7 @@ export function LocaleDialog() {
   const t = useTranslations();
   const router = useRouter();
   const rawLocale = useLocale();
-  const locale: AppLocale = isAppLocale(rawLocale) ? rawLocale : "en";
+  const locale: AppLocale = resolveAppLocale(rawLocale);
   const [open, setOpen] = React.useState(false);
   const [pendingLocale, setPendingLocale] = React.useState<AppLocale | null>(null);
   const [isPending, startTransition] = React.useTransition();

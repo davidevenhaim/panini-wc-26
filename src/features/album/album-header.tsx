@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { LocaleDialog } from "@/components/app";
@@ -20,6 +21,7 @@ import { useCollectionStore } from "@/store/collection.store";
 import { usePermissions } from "@/hooks/use-permissions";
 import { CONFIG } from "@/lib/app-config";
 import WEB_ROUTES from "@/constants/web-routes.constants";
+import { SITE_METADATA } from "@/constants/site-metadata.constants";
 import { exportExcel } from "./exporters";
 
 type Props = {
@@ -39,8 +41,15 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
 
   return (
     <header className="mb-4 flex items-center gap-3">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 via-sky-500 to-violet-600 text-white shadow-md">
-        <Iconify icon="lucide:sticker" className="size-6" />
+      <div className="ring-border/30 relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl shadow-md ring-1">
+        <Image
+          src={SITE_METADATA.logoPath}
+          alt=""
+          width={48}
+          height={48}
+          className="h-full w-full object-contain p-1"
+          priority
+        />
       </div>
       <div className="min-w-0 flex-1">
         <Typography

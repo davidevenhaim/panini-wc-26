@@ -2,7 +2,7 @@
 
 import {
   buildDuplicatesCsv,
-  buildExcelXml,
+  buildExcelCsv,
   buildExport,
   buildMissingTxt,
   type Quantities,
@@ -45,10 +45,8 @@ export function exportDuplicatesCsv(quantities: Quantities) {
 }
 
 export function exportExcel(quantities: Quantities) {
-  // SpreadsheetML 2003 XML. Excel/Numbers/Google Sheets open this natively.
-  downloadFile(
-    `panini-wc26-${isoDate()}.xls`,
-    buildExcelXml(quantities),
-    "application/vnd.ms-excel"
-  );
+  // UTF-8 CSV with BOM — Excel, Numbers and Google Sheets open it natively.
+  // CSV avoids the format-mismatch warnings that older SpreadsheetML XML
+  // triggers in modern Excel.
+  downloadFile(`panini-wc26-${isoDate()}.csv`, buildExcelCsv(quantities), "text/csv;charset=utf-8");
 }

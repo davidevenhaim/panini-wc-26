@@ -239,7 +239,9 @@
       "done": "Colección borrada"
     },
     "footerNote": "Hecho por aficionados para los aficionados. No afiliado con Panini ni FIFA.",
-    "buyMeACoffee": "Invítame a un café"
+    "buyMeACoffee": "Invítame a un café",
+    "skeletonCredit": "Construido con",
+    "skeletonCreditLink": "Skeleton UI App"
   },
   "profile": {
     "title": "Tu perfil",

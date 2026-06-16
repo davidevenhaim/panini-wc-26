@@ -95,7 +95,7 @@ export function AlbumPage() {
       {
         section: PANINI_LOGO_SECTION,
         title: t("album.sections.paniniLogo"),
-        shortCode: "PANINI",
+        shortCode: "Panini",
         icon: "lucide:sticker",
         imageSrc: "/panini.png",
         accentColor: "#facc15",
@@ -106,7 +106,7 @@ export function AlbumPage() {
         shortCode: "FWC 1-8",
         icon: "lucide:trophy",
         imageSrc: "/fwc.jpg",
-        accentColor: "#0f172a",
+        accentColor: "#0ea5e9",
       },
       {
         section: FWC_CLOSING_SECTION,
@@ -119,7 +119,7 @@ export function AlbumPage() {
       {
         section: BONUS_SECTION,
         title: t("album.sections.bonus"),
-        shortCode: "COCA",
+        shortCode: "Coca-Cola",
         icon: "lucide:gift",
         imageSrc: "/coca.png",
         accentColor: "#dc2626",

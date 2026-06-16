@@ -5,6 +5,8 @@ export const SUPPORTED_LOCALES = ["en", "es", "he", "ar"] as const;
 
 export type AppLocale = (typeof SUPPORTED_LOCALES)[number];
 
+export const DEFAULT_LOCALE: AppLocale = "he";
+
 type LocaleDirection = "ltr" | "rtl";
 type RtlLocale = Extract<AppLocale, "he" | "ar">;
 
@@ -12,6 +14,10 @@ const RTL_LOCALES: ReadonlySet<RtlLocale> = new Set(["he", "ar"]);
 
 export function isAppLocale(value: string): value is AppLocale {
   return SUPPORTED_LOCALES.includes(value as AppLocale);
+}
+
+export function resolveAppLocale(value: string | undefined | null): AppLocale {
+  return value && isAppLocale(value) ? value : DEFAULT_LOCALE;
 }
 
 export function isRTL(locale: AppLocale): boolean {
