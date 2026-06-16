@@ -132,8 +132,8 @@
     "back": "חזרה לדף הבית"
   },
   "authSupabase": {
-    "loginTitle": "שמחים לראותך שוב",
-    "loginSubtitle": "התחבר כדי להמשיך",
+    "loginTitle": "אני אתפוס את כולם",
+    "loginSubtitle": "נצא לציד מדבקות",
     "signupTitle": "צור חשבון",
     "signupSubtitle": "זה לוקח רק דקה",
     "login": "התחבר",
@@ -143,7 +143,7 @@
     "signupFailed": "ההרשמה נכשלה",
     "googleFailed": "ההתחברות עם Google נכשלה",
     "or": "או",
-    "continueWithGoogle": "המשך עם Google",
+    "continueWithGoogle": "כניסה עם Google",
     "noAccount": "אין לך חשבון?",
     "haveAccount": "כבר יש לך חשבון?",
     "supabaseNotConfiguredTitle": "Supabase לא מחובר",
@@ -264,7 +264,23 @@
     "invalidUsername": "בחר שם משתמש תקין",
     "myProfile": "הפרופיל שלי",
     "login": "התחבר",
-    "loginToSync": "התחבר לסנכרון ושיתוף"
+    "loginToSync": "התחבר לסנכרון ושיתוף",
+    "publicLabel": "הציגו אותי בעמוד האספנים הציבורי",
+    "publicHint": "אספנים אחרים יוכלו למצוא אותך ולראות את הכפולים והחסרים שלך. הקישור האישי עובד בכל מקרה."
+  },
+  "users": {
+    "title": "מצא אספנים",
+    "subtitle": "דפדף בין אספנים ציבוריים ומצא אנשים עם הקלפים שאתה צריך.",
+    "filterAll": "הכול ({count})",
+    "filterMatch": "התאמה לחסרות שלי",
+    "loginToMatch": "התחבר להתאמה",
+    "matchBadge": "{count} התאמות",
+    "viewerHint": "חסרות לך {missing} מדבקות",
+    "viewCollection": "צפה באוסף",
+    "missingLabel": "חסרות",
+    "empty": "אין אספנים ציבוריים עדיין — היה הראשון לשתף את הפרופיל שלך.",
+    "noMatches": "אין כרגע אספנים עם כפולים שמתאימים לחסרות שלך.",
+    "browse": "דפדף בין אספנים"
   },
   "share": {
     "eyebrow": "אוסף פאניני מונדיאל 2026",

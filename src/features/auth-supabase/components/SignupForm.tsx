@@ -12,6 +12,7 @@ import { toastError } from "@/lib/toast";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { signupSchema, type SignupFormValues } from "../validation/auth.schema";
 import { signupAction } from "../actions";
+import { AuthBranding } from "./AuthBranding";
 import { GoogleButton } from "./GoogleButton";
 import { SupabaseConfigNotice } from "./SupabaseConfigNotice";
 
@@ -36,23 +37,11 @@ export function SignupForm() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-6">
-      <div className="space-y-1 text-center">
-        <Typography variant="h2">{t("signupTitle")}</Typography>
-        <Typography variant="caption2" color="muted">
-          {t("signupSubtitle")}
-        </Typography>
-      </div>
+      <AuthBranding title={t("signupTitle")} subtitle={t("signupSubtitle")} />
 
       <SupabaseConfigNotice />
 
-      <Form form={form} onSubmit={onSubmit} className="space-y-4">
-        <TextInput name="email" label="labels.email" type="email" required />
-        <TextInput name="password" label="labels.password" type="password" required />
-        <TextInput name="confirmPassword" label="labels.confirmPassword" type="password" required />
-        <Button type="submit" loading={pending} className="w-full">
-          {t("signup")}
-        </Button>
-      </Form>
+      <GoogleButton label={t("continueWithGoogle")} />
 
       <div className="flex items-center gap-2">
         <div className="bg-border h-px flex-1" />
@@ -62,7 +51,14 @@ export function SignupForm() {
         <div className="bg-border h-px flex-1" />
       </div>
 
-      <GoogleButton label={t("continueWithGoogle")} />
+      <Form form={form} onSubmit={onSubmit} className="space-y-4">
+        <TextInput name="email" label="labels.email" type="email" required />
+        <TextInput name="password" label="labels.password" type="password" required />
+        <TextInput name="confirmPassword" label="labels.confirmPassword" type="password" required />
+        <Button type="submit" loading={pending} className="w-full">
+          {t("signup")}
+        </Button>
+      </Form>
 
       <Typography variant="caption2" color="muted" className="text-center">
         {t("haveAccount")}{" "}

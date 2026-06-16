@@ -133,7 +133,7 @@
   },
   "authSupabase": {
     "loginTitle": "Bienvenido de nuevo",
-    "loginSubtitle": "Inicia sesión para continuar",
+    "loginSubtitle": "Vamos a cazar cromos",
     "signupTitle": "Crea tu cuenta",
     "signupSubtitle": "Solo lleva un minuto",
     "login": "Iniciar sesión",
@@ -264,7 +264,23 @@
     "invalidUsername": "Elige un usuario válido",
     "myProfile": "Mi perfil",
     "login": "Iniciar sesión",
-    "loginToSync": "Inicia sesión para sincronizar"
+    "loginToSync": "Inicia sesión para sincronizar",
+    "publicLabel": "Aparecer en la página pública de coleccionistas",
+    "publicHint": "Otros podrán encontrarte y ver tus repetidos / faltantes. Tu enlace personal funciona igualmente."
+  },
+  "users": {
+    "title": "Encuentra coleccionistas",
+    "subtitle": "Explora coleccionistas públicos y encuentra a quién tiene los cromos que te faltan.",
+    "filterAll": "Todos ({count})",
+    "filterMatch": "Coincide con mis faltantes",
+    "loginToMatch": "Inicia sesión para emparejar",
+    "matchBadge": "{count} coinciden",
+    "viewerHint": "Te faltan {missing} cromos",
+    "viewCollection": "Ver colección",
+    "missingLabel": "Faltantes",
+    "empty": "Aún no hay coleccionistas públicos — sé el primero.",
+    "noMatches": "Nadie tiene aún repetidos que coincidan con tus faltantes.",
+    "browse": "Explorar coleccionistas"
   },
   "share": {
     "eyebrow": "Colección Panini Mundial 2026",

@@ -133,7 +133,7 @@
   },
   "authSupabase": {
     "loginTitle": "Welcome back",
-    "loginSubtitle": "Sign in to continue",
+    "loginSubtitle": "Let's go sticker hunting",
     "signupTitle": "Create your account",
     "signupSubtitle": "It only takes a minute",
     "login": "Sign in",
@@ -264,7 +264,23 @@
     "invalidUsername": "Pick a valid username",
     "myProfile": "My profile",
     "login": "Sign in",
-    "loginToSync": "Sign in to sync & share"
+    "loginToSync": "Sign in to sync & share",
+    "publicLabel": "Show me on the public collectors page",
+    "publicHint": "Other collectors can find you and see your duplicates / missing list. Your share link works either way."
+  },
+  "users": {
+    "title": "Find collectors",
+    "subtitle": "Browse public collectors and find people who have the cards you need.",
+    "filterAll": "All ({count})",
+    "filterMatch": "Match my missing",
+    "loginToMatch": "Sign in to match",
+    "matchBadge": "{count} match",
+    "viewerHint": "You're missing {missing} stickers",
+    "viewCollection": "View collection",
+    "missingLabel": "Missing",
+    "empty": "No public collectors yet — be the first to share your profile.",
+    "noMatches": "No public collectors have duplicates that match your missing list yet.",
+    "browse": "Browse collectors"
   },
   "share": {
     "eyebrow": "Panini WC 2026 collection",

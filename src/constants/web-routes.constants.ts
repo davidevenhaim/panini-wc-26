@@ -4,6 +4,7 @@ const WEB_ROUTES = {
   SIGNUP: "/signup",
   AUTH_CALLBACK: "/auth/callback",
   PROFILE: "/profile",
+  USERS: "/users",
   USER_SHARE: (username: string) => `/u/${username}`,
 } as const;
 

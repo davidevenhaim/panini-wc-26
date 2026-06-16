@@ -111,6 +111,14 @@ export function AlbumHeader({ onOpenImportExport, onOpenReset }: Props) {
               <Iconify icon="lucide:download" className="size-4" />
               {t("album.menu.importExport")}
             </DropdownMenuItem>
+            {CONFIG.isSupabaseConfigured && (
+              <DropdownMenuItem asChild>
+                <Link href={WEB_ROUTES.USERS}>
+                  <Iconify icon="lucide:users" className="size-4" />
+                  {t("users.browse")}
+                </Link>
+              </DropdownMenuItem>
+            )}
             {CONFIG.isSupabaseConfigured && isAuthenticated && (
               <DropdownMenuItem asChild>
                 <Link href={WEB_ROUTES.PROFILE}>

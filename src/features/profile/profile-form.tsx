@@ -36,6 +36,7 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
     initialProfile?.contact_method ?? "whatsapp"
   );
   const [value, setValue] = React.useState(initialProfile?.contact_value ?? "");
+  const [isPublic, setIsPublic] = React.useState(initialProfile?.is_public ?? true);
   const [saving, setSaving] = React.useState(false);
 
   const usernameValid = USERNAME_REGEX.test(username);
@@ -60,6 +61,7 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
         bio: bio.trim() || null,
         contact_method: method,
         contact_value: value.trim() || null,
+        is_public: isPublic,
       });
       toastSuccess(t("profile.saved"));
       router.refresh();
@@ -190,6 +192,19 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
           />
         </label>
       </div>
+
+      <label className="bg-card flex items-start gap-3 rounded-2xl border p-3">
+        <input
+          type="checkbox"
+          checked={isPublic}
+          onChange={(e) => setIsPublic(e.target.checked)}
+          className="mt-0.5 size-4 cursor-pointer accent-emerald-600"
+        />
+        <span className="flex-1">
+          <span className="block text-sm font-semibold">{t("profile.publicLabel")}</span>
+          <span className="text-foreground/60 block text-xs">{t("profile.publicHint")}</span>
+        </span>
+      </label>
 
       <div className="flex flex-wrap items-center gap-2">
         <Button type="submit" loading={saving}>

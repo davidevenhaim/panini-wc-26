@@ -1,3 +1,4 @@
+export { AuthBranding } from "./components/AuthBranding";
 export { LoginForm } from "./components/LoginForm";
 export { SignupForm } from "./components/SignupForm";
 export { GoogleButton } from "./components/GoogleButton";
