@@ -141,6 +141,9 @@ export const AlbumEditionSchema = z.object({
 });
 export type AlbumEdition = z.infer<typeof AlbumEditionSchema>;
 
+export const CompletionScopeSchema = z.enum(["BASE_BINDER", "FULL_COLLECTION"]);
+export type CompletionScope = z.infer<typeof CompletionScopeSchema>;
+
 export const AlbumSchema = z.object({
   id: z.string(),
   slug: z.string(),
@@ -154,6 +157,10 @@ export const AlbumSchema = z.object({
   itemType: ItemTypeSchema,
   dataStatus: AlbumDataStatusSchema,
   totalItems: z.number().int().optional(),
+  /** Physical-only metric — number of binder pockets. NOT the completion target. */
+  binderCapacity: z.number().int().positive().optional(),
+  /** Always BASE_BINDER for now; left explicit for clarity. */
+  completionScope: CompletionScopeSchema.optional(),
   layout: AlbumLayoutSchema,
   sections: z.array(AlbumSectionSchema).default([]),
   specialCollections: z.array(SpecialCollectionSchema).default([]),

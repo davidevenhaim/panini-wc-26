@@ -440,14 +440,27 @@
   },
   "adrenalyn": {
     "tabBase": "Carpeta base",
-    "tabExtras": "Extras",
+    "tabExtras": "Extras y actualizaciones",
     "chase": "Cartas chase",
     "nationalTeams": "Selecciones nacionales",
+    "byGroup": "Por grupo del torneo",
+    "byChecklist": "Por orden del checklist",
+    "unassigned": "Otras selecciones · sin grupo",
     "contenders": "Contenders",
     "specialCategories": "Categorías especiales",
     "extras": "Extras y Ediciones limitadas",
     "extrasEmpty": "Aún no hay extras seguidos — aparecerán aquí a medida que crezca el dataset.",
-    "extrasNotice": "Los extras y ediciones limitadas se siguen por separado y no afectan la carpeta base."
+    "extrasNotice": "Los extras y ediciones limitadas se siguen por separado y no afectan la carpeta base.",
+    "statBase": "Cartas base",
+    "statMissing": "Faltantes",
+    "statDuplicates": "Repetidas",
+    "statTeams": "Selecciones completas",
+    "binderCapacity": "Capacidad de la carpeta: {count} cartas (bolsillos físicos — no es el objetivo de completado).",
+    "view": {
+      "groups": "Grupos",
+      "checklist": "Checklist",
+      "categories": "Categorías"
+    }
   },
   "worldCup": {
     "eyebrow": "Copa Mundial FIFA",

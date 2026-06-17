@@ -1,137 +1,59 @@
-import type { AlbumSection, CollectibleItem, SpecialCollection } from "@/collections/schema";
+import type {
+  AlbumSection,
+  CollectibleItem,
+  LocalizedText,
+  SpecialCollection,
+} from "@/collections/schema";
 import { ADRENALYN_RANGES } from "./categories";
+import { ADRENALYN_TEAM_ROSTER } from "./team-roster";
 
 const ALBUM_ID = "panini-world-cup-2026-adrenalyn-xl";
 
-/* ── Confirmed team blocks from the official PDF ───────────────────────── */
+/* ── Item helpers ──────────────────────────────────────────────────────── */
 
-type TeamSeed = {
-  code: string;
-  nameEn: string;
-  nameHe: string;
-  flag: string;
-  primary: string;
-  accent: string;
-  /** Block index 0..41 (override only when known). */
-  blockIndex: number;
+type ItemExtras = {
+  category: string;
+  name: LocalizedText;
+  playerName?: LocalizedText;
+  teamName?: LocalizedText;
 };
 
-/**
- * Anchor teams confirmed against the official checklist. The full
- * 42-team list is alphabetical, but only the 9 anchor blocks are named
- * here — the other 33 blocks render as generic "Team Block N" tiles
- * until the PDF is parsed in full.
- */
-const CONFIRMED_TEAMS: TeamSeed[] = [
-  {
-    blockIndex: 0,
-    code: "ALG",
-    nameEn: "Algeria",
-    nameHe: "אלג'יריה",
-    flag: "🇩🇿",
-    primary: "#006233",
-    accent: "#FFFFFF",
-  },
-  {
-    blockIndex: 1,
-    code: "ARG",
-    nameEn: "Argentina",
-    nameHe: "ארגנטינה",
-    flag: "🇦🇷",
-    primary: "#75AADB",
-    accent: "#FFFFFF",
-  },
-  {
-    blockIndex: 2,
-    code: "AUS",
-    nameEn: "Australia",
-    nameHe: "אוסטרליה",
-    flag: "🇦🇺",
-    primary: "#00843D",
-    accent: "#FFCD00",
-  },
-  {
-    blockIndex: 3,
-    code: "AUT",
-    nameEn: "Austria",
-    nameHe: "אוסטריה",
-    flag: "🇦🇹",
-    primary: "#ED2939",
-    accent: "#FFFFFF",
-  },
-  {
-    blockIndex: 4,
-    code: "BEL",
-    nameEn: "Belgium",
-    nameHe: "בלגיה",
-    flag: "🇧🇪",
-    primary: "#000000",
-    accent: "#FFD90C",
-  },
-  {
-    blockIndex: 5,
-    code: "BRA",
-    nameEn: "Brazil",
-    nameHe: "ברזיל",
-    flag: "🇧🇷",
-    primary: "#FEDF00",
-    accent: "#009C3B",
-  },
-  {
-    blockIndex: 39,
-    code: "USA",
-    nameEn: "United States",
-    nameHe: "ארה״ב",
-    flag: "🇺🇸",
-    primary: "#3C3B6E",
-    accent: "#B22234",
-  },
-  {
-    blockIndex: 40,
-    code: "URU",
-    nameEn: "Uruguay",
-    nameHe: "אורוגוואי",
-    flag: "🇺🇾",
-    primary: "#7B9BD4",
-    accent: "#FFFFFF",
-  },
-  {
-    blockIndex: 41,
-    code: "UZB",
-    nameEn: "Uzbekistan",
-    nameHe: "אוזבקיסטן",
-    flag: "🇺🇿",
-    primary: "#1EB53A",
-    accent: "#0099B5",
-  },
-];
-
-const CONFIRMED_BY_INDEX = new Map(CONFIRMED_TEAMS.map((t) => [t.blockIndex, t]));
-
-/* ── Card-level builders ───────────────────────────────────────────────── */
-
-function item(
-  code: number,
-  sectionId: string,
-  category: string,
-  name: { en: string; he?: string }
-): CollectibleItem {
+function item(code: number, sectionId: string, extras: ItemExtras): CollectibleItem {
   const codeStr = String(code);
-  return {
+  const it: CollectibleItem = {
     id: `${ALBUM_ID}:${codeStr}`,
     albumId: ALBUM_ID,
     sectionId,
     code: codeStr,
     displayNumber: codeStr,
     order: code,
-    name,
-    category,
     isRequiredForCompletion: true,
     availability: "PACK",
+    category: extras.category,
+    name: extras.name,
   };
+  if (extras.playerName) it.playerName = extras.playerName;
+  if (extras.teamName) it.teamName = extras.teamName;
+  return it;
 }
 
-/* ── Golden Ballers (1–9) ──────────────────────────────────────────────── */
+function localized(en: string, he?: string): LocalizedText {
+  return he ? { en, he } : { en };
+}
+
+/* ── Golden Ballers (1–9) — verified player names ──────────────────────── */
+
+const GOLDEN_BALLER_NAMES: { en: string; he: string }[] = [
+  { en: "Lionel Messi", he: "ליאו מסי" },
+  { en: "Vinícius Júnior", he: "ויניסיוס ז'וניור" },
+  { en: "Mohamed Salah", he: "מוחמד סלאח" },
+  { en: "Harry Kane", he: "הארי קיין" },
+  { en: "Kylian Mbappé", he: "קיליאן אמבפה" },
+  { en: "Son Heung-min", he: "סון הונג-מין" },
+  { en: "Erling Haaland", he: "ארלינג הולאנד" },
+  { en: "Cristiano Ronaldo", he: "כריסטיאנו רונאלדו" },
+  { en: "Lamine Yamal", he: "לאמין יאמאל" },
+];
 
 const goldenBallers: AlbumSection = {
   id: "golden-ballers",
@@ -142,72 +64,70 @@ const goldenBallers: AlbumSection = {
   badge: "GB",
   primaryColor: "#facc15",
   accentColor: "#f59e0b",
-  items: Array.from({ length: 9 }, (_, i) => {
+  items: GOLDEN_BALLER_NAMES.map((p, i) => {
     const code = ADRENALYN_RANGES.goldenBallers.start + i;
-    return item(code, "golden-ballers", "GOLDEN_BALLER", {
-      en: `Card ${code} — Golden Baller`,
-      he: `קלף ${code} — כדור הזהב`,
+    return item(code, "golden-ballers", {
+      category: "GOLDEN_BALLER",
+      name: localized(p.en, p.he),
+      playerName: localized(p.en, p.he),
     });
   }),
 };
 
-/* ── National-team blocks (10–513) ─────────────────────────────────────── */
+/* ── National-team blocks (10–513) — alphabetical, 42 × 12 ─────────────── */
 
 function teamSectionFor(blockIndex: number): AlbumSection {
-  const blockStart = ADRENALYN_RANGES.nationalTeams.start + blockIndex * 12; // 10, 22, 34, ...
-  const confirmed = CONFIRMED_BY_INDEX.get(blockIndex);
-  const sectionId = confirmed
-    ? `team-${confirmed.nameEn.toLowerCase().replace(/\s+/g, "-")}`
-    : `team-block-${String(blockIndex + 1).padStart(2, "0")}`;
-  const titleEn = confirmed ? confirmed.nameEn : `Team Block ${blockIndex + 1}`;
-  const titleHe = confirmed?.nameHe;
-  const code = confirmed?.code ?? `T${String(blockIndex + 1).padStart(2, "0")}`;
-  const flag = confirmed?.flag;
-  const primary = confirmed?.primary ?? "#0ea5e9";
-  const accent = confirmed?.accent ?? "#0f172a";
-
-  const teamName = confirmed ? { en: confirmed.nameEn, he: confirmed.nameHe } : { en: titleEn };
+  const seed = ADRENALYN_TEAM_ROSTER[blockIndex];
+  const start = ADRENALYN_RANGES.nationalTeams.start + blockIndex * 12;
+  const sectionId = seed.nameEn
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+  const teamName: LocalizedText = { en: seed.nameEn, he: seed.nameHe };
 
   const items: CollectibleItem[] = [
-    {
-      ...item(blockStart, sectionId, "FAN_FAVOURITE", {
-        en: `Card ${blockStart} — ${titleEn} Fan Favourite`,
-        he: titleHe ? `קלף ${blockStart} — האהוב על האוהדים ${titleHe}` : undefined,
-      }),
+    item(start, sectionId, {
+      category: "FAN_FAVOURITE",
+      name: localized(
+        `Card ${start} — ${seed.nameEn} Fan Favourite`,
+        `קלף ${start} — האהוב על אוהדי ${seed.nameHe}`
+      ),
       teamName,
-    },
-    {
-      ...item(blockStart + 1, sectionId, "TEAM_CREST", {
-        en: `Card ${blockStart + 1} — ${titleEn} Crest`,
-        he: titleHe ? `קלף ${blockStart + 1} — סמל ${titleHe}` : undefined,
-      }),
+    }),
+    // Crests are NEVER tagged with a playerName, per spec.
+    item(start + 1, sectionId, {
+      category: "TEAM_CREST",
+      name: localized(`${seed.nameEn} Team Crest`, `סמל נבחרת ${seed.nameHe}`),
       teamName,
-    },
-    {
-      ...item(blockStart + 2, sectionId, "ICON", {
-        en: `Card ${blockStart + 2} — ${titleEn} Icon`,
-        he: titleHe ? `קלף ${blockStart + 2} — אייקון ${titleHe}` : undefined,
-      }),
+    }),
+    item(start + 2, sectionId, {
+      category: "ICON",
+      name: localized(
+        `Card ${start + 2} — ${seed.nameEn} Icon`,
+        `קלף ${start + 2} — אייקון ${seed.nameHe}`
+      ),
       teamName,
-    },
-    ...Array.from({ length: 9 }, (_, i) => ({
-      ...item(blockStart + 3 + i, sectionId, "PLAYER", {
-        en: `Card ${blockStart + 3 + i} — ${titleEn}`,
-        he: titleHe ? `קלף ${blockStart + 3 + i} — ${titleHe}` : undefined,
-      }),
-      teamName,
-    })),
+    }),
+    ...Array.from({ length: 9 }, (_, i) => {
+      const code = start + 3 + i;
+      return item(code, sectionId, {
+        category: "HERO",
+        name: localized(`Card ${code} — ${seed.nameEn}`, `קלף ${code} — ${seed.nameHe}`),
+        teamName,
+      });
+    }),
   ];
 
   return {
     id: sectionId,
-    title: { en: titleEn, he: titleHe },
+    title: { en: seed.nameEn, he: seed.nameHe },
     order: 2 + blockIndex,
     entityType: "NATIONAL_TEAM",
-    badge: code,
-    ...(flag ? { flag } : {}),
-    primaryColor: primary,
-    accentColor: accent,
+    badge: seed.code,
+    flag: seed.flag,
+    group: seed.tournamentGroup,
+    primaryColor: seed.primary,
+    accentColor: seed.accent,
     items,
   };
 }
@@ -227,9 +147,9 @@ const contenders: AlbumSection = {
   accentColor: "#1e3a8a",
   items: Array.from({ length: 36 }, (_, i) => {
     const code = ADRENALYN_RANGES.contenders.start + i;
-    return item(code, "contenders", "CONTENDER", {
-      en: `Card ${code} — Contender`,
-      he: `קלף ${code} — מתמודד`,
+    return item(code, "contenders", {
+      category: "CONTENDER",
+      name: localized(`Card ${code} — Contender`, `קלף ${code} — מתמודד`),
     });
   }),
 };
@@ -261,15 +181,15 @@ function specialSection(
     accentColor: accent,
     items: Array.from({ length: end - start + 1 }, (_, i) => {
       const code = start + i;
-      return item(code, id, category, {
-        en: `Card ${code} — ${itemNameEn}`,
-        he: `קלף ${code} — ${itemNameHe}`,
+      return item(code, id, {
+        category,
+        name: localized(`Card ${code} — ${itemNameEn}`, `קלף ${code} — ${itemNameHe}`),
       });
     }),
   };
 }
 
-const baseOrderForCategories = 2 + 42 + 1; // after contenders
+const baseCategoryOrder = 2 + 42 + 1;
 
 const topKeepers = specialSection(
   "top-keepers",
@@ -281,11 +201,10 @@ const topKeepers = specialSection(
   "TOP_KEEPER",
   ADRENALYN_RANGES.topKeepers.start,
   ADRENALYN_RANGES.topKeepers.end,
-  baseOrderForCategories,
+  baseCategoryOrder,
   "Top Keeper",
   "שוער מוביל"
 );
-
 const defensiveRocks = specialSection(
   "defensive-rocks",
   "Defensive Rocks",
@@ -296,11 +215,10 @@ const defensiveRocks = specialSection(
   "DEFENSIVE_ROCK",
   ADRENALYN_RANGES.defensiveRocks.start,
   ADRENALYN_RANGES.defensiveRocks.end,
-  baseOrderForCategories + 1,
+  baseCategoryOrder + 1,
   "Defensive Rock",
   "סלע הגנה"
 );
-
 const midfieldMaestros = specialSection(
   "midfield-maestros",
   "Midfield Maestros",
@@ -311,11 +229,10 @@ const midfieldMaestros = specialSection(
   "MIDFIELD_MAESTRO",
   ADRENALYN_RANGES.midfieldMaestros.start,
   ADRENALYN_RANGES.midfieldMaestros.end,
-  baseOrderForCategories + 2,
+  baseCategoryOrder + 2,
   "Midfield Maestro",
   "מאסטרו אמצע השדה"
 );
-
 const goalMachines = specialSection(
   "goal-machines",
   "Goal Machines",
@@ -326,11 +243,10 @@ const goalMachines = specialSection(
   "GOAL_MACHINE",
   ADRENALYN_RANGES.goalMachines.start,
   ADRENALYN_RANGES.goalMachines.end,
-  baseOrderForCategories + 3,
+  baseCategoryOrder + 3,
   "Goal Machine",
   "מכונת גולים"
 );
-
 const masterRookies = specialSection(
   "master-rookies",
   "Master Rookies",
@@ -341,7 +257,7 @@ const masterRookies = specialSection(
   "MASTER_ROOKIE",
   ADRENALYN_RANGES.masterRookies.start,
   ADRENALYN_RANGES.masterRookies.end,
-  baseOrderForCategories + 4,
+  baseCategoryOrder + 4,
   "Master Rookie",
   "טירון מובחר"
 );
@@ -350,15 +266,15 @@ const officialEmblem: AlbumSection = {
   id: "official-emblem",
   title: { en: "Official Emblem", he: "סמל רשמי" },
   subtitle: { en: "Card 624", he: "קלף 624" },
-  order: baseOrderForCategories + 5,
+  order: baseCategoryOrder + 5,
   entityType: "SPECIAL",
   badge: "OE",
   primaryColor: "#facc15",
   accentColor: "#10b981",
   items: [
-    item(ADRENALYN_RANGES.officialEmblem.start, "official-emblem", "OFFICIAL_EMBLEM", {
-      en: "Card 624 — Official Emblem",
-      he: "קלף 624 — סמל רשמי",
+    item(ADRENALYN_RANGES.officialEmblem.start, "official-emblem", {
+      category: "OFFICIAL_EMBLEM",
+      name: localized("Card 624 — Official Emblem", "קלף 624 — סמל רשמי"),
     }),
   ],
 };
@@ -367,16 +283,16 @@ const officialMascots: AlbumSection = {
   id: "official-mascots",
   title: { en: "Official Mascots", he: "קמיעות רשמיות" },
   subtitle: { en: "Cards 625–627", he: "קלפים 625–627" },
-  order: baseOrderForCategories + 6,
+  order: baseCategoryOrder + 6,
   entityType: "SPECIAL",
   badge: "OM",
   primaryColor: "#06b6d4",
   accentColor: "#0e7490",
   items: Array.from({ length: 3 }, (_, i) => {
     const code = ADRENALYN_RANGES.officialMascots.start + i;
-    return item(code, "official-mascots", "OFFICIAL_MASCOT", {
-      en: `Card ${code} — Official Mascot`,
-      he: `קלף ${code} — קמיע רשמי`,
+    return item(code, "official-mascots", {
+      category: "OFFICIAL_MASCOT",
+      name: localized(`Card ${code} — Official Mascot`, `קלף ${code} — קמיע רשמי`),
     });
   }),
 };
@@ -385,21 +301,19 @@ const eternos22: AlbumSection = {
   id: "eternos-22",
   title: { en: "Eternos 22", he: "Eternos 22" },
   subtitle: { en: "Cards 628–630", he: "קלפים 628–630" },
-  order: baseOrderForCategories + 7,
+  order: baseCategoryOrder + 7,
   entityType: "SPECIAL",
   badge: "ET",
   primaryColor: "#7c3aed",
   accentColor: "#1e1b4b",
   items: Array.from({ length: 3 }, (_, i) => {
     const code = ADRENALYN_RANGES.eternos22.start + i;
-    return item(code, "eternos-22", "ETERNOS_22", {
-      en: `Card ${code} — Eternos 22`,
-      he: `קלף ${code} — Eternos 22`,
+    return item(code, "eternos-22", {
+      category: "ETERNOS_22",
+      name: localized(`Card ${code} — Eternos 22`, `קלף ${code} — Eternos 22`),
     });
   }),
 };
-
-/* ── Final assembly ────────────────────────────────────────────────────── */
 
 export const WC_2026_ADRENALYN_SECTIONS: AlbumSection[] = [
   goldenBallers,
@@ -415,14 +329,14 @@ export const WC_2026_ADRENALYN_SECTIONS: AlbumSection[] = [
   eternos22,
 ];
 
-/* ── Extras (Momentum cards) — not counted toward 630 ──────────────────── */
+/* ── Extras — never counted toward 630 ─────────────────────────────────── */
 
 const momentum: SpecialCollection = {
   id: "momentum",
   title: { en: "Momentum", he: "מומנטום" },
   description: {
     en: "Three Momentum cards distributed separately from the base binder.",
-    he: "שלושה קלפי מומנטום המופצים בנפרד מהאלבום הראשי.",
+    he: "שלושה קלפי מומנטום המופצים בנפרד מאלבום הבסיס.",
   },
   countsTowardAlbumCompletion: false,
   primaryColor: "#f43f5e",
@@ -438,7 +352,7 @@ const momentum: SpecialCollection = {
       order: 1,
       isRequiredForCompletion: false,
       availability: "PROMO",
-      name: { en: "Jude Bellingham — Momentum" },
+      name: { en: "Jude Bellingham — Momentum", he: "ג'וד בלינגהאם — מומנטום" },
       playerName: { en: "Jude Bellingham" },
       teamName: { en: "England" },
       category: "MOMENTUM",
@@ -452,7 +366,7 @@ const momentum: SpecialCollection = {
       order: 2,
       isRequiredForCompletion: false,
       availability: "PROMO",
-      name: { en: "Ousmane Dembélé — Momentum" },
+      name: { en: "Ousmane Dembélé — Momentum", he: "אוסמן דמבלה — מומנטום" },
       playerName: { en: "Ousmane Dembélé" },
       teamName: { en: "France" },
       category: "MOMENTUM",
@@ -466,7 +380,7 @@ const momentum: SpecialCollection = {
       order: 3,
       isRequiredForCompletion: false,
       availability: "PROMO",
-      name: { en: "Christian Pulisic — Momentum" },
+      name: { en: "Christian Pulisic — Momentum", he: "כריסטיאן פוליסיץ' — מומנטום" },
       playerName: { en: "Christian Pulisic" },
       teamName: { en: "United States" },
       category: "MOMENTUM",
@@ -474,4 +388,20 @@ const momentum: SpecialCollection = {
   ],
 };
 
-export const WC_2026_ADRENALYN_SPECIALS: SpecialCollection[] = [momentum];
+// Empty placeholder Limited Edition family — tracking wired but no items
+// imported until a verified checklist is supplied.
+const limitedEditions: SpecialCollection = {
+  id: "limited-editions",
+  title: { en: "Limited Editions", he: "מהדורות מוגבלות" },
+  description: {
+    en: "Limited Edition checklist pending — no items imported yet.",
+    he: "רשימת המהדורות המוגבלות ממתינה — טרם נטענו פריטים.",
+  },
+  countsTowardAlbumCompletion: false,
+  primaryColor: "#facc15",
+  accentColor: "#854d0e",
+  icon: "lucide:gem",
+  items: [],
+};
+
+export const WC_2026_ADRENALYN_SPECIALS: SpecialCollection[] = [momentum, limitedEditions];

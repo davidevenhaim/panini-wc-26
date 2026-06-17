@@ -440,14 +440,27 @@
   },
   "adrenalyn": {
     "tabBase": "Base Binder",
-    "tabExtras": "Extras",
+    "tabExtras": "Extras & Updates",
     "chase": "Chase row",
     "nationalTeams": "National teams",
+    "byGroup": "By tournament group",
+    "byChecklist": "By checklist order",
+    "unassigned": "Other teams · no tournament group",
     "contenders": "Contenders",
     "specialCategories": "Special categories",
     "extras": "Extras & Limited Editions",
     "extrasEmpty": "No extras tracked yet — Limited Editions, Momentum and product-exclusive cards will appear here as the dataset grows.",
-    "extrasNotice": "Extras and Limited Editions are tracked separately and do not affect base-binder completion."
+    "extrasNotice": "Extras and Limited Editions are tracked separately and do not affect base-binder completion.",
+    "statBase": "Base cards",
+    "statMissing": "Missing",
+    "statDuplicates": "Duplicates",
+    "statTeams": "Teams complete",
+    "binderCapacity": "Binder capacity: {count} cards (physical pockets — not the completion target).",
+    "view": {
+      "groups": "Groups",
+      "checklist": "Checklist",
+      "categories": "Categories"
+    }
   },
   "worldCup": {
     "eyebrow": "FIFA World Cup",
