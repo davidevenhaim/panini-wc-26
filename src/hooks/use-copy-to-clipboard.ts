@@ -5,7 +5,7 @@ import { useState, useCallback } from "react";
 // ----------------------------------------------------------------------
 
 export type UseCopyToClipboardReturn = {
-  copy: (text: string) => Promise<void>;
+  copy: (text: string) => Promise<boolean>;
   copied: boolean;
 };
 
@@ -28,8 +28,10 @@ export function useCopyToClipboard(resetMs = 2000): UseCopyToClipboardReturn {
         await navigator.clipboard.writeText(text);
         setCopied(true);
         setTimeout(() => setCopied(false), resetMs);
+        return true;
       } catch {
         console.error("useCopyToClipboard: clipboard write failed");
+        return false;
       }
     },
     [resetMs]

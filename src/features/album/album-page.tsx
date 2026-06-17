@@ -35,6 +35,7 @@ import { TeamDialog } from "./team-dialog";
 import { TeamGrid } from "./team-grid";
 import type { FilterMode } from "./types";
 import { useSyncWithUser } from "./use-sync-with-user";
+import { ReportButton } from "@/features/data-reports/report-button";
 
 type TeamFilter = "all" | "completed" | "incomplete";
 
@@ -287,6 +288,16 @@ export function AlbumPage({ collectors }: AlbumPageProps) {
           )}
         </section>
       </section>
+
+      <div className="mt-6 flex justify-center">
+        <ReportButton
+          variant="ghost"
+          context={{
+            albumId: "panini-world-cup-2026",
+            albumTitle: t("album.title"),
+          }}
+        />
+      </div>
 
       <AlbumFooter />
 

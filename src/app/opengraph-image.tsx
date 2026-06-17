@@ -1,0 +1,71 @@
+import { ImageResponse } from "next/og";
+import { getLogoDataUrl } from "@/lib/og-assets";
+
+export const runtime = "nodejs";
+export const alt = "Football collection library";
+export const size = { width: 1200, height: 630 };
+export const contentType = "image/png";
+
+export default async function OpenGraphImage() {
+  const logoSrc = getLogoDataUrl();
+
+  return new ImageResponse(
+    <div
+      style={{
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "linear-gradient(135deg, #0a0f1e 0%, #0f172a 45%, #134e4a 100%)",
+        padding: 48,
+      }}
+    >
+      {logoSrc && (
+        <img
+          src={logoSrc}
+          width={160}
+          height={160}
+          alt=""
+          style={{ borderRadius: 28, marginBottom: 28 }}
+        />
+      )}
+      <div
+        style={{
+          fontSize: 68,
+          fontWeight: 800,
+          color: "#f8fafc",
+          letterSpacing: "-0.02em",
+          textAlign: "center",
+          lineHeight: 1.1,
+        }}
+      >
+        Football collection library
+      </div>
+      <div
+        style={{
+          fontSize: 30,
+          fontWeight: 600,
+          color: "#94a3b8",
+          marginTop: 14,
+          textAlign: "center",
+        }}
+      >
+        World Cup · Israeli football · more soon
+      </div>
+      <div
+        style={{
+          fontSize: 22,
+          color: "#64748b",
+          marginTop: 20,
+          textAlign: "center",
+          maxWidth: 720,
+        }}
+      >
+        Track stickers, find swaps, share your missing list
+      </div>
+    </div>,
+    { ...size }
+  );
+}

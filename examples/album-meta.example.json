@@ -1,0 +1,27 @@
+{
+  "id": "example-album",
+  "slug": "example-album",
+  "familyId": "israel",
+  "title": { "en": "Example Album", "he": "אלבום לדוגמה" },
+  "season": "2025/26",
+  "year": 2025,
+  "publisher": "Example Publisher",
+  "country": "ISRAEL",
+  "itemType": "STICKER",
+  "dataStatus": "verified-partial",
+  "layout": "flat-sections",
+  "specialCollections": [],
+  "theme": {
+    "primary": "#0f766e",
+    "accent": "#10b981",
+    "direction": "rtl"
+  },
+  "sources": [{ "label": "Verified by collector contribution", "accessedAt": "2026-06-15" }],
+  "verification": {
+    "status": "verified-partial",
+    "verifiedBy": "project-owner",
+    "verifiedAt": "2026-06-15",
+    "sources": [{ "label": "Verified by collector contribution", "accessedAt": "2026-06-15" }],
+    "notes": ["Sample data — replace before shipping."]
+  }
+}

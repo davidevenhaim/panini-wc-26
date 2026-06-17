@@ -2,14 +2,18 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Profile, ProfileUpsert } from "@/types/profile.types";
 import { clampQuantity, type Quantities } from "./collection";
 
+export const DEFAULT_SYNC_ALBUM_ID = "panini-world-cup-2026";
+
 export async function fetchUserStickers(
   supabase: SupabaseClient,
-  userId: string
+  userId: string,
+  albumId: string = DEFAULT_SYNC_ALBUM_ID
 ): Promise<Quantities> {
   const { data, error } = await supabase
     .from("user_stickers")
     .select("code, quantity")
-    .eq("user_id", userId);
+    .eq("user_id", userId)
+    .eq("album_id", albumId);
   if (error) throw error;
   const result: Quantities = {};
   for (const row of data ?? []) {
@@ -20,24 +24,30 @@ export async function fetchUserStickers(
 }
 
 /**
- * Upsert (or delete when qty=0) sticker rows for a user.
+ * Upsert (or delete when qty=0) sticker rows for a user + album.
  * Pass only the codes that changed since last sync.
  */
 export async function pushUserStickers(
   supabase: SupabaseClient,
   userId: string,
-  changes: { code: string; quantity: number }[]
+  changes: { code: string; quantity: number }[],
+  albumId: string = DEFAULT_SYNC_ALBUM_ID
 ): Promise<void> {
   if (changes.length === 0) return;
   const toUpsert = changes
     .filter((c) => c.quantity > 0)
-    .map((c) => ({ user_id: userId, code: c.code, quantity: clampQuantity(c.quantity) }));
+    .map((c) => ({
+      user_id: userId,
+      album_id: albumId,
+      code: c.code,
+      quantity: clampQuantity(c.quantity),
+    }));
   const toDelete = changes.filter((c) => c.quantity <= 0).map((c) => c.code);
 
   if (toUpsert.length > 0) {
     const { error } = await supabase
       .from("user_stickers")
-      .upsert(toUpsert, { onConflict: "user_id,code" });
+      .upsert(toUpsert, { onConflict: "user_id,album_id,code" });
     if (error) throw error;
   }
   if (toDelete.length > 0) {
@@ -45,22 +55,33 @@ export async function pushUserStickers(
       .from("user_stickers")
       .delete()
       .eq("user_id", userId)
+      .eq("album_id", albumId)
       .in("code", toDelete);
     if (error) throw error;
   }
 }
 
-/** Bulk replace all sticker rows for a user. Used on import. */
+/** Bulk replace all sticker rows for a user within one album. */
 export async function replaceUserStickers(
   supabase: SupabaseClient,
   userId: string,
-  quantities: Quantities
+  quantities: Quantities,
+  albumId: string = DEFAULT_SYNC_ALBUM_ID
 ): Promise<void> {
-  const { error: delErr } = await supabase.from("user_stickers").delete().eq("user_id", userId);
+  const { error: delErr } = await supabase
+    .from("user_stickers")
+    .delete()
+    .eq("user_id", userId)
+    .eq("album_id", albumId);
   if (delErr) throw delErr;
   const rows = Object.entries(quantities)
     .filter(([, qty]) => clampQuantity(qty) > 0)
-    .map(([code, qty]) => ({ user_id: userId, code, quantity: clampQuantity(qty) }));
+    .map(([code, qty]) => ({
+      user_id: userId,
+      album_id: albumId,
+      code,
+      quantity: clampQuantity(qty),
+    }));
   if (rows.length === 0) return;
   const { error } = await supabase.from("user_stickers").insert(rows);
   if (error) throw error;

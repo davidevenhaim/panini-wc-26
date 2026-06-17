@@ -1,0 +1,68 @@
+{
+  "id": "example-album",
+  "slug": "example-album",
+  "familyId": "israel",
+  "title": { "en": "Example Album", "he": "אלבום לדוגמה" },
+  "season": "2025/26",
+  "year": 2025,
+  "publisher": "Example Publisher",
+  "country": "ISRAEL",
+  "itemType": "STICKER",
+  "dataStatus": "verified-partial",
+  "layout": "flat-sections",
+  "specialCollections": [],
+  "theme": { "primary": "#0f766e", "accent": "#10b981", "direction": "rtl" },
+  "sources": [{ "label": "Verified by collector contribution", "accessedAt": "2026-06-15" }],
+  "verification": {
+    "status": "verified-partial",
+    "verifiedBy": "project-owner",
+    "verifiedAt": "2026-06-15",
+    "sources": [{ "label": "Verified by collector contribution", "accessedAt": "2026-06-15" }],
+    "notes": ["Sample data — replace before shipping."]
+  },
+  "sections": [
+    {
+      "id": "intro",
+      "title": { "en": "Album intro", "he": "פתיחה" },
+      "order": 1,
+      "entityType": "INTRO",
+      "badge": "A",
+      "items": [
+        {
+          "id": "example-album::INTRO-01",
+          "albumId": "example-album",
+          "sectionId": "intro",
+          "code": "INTRO-01",
+          "displayNumber": "1",
+          "name": { "en": "Cover sticker", "he": "מדבקת השער" },
+          "category": "COVER",
+          "order": 1,
+          "isRequiredForCompletion": true,
+          "availability": "PACK"
+        }
+      ]
+    },
+    {
+      "id": "team-mac",
+      "title": { "en": "Maccabi Tel Aviv", "he": "מכבי תל אביב" },
+      "order": 2,
+      "entityType": "TEAM",
+      "badge": "MAC",
+      "items": [
+        {
+          "id": "example-album::MAC-01",
+          "albumId": "example-album",
+          "sectionId": "team-mac",
+          "code": "MAC-01",
+          "displayNumber": "2",
+          "name": { "en": "Team badge", "he": "סמל הקבוצה" },
+          "teamName": { "en": "Maccabi Tel Aviv", "he": "מכבי תל אביב" },
+          "category": "BADGE",
+          "order": 1,
+          "isRequiredForCompletion": true,
+          "availability": "PACK"
+        }
+      ]
+    }
+  ]
+}

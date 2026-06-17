@@ -1,0 +1,6 @@
+section_id,section_title_en,section_title_he,section_entity_type,section_flag,section_badge,section_order,code,display_number,name_en,name_he,player_name_en,player_name_he,team_name_en,team_name_he,category,item_order,required,availability
+intro,Album intro,פתיחה,INTRO,,A,1,INTRO-01,1,Cover sticker,מדבקת השער,,,,,COVER,1,true,PACK
+team-mac,Maccabi Tel Aviv,מכבי תל אביב,TEAM,,MAC,2,MAC-01,2,Team badge,סמל הקבוצה,,,Maccabi Tel Aviv,מכבי תל אביב,BADGE,1,true,PACK
+team-mac,Maccabi Tel Aviv,מכבי תל אביב,TEAM,,MAC,2,MAC-02,3,Eran Zahavi,ערן זהבי,Eran Zahavi,ערן זהבי,Maccabi Tel Aviv,מכבי תל אביב,PLAYER,2,true,PACK
+team-hap,Hapoel Tel Aviv,הפועל תל אביב,TEAM,,HAP,3,HAP-01,4,Team badge,סמל הקבוצה,,,Hapoel Tel Aviv,הפועל תל אביב,BADGE,1,true,PACK
+team-hap,Hapoel Tel Aviv,הפועל תל אביב,TEAM,,HAP,3,HAP-02,5,Captain card,קלף קפטן,,,Hapoel Tel Aviv,הפועל תל אביב,CAPTAIN,2,true,PACK

@@ -185,6 +185,15 @@ export async function PublicCollectorsSection({
                       <span className="bg-foreground text-background ring-background absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 font-mono text-[10px] font-bold tabular-nums shadow-sm ring-2">
                         {s.album.unique}/{s.album.total}
                       </span>
+                      {s.albumsCount > 0 && (
+                        <span
+                          className="ring-background absolute -start-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center gap-0.5 rounded-full bg-gradient-to-br from-sky-500 to-violet-600 px-1.5 text-[10px] font-black text-white shadow-md ring-2"
+                          aria-label={t("users.albumsBadge", { count: s.albumsCount })}
+                        >
+                          <Iconify icon="lucide:book-open" className="size-2.5" />
+                          {s.albumsCount}
+                        </span>
+                      )}
                       {s.matchCount > 0 && (
                         <span
                           className="ring-background absolute -end-1 -top-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-sky-500 px-1.5 text-[10px] font-black text-white shadow-md ring-2"
