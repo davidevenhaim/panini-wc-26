@@ -235,6 +235,11 @@
       "reset": "Reiniciar colección",
       "about": "Acerca de"
     },
+    "nav": {
+      "switchAlbum": "Cambiar álbum",
+      "previous": "Álbum anterior",
+      "next": "Álbum siguiente"
+    },
     "importExport": {
       "title": "Importar y exportar",
       "description": "Haz copia de tu colección o muévela a otro dispositivo.",
@@ -385,7 +390,18 @@
     "checklistMissingDescription": "Guardamos el álbum en la biblioteca — vuelve cuando el checklist esté listo y tu seguimiento estará esperando.",
     "checklistComingSoon": "Checklist próximamente — el álbum está en la biblioteca para que vuelvas cuando esté disponible.",
     "sourceNotes": "Notas de fuentes",
-    "unknownPublisher": "Editorial"
+    "unknownPublisher": "Editorial",
+    "myAlbumsEyebrow": "Tu biblioteca",
+    "myAlbumsTitle": "Elige un álbum para coleccionar",
+    "stats": {
+      "libraryProgress": "Álbumes en tu biblioteca",
+      "started": "coleccionando",
+      "inProgress": "en progreso",
+      "completed": "completados",
+      "available": "Álbumes disponibles",
+      "notStarted": "Sin empezar"
+    },
+    "navBack": "Biblioteca"
   },
   "dataReport": {
     "trigger": "Reportar un error",
@@ -421,6 +437,17 @@
       "WRONG_SPECIAL_STATUS": "Estado especial incorrecto",
       "OTHER": "Otra cosa"
     }
+  },
+  "adrenalyn": {
+    "tabBase": "Carpeta base",
+    "tabExtras": "Extras",
+    "chase": "Cartas chase",
+    "nationalTeams": "Selecciones nacionales",
+    "contenders": "Contenders",
+    "specialCategories": "Categorías especiales",
+    "extras": "Extras y Ediciones limitadas",
+    "extrasEmpty": "Aún no hay extras seguidos — aparecerán aquí a medida que crezca el dataset.",
+    "extrasNotice": "Los extras y ediciones limitadas se siguen por separado y no afectan la carpeta base."
   },
   "worldCup": {
     "eyebrow": "Copa Mundial FIFA",

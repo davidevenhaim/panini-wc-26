@@ -1,12 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
 import { Typography } from "@/components/ui/typography";
 import WEB_ROUTES from "@/constants/web-routes.constants";
+import { resolveAppLocale } from "@/constants/locale";
 import { getFamilyAlbums, getFamilyBySlug } from "@/collections/catalog";
 import { AlbumCard } from "@/features/library/album-card";
+import { pickLocalizedText } from "@/utils/localized-text";
 
 type Props = { params: Promise<{ familySlug: string }> };
 
@@ -16,6 +18,7 @@ export default async function FamilyRoute({ params }: Props) {
   if (!family) notFound();
 
   const t = await getTranslations();
+  const locale = resolveAppLocale(await getLocale());
   const albums = getFamilyAlbums(family.id).sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
   const isRtl = family.theme.direction === "rtl";
 
@@ -47,11 +50,11 @@ export default async function FamilyRoute({ params }: Props) {
           {family.publisher ?? ""}
         </Typography>
         <Typography variant="h6" as="h1" className="font-heading text-3xl font-black sm:text-4xl">
-          {family.name.en ?? family.name.he}
+          {pickLocalizedText(family.name, locale)}
         </Typography>
         {family.description && (
           <Typography variant="caption2" as="p" className="mt-2 max-w-prose text-white/85">
-            {family.description.en ?? family.description.he}
+            {pickLocalizedText(family.description, locale)}
           </Typography>
         )}
       </header>
@@ -75,5 +78,6 @@ export async function generateMetadata({ params }: Props) {
   const { familySlug } = await params;
   const family = getFamilyBySlug(familySlug);
   if (!family) return {};
-  return { title: family.name.en ?? family.name.he };
+  const locale = resolveAppLocale(await getLocale());
+  return { title: pickLocalizedText(family.name, locale) };
 }

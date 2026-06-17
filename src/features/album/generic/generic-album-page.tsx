@@ -6,8 +6,9 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
 import { Typography } from "@/components/ui/typography";
-import { useDebounce } from "@/hooks/use-debounce";
+import { useLocalizedText } from "@/hooks/use-localized-text";
 import { useBoolean } from "@/hooks/use-boolean";
+import { useDebounce } from "@/hooks/use-debounce";
 import { AreYouSureDialog } from "@/components/ui/are-you-sure-dialog";
 import { toastSuccess } from "@/lib/toast";
 import { cn } from "@/lib/utils";
@@ -30,6 +31,7 @@ type TeamFilter = "all" | "completed" | "incomplete";
 
 export function GenericAlbumPage({ album }: Props) {
   const t = useTranslations();
+  const lt = useLocalizedText();
   const rtl = album.theme.direction === "rtl";
 
   const hydrate = useCollectionStore((s) => s.hydrate);
@@ -108,16 +110,7 @@ export function GenericAlbumPage({ album }: Props) {
         backgroundImage: `linear-gradient(to bottom, transparent, transparent 75%, ${album.theme.primary}15)`,
       }}
     >
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <Button asChild variant="ghost" size="sm">
-          <Link href={WEB_ROUTES.HOME}>
-            <Iconify icon="lucide:arrow-left" className="size-4" />
-            {t("back")}
-          </Link>
-        </Button>
-      </div>
-
-      <header className="mb-4 flex items-center gap-3">
+      <div className="mb-4 flex items-center gap-3">
         <span
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-white shadow-md"
           style={{
@@ -133,7 +126,7 @@ export function GenericAlbumPage({ album }: Props) {
             as="h1"
             className="font-heading truncate text-lg leading-tight font-extrabold sm:text-xl"
           >
-            {rtl ? (album.title.he ?? album.title.en) : (album.title.en ?? album.title.he)}
+            {lt(album.title)}
           </Typography>
           <Typography variant="caption2" as="p" color="muted" className="truncate">
             {album.publisher && album.season
@@ -141,7 +134,7 @@ export function GenericAlbumPage({ album }: Props) {
               : (album.season ?? album.publisher ?? "")}
           </Typography>
         </div>
-      </header>
+      </div>
 
       <GenericProgressSummary album={album} quantities={quantities} />
 
@@ -191,7 +184,7 @@ export function GenericAlbumPage({ album }: Props) {
           variant="outline"
           context={{
             albumId: album.id,
-            albumTitle: album.title.en ?? album.title.he,
+            albumTitle: lt(album.title),
             itemType: album.itemType,
           }}
         />
@@ -204,7 +197,7 @@ export function GenericAlbumPage({ album }: Props) {
       <GenericSectionDialog
         section={selectedSection}
         albumId={album.id}
-        albumTitle={album.title.en ?? album.title.he}
+        albumTitle={lt(album.title)}
         itemType={album.itemType}
         open={selectedSectionId !== null}
         onOpenChange={(open) => {

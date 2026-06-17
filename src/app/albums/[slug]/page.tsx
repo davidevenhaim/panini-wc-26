@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { getAlbumBySlug } from "@/collections/catalog";
+import { resolveAppLocale } from "@/constants/locale";
+import { pickLocalizedText } from "@/utils/localized-text";
 import { AlbumRouter } from "@/features/album/album-router";
 import { PublicCollectorsSection } from "@/features/profile/public-collectors-section";
 
@@ -38,8 +41,9 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const album = getAlbumBySlug(slug);
   if (!album) return {};
+  const locale = resolveAppLocale(await getLocale());
   return {
-    title: album.title.en ?? album.title.he,
+    title: pickLocalizedText(album.title, locale),
     description: `${album.publisher ?? ""} ${album.season ?? ""}`.trim(),
   };
 }

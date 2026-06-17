@@ -235,6 +235,11 @@
       "reset": "Reset collection",
       "about": "About"
     },
+    "nav": {
+      "switchAlbum": "Switch album",
+      "previous": "Previous album",
+      "next": "Next album"
+    },
     "importExport": {
       "title": "Import & export",
       "description": "Back up your collection or move it to another device.",
@@ -385,7 +390,18 @@
     "checklistMissingDescription": "We've saved this album in the library — come back once the checklist is ready and your tracking will be waiting.",
     "checklistComingSoon": "Checklist coming soon — the album is in the library so you can come back when it's tracked.",
     "sourceNotes": "Source notes",
-    "unknownPublisher": "Publisher"
+    "unknownPublisher": "Publisher",
+    "myAlbumsEyebrow": "Your library",
+    "myAlbumsTitle": "Pick an album to collect",
+    "stats": {
+      "libraryProgress": "Albums in your library",
+      "started": "collecting",
+      "inProgress": "in progress",
+      "completed": "completed",
+      "available": "Available albums",
+      "notStarted": "Not started yet"
+    },
+    "navBack": "Library"
   },
   "dataReport": {
     "trigger": "Report a mistake",
@@ -421,6 +437,17 @@
       "WRONG_SPECIAL_STATUS": "Wrong special status",
       "OTHER": "Something else"
     }
+  },
+  "adrenalyn": {
+    "tabBase": "Base Binder",
+    "tabExtras": "Extras",
+    "chase": "Chase row",
+    "nationalTeams": "National teams",
+    "contenders": "Contenders",
+    "specialCategories": "Special categories",
+    "extras": "Extras & Limited Editions",
+    "extrasEmpty": "No extras tracked yet — Limited Editions, Momentum and product-exclusive cards will appear here as the dataset grows.",
+    "extrasNotice": "Extras and Limited Editions are tracked separately and do not affect base-binder completion."
   },
   "worldCup": {
     "eyebrow": "FIFA World Cup",

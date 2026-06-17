@@ -8,6 +8,7 @@ import { WORLD_CUP_2014_ALBUM } from "@/data/world-cup/2014/album";
 import { WORLD_CUP_2018_ALBUM } from "@/data/world-cup/2018/album";
 import { WORLD_CUP_2022_ALBUM } from "@/data/world-cup/2022/album";
 import { WORLD_CUP_2010_ADRENALYN_ALBUM } from "@/data/world-cup/2010-adrenalyn-xl/album";
+import { WORLD_CUP_2026_ADRENALYN_ALBUM } from "@/data/world-cup/2026-adrenalyn-xl/album";
 import { ISRAEL_FAMILY } from "@/data/israel/family";
 import { ISRAEL_ALBUMS } from "@/data/israel/albums";
 
@@ -35,6 +36,7 @@ const RAW_ALBUMS: Album[] = [
   WORLD_CUP_2018_ALBUM,
   WORLD_CUP_2014_ALBUM,
   WORLD_CUP_2010_ALBUM,
+  WORLD_CUP_2026_ADRENALYN_ALBUM,
   WORLD_CUP_2010_ADRENALYN_ALBUM,
   ...ISRAEL_ALBUMS,
 ];

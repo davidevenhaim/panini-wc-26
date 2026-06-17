@@ -10,12 +10,17 @@ export default async function RootPage({ searchParams }: Props) {
   return (
     <>
       <HomeNavbar />
-      <LibraryPage families={COLLECTION_FAMILIES} albums={ALBUMS} />
-      <PublicCollectorsSection
-        matchOnly={match === "1"}
-        basePath="/"
-        placement="bottom"
-        limit={12}
+      <LibraryPage
+        families={COLLECTION_FAMILIES}
+        albums={ALBUMS}
+        collectors={
+          <PublicCollectorsSection
+            matchOnly={match === "1"}
+            basePath="/"
+            placement="middle"
+            limit={12}
+          />
+        }
       />
     </>
   );

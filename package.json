@@ -25,7 +25,7 @@
     "albums:import": "node scripts/import-checklist.mjs",
     "albums:import:laststicker": "node scripts/import-laststicker.mjs",
     "albums:reconcile": "node scripts/reconcile-album.mjs",
-    "albums:validate": "vitest run src/__tests__/catalog.test.ts src/__tests__/world-cup-catalog.test.ts src/__tests__/adrenalyn-catalog.test.ts src/__tests__/world-cup-2022.test.ts src/__tests__/world-cup-2014.test.ts src/__tests__/world-cup-2018.test.ts",
+    "albums:validate": "vitest run src/__tests__/catalog.test.ts src/__tests__/world-cup-catalog.test.ts src/__tests__/adrenalyn-catalog.test.ts src/__tests__/world-cup-2022.test.ts src/__tests__/world-cup-2014.test.ts src/__tests__/world-cup-2018.test.ts src/__tests__/adrenalyn-2026.test.ts",
     "prepare": "husky"
   },
   "dependencies": {

@@ -15,6 +15,7 @@ export { useInterval } from "./use-interval";
 export { useTimeout } from "./use-timeout";
 export { useScrollPosition } from "./use-scroll-position";
 export { useKeyPress } from "./use-key-press";
+export { useLocalizedText } from "./use-localized-text";
 export { usePermissions } from "./use-permissions";
 export { useAsync } from "./use-async";
 export { usePaginatedFetch } from "./use-paginated-fetch";

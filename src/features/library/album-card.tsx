@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import Iconify from "@/components/ui/iconify";
 import { Typography } from "@/components/ui/typography";
-import { cn } from "@/lib/utils";
+import WEB_ROUTES from "@/constants/web-routes.constants";
 import type { Album } from "@/collections/schema";
 import { useCollectionStore } from "@/store/collection.store";
+import { useLocalizedText } from "@/hooks/use-localized-text";
 import { albumProgressForQuantities, type AlbumProgress } from "@/lib/album/album-progress";
+import { cn } from "@/lib/utils";
 
 type Props = {
   album: Album;
@@ -35,6 +37,7 @@ const STATUS_VARIANT: Record<Album["dataStatus"], { label: string; tone: string;
 
 export function AlbumCard({ album, className }: Props) {
   const t = useTranslations();
+  const lt = useLocalizedText();
   const isHydrated = useCollectionStore((s) => s.isHydrated);
   const getAlbumQuantities = useCollectionStore((s) => s.getAlbumQuantities);
   const quantities = isHydrated ? getAlbumQuantities(album.id) : {};
@@ -45,7 +48,7 @@ export function AlbumCard({ album, className }: Props) {
 
   return (
     <Link
-      href={`/albums/${album.slug}`}
+      href={WEB_ROUTES.ALBUM(album.slug)}
       className={cn(
         "group bg-card relative overflow-hidden rounded-3xl border p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg",
         className
@@ -68,10 +71,7 @@ export function AlbumCard({ album, className }: Props) {
           }}
           aria-hidden
         >
-          {album.shortTitle?.en?.charAt(0) ??
-            album.title.en?.charAt(0) ??
-            album.title.he?.charAt(0) ??
-            "?"}
+          {(lt(album.shortTitle) || lt(album.title)).charAt(0) || "?"}
         </span>
         <div className="min-w-0 flex-1">
           <Typography
@@ -79,7 +79,7 @@ export function AlbumCard({ album, className }: Props) {
             as="h3"
             className="font-heading truncate text-base leading-tight font-extrabold"
           >
-            {album.title.en ?? album.title.he}
+            {lt(album.title)}
           </Typography>
           <Typography variant="caption2" as="p" color="muted" className="truncate">
             {album.publisher && album.season

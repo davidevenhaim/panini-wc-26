@@ -235,6 +235,11 @@
       "reset": "إعادة تعيين المجموعة",
       "about": "حول"
     },
+    "nav": {
+      "switchAlbum": "تبديل الألبوم",
+      "previous": "الألبوم السابق",
+      "next": "الألبوم التالي"
+    },
     "importExport": {
       "title": "استيراد وتصدير",
       "description": "احتفظ بنسخة احتياطية أو انقلها إلى جهاز آخر.",
@@ -385,7 +390,18 @@
     "checklistMissingDescription": "حفظنا الألبوم في المكتبة — عُد بعد أن تجهز القائمة وستجد التتبع بانتظارك.",
     "checklistComingSoon": "القائمة قريباً — الألبوم محفوظ في المكتبة لتعود إليه عند توفر التتبع.",
     "sourceNotes": "ملاحظات المصدر",
-    "unknownPublisher": "الناشر"
+    "unknownPublisher": "الناشر",
+    "myAlbumsEyebrow": "مكتبتك",
+    "myAlbumsTitle": "اختر ألبومًا للجمع",
+    "stats": {
+      "libraryProgress": "الألبومات في مكتبتك",
+      "started": "قيد الجمع",
+      "inProgress": "قيد التقدم",
+      "completed": "مكتملة",
+      "available": "ألبومات متاحة",
+      "notStarted": "لم تبدأ بعد"
+    },
+    "navBack": "المكتبة"
   },
   "dataReport": {
     "trigger": "الإبلاغ عن خطأ",
@@ -421,6 +437,17 @@
       "WRONG_SPECIAL_STATUS": "وضع خاص خاطئ",
       "OTHER": "أمر آخر"
     }
+  },
+  "adrenalyn": {
+    "tabBase": "الألبوم الأساسي",
+    "tabExtras": "إضافات",
+    "chase": "بطاقات نادرة",
+    "nationalTeams": "المنتخبات الوطنية",
+    "contenders": "المنافسون",
+    "specialCategories": "فئات خاصة",
+    "extras": "الإضافات والإصدارات المحدودة",
+    "extrasEmpty": "لا توجد إضافات بعد — ستظهر هنا عند توفر القوائم.",
+    "extrasNotice": "الإضافات والإصدارات المحدودة تُتتبع بشكل منفصل ولا تؤثر على إكمال الألبوم الأساسي."
   },
   "worldCup": {
     "eyebrow": "كأس العالم فيفا",

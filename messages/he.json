@@ -235,6 +235,11 @@
       "reset": "אפס אוסף",
       "about": "אודות"
     },
+    "nav": {
+      "switchAlbum": "החלפת אלבום",
+      "previous": "אלבום קודם",
+      "next": "אלבום הבא"
+    },
     "importExport": {
       "title": "ייבוא וייצוא",
       "description": "גבה את האוסף או העבר למכשיר אחר.",
@@ -385,7 +390,18 @@
     "checklistMissingDescription": "שמרנו את האלבום בספרייה — חזרו לבדוק כשהצ׳קליסט יהיה מוכן, והמעקב יחכה לכם.",
     "checklistComingSoon": "הצ׳קליסט בדרך — האלבום נשמר בספרייה כדי שתוכלו לחזור אליו כשהוא יהיה מוכן.",
     "sourceNotes": "הערות מקור",
-    "unknownPublisher": "מוציא לאור"
+    "unknownPublisher": "מוציא לאור",
+    "myAlbumsEyebrow": "הספרייה שלך",
+    "myAlbumsTitle": "בחרו אלבום לאסוף",
+    "stats": {
+      "libraryProgress": "אלבומים בספרייה",
+      "started": "באיסוף",
+      "inProgress": "בתהליך",
+      "completed": "הושלמו",
+      "available": "אלבומים זמינים",
+      "notStarted": "טרם התחלתם"
+    },
+    "navBack": "לספרייה"
   },
   "dataReport": {
     "trigger": "דיווח על טעות",
@@ -421,6 +437,17 @@
       "WRONG_SPECIAL_STATUS": "סטטוס מיוחד שגוי",
       "OTHER": "משהו אחר"
     }
+  },
+  "adrenalyn": {
+    "tabBase": "אלבום בסיס",
+    "tabExtras": "תוספים",
+    "chase": "שורת רדיפה",
+    "nationalTeams": "נבחרות לאומיות",
+    "contenders": "המתמודדים",
+    "specialCategories": "קטגוריות מיוחדות",
+    "extras": "תוספים ומהדורות מוגבלות",
+    "extrasEmpty": "עדיין אין תוספים במעקב — מהדורות מוגבלות, קלפי מומנטום וקלפי מבצעים יופיעו כאן ככל שהאוסף יתרחב.",
+    "extrasNotice": "תוספים ומהדורות מוגבלות נספרים בנפרד ואינם משפיעים על השלמת אלבום הבסיס."
   },
   "worldCup": {
     "eyebrow": "מונדיאל פיפ\"א",

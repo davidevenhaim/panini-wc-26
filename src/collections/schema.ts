@@ -123,6 +123,7 @@ export const AlbumLayoutSchema = z.enum([
   "world-cup-flat-grouped",
   "team-grid",
   "flat-sections",
+  "adrenalyn-sections",
   "metadata-only",
 ]);
 export type AlbumLayout = z.infer<typeof AlbumLayoutSchema>;
