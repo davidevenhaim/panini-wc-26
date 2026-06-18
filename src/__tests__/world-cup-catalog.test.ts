@@ -13,7 +13,7 @@ describe("World Cup catalog", () => {
     expect(failures).toEqual([]);
   });
 
-  it("contains 2010, 2014, 2018, 2022 and 2026", () => {
+  it("contains 2006, 2010, 2014, 2018, 2022 and 2026", () => {
     const slugs = WORLD_CUP_ALBUMS_SORTED_DESC.map((a) => a.slug);
     expect(slugs).toEqual([
       "world-cup-2026",
@@ -21,11 +21,13 @@ describe("World Cup catalog", () => {
       "world-cup-2018",
       "world-cup-2014",
       "world-cup-2010",
+      "world-cup-2006",
     ]);
   });
 
   it("sorted-asc is the inverse of sorted-desc", () => {
     expect(WORLD_CUP_ALBUMS_SORTED_ASC.map((a) => a.slug)).toEqual([
+      "world-cup-2006",
       "world-cup-2010",
       "world-cup-2014",
       "world-cup-2018",
@@ -35,7 +37,13 @@ describe("World Cup catalog", () => {
   });
 
   it("every historical World Cup album declares a default INTERNATIONAL edition with positive baseItemCount", () => {
-    for (const slug of ["world-cup-2010", "world-cup-2014", "world-cup-2018", "world-cup-2022"]) {
+    for (const slug of [
+      "world-cup-2006",
+      "world-cup-2010",
+      "world-cup-2014",
+      "world-cup-2018",
+      "world-cup-2022",
+    ]) {
       const a = getAlbumBySlug(slug);
       expect(a, slug).toBeDefined();
       expect(a!.editions).toBeDefined();
@@ -46,15 +54,10 @@ describe("World Cup catalog", () => {
     }
   });
 
-  it("2010 is still metadata-only (no verified item-level data yet)", () => {
-    const a = getAlbumBySlug("world-cup-2010")!;
-    expect(a.dataStatus).toBe("metadata-only");
-    expect(a.sections).toEqual([]);
-  });
-
   it("each WC edition's baseItemCount matches public expectations", () => {
     const expected: Record<string, number> = {
-      "world-cup-2010": 640,
+      "world-cup-2006": 597,
+      "world-cup-2010": 641,
       "world-cup-2014": 640,
       "world-cup-2018": 682,
       "world-cup-2022": 670,

@@ -3,6 +3,7 @@ import { validateAlbum } from "./schema";
 import { WORLD_CUP_FAMILY } from "@/data/world-cup/family";
 import { WORLD_CUP_ADRENALYN_FAMILY } from "@/data/world-cup/adrenalyn-family";
 import { WORLD_CUP_2026_ALBUM } from "@/data/world-cup/2026";
+import { WORLD_CUP_2006_ALBUM } from "@/data/world-cup/2006/album";
 import { WORLD_CUP_2010_ALBUM } from "@/data/world-cup/2010/album";
 import { WORLD_CUP_2014_ALBUM } from "@/data/world-cup/2014/album";
 import { WORLD_CUP_2018_ALBUM } from "@/data/world-cup/2018/album";
@@ -36,6 +37,7 @@ const RAW_ALBUMS: Album[] = [
   WORLD_CUP_2018_ALBUM,
   WORLD_CUP_2014_ALBUM,
   WORLD_CUP_2010_ALBUM,
+  WORLD_CUP_2006_ALBUM,
   WORLD_CUP_2026_ADRENALYN_ALBUM,
   WORLD_CUP_2010_ADRENALYN_ALBUM,
   ...ISRAEL_ALBUMS,

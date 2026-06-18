@@ -320,6 +320,33 @@ const TEAM_CODE_MAP = {
   Senegal: "SEN",
   Colombia: "COL",
   Japan: "JPN",
+  // WC 2010
+  "South Africa": "RSA",
+  Algeria: "ALG",
+  Slovenia: "SVN",
+  Greece: "GRE",
+  Slovakia: "SVK",
+  "Korea Republic": "KOR",
+  "Korea DPR": "PRK",
+  Honduras: "HON",
+  Chile: "CHI",
+  Cameroon: "CMR",
+  Italy: "ITA",
+  Netherlands: "NED",
+  Paraguay: "PAR",
+  "New Zealand": "NZL",
+  "Côte d'Ivoire": "CIV",
+  Ghana: "GHA",
+  // WC 2006
+  Ecuador: "ECU",
+  "Trinidad and Tobago": "TRI",
+  "Ivory Coast": "CIV",
+  "Serbia and Montenegro": "SCG",
+  Angola: "ANG",
+  "Czech Republic": "CZE",
+  Togo: "TOG",
+  Ukraine: "UKR",
+  "South Korea": "KOR",
 };
 
 function categorizeFlatItem(stk, sectionType) {

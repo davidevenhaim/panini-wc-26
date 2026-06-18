@@ -1,9 +1,9 @@
 import type { Album } from "@/collections/schema";
-import { WC_2010_SOURCES } from "./sources";
+import { WC_2010_EXCLUDED_ITEMS, WC_2010_SOURCES } from "./sources";
 import { WC_2010_SECTIONS } from "./sections";
 
 const ALBUM_ID = "panini-world-cup-2010";
-const EXPECTED_BASE_COUNT = 640;
+const BASE_ITEM_COUNT = 641;
 
 export const WORLD_CUP_2010_ALBUM: Album = {
   id: ALBUM_ID,
@@ -16,8 +16,9 @@ export const WORLD_CUP_2010_ALBUM: Album = {
   publisher: "Panini",
   country: "GLOBAL",
   itemType: "STICKER",
-  dataStatus: "metadata-only",
-  layout: "metadata-only",
+  dataStatus: "verified-complete",
+  totalItems: BASE_ITEM_COUNT,
+  layout: "world-cup-flat-grouped",
   sections: WC_2010_SECTIONS,
   specialCollections: [],
   theme: {
@@ -29,16 +30,28 @@ export const WORLD_CUP_2010_ALBUM: Album = {
   releasedAt: "2010",
   sources: WC_2010_SOURCES,
   sourceNotes: [
-    "Standard international edition expected to contain 640 base stickers.",
-    "Awaiting verified item-level checklist before sections are populated.",
+    "Reconciled standard-edition checklist sourced from a structured community dump (public/wc-2010.json).",
+    "Standard run advertised as 640 stickers; album content includes an additional Panini-logo cover sticker (code 000) bringing the total to 641.",
+    "Excluded from the completion target:",
+    ...WC_2010_EXCLUDED_ITEMS.map((line) => `  • ${line}`),
   ],
+  verification: {
+    status: "verified-complete",
+    verifiedBy: "community-reconciliation",
+    verifiedAt: "2026-06-18",
+    sources: WC_2010_SOURCES,
+    notes: [
+      "Imported via scripts/import-laststicker.mjs from public/wc-2010.json.",
+      "Reconciliation: 641 items / 641 unique codes / 34 sections / numeric codes 0-639 plus cover '000' with no gaps.",
+    ],
+  },
   editions: [
     {
       id: `${ALBUM_ID}::international`,
       albumId: ALBUM_ID,
       market: "INTERNATIONAL",
-      editionName: { en: "International edition" },
-      baseItemCount: EXPECTED_BASE_COUNT,
+      editionName: { en: "Standard Edition" },
+      baseItemCount: BASE_ITEM_COUNT,
       isDefault: true,
       sources: WC_2010_SOURCES,
     },
