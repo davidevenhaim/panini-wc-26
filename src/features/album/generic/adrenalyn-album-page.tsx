@@ -54,7 +54,7 @@ function extraToSection(extra: SpecialCollection): AlbumSection {
     subtitle: extra.description,
     order: 9999,
     entityType: "SPECIAL",
-    badge: extra.icon,
+    icon: extra.icon,
     primaryColor: extra.primaryColor,
     accentColor: extra.accentColor,
     items: extra.items,

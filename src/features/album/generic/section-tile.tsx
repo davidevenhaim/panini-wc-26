@@ -82,6 +82,14 @@ export const GenericSectionTile = React.memo(function GenericSectionTile({
           >
             <span className="drop-shadow-sm">{section.flag}</span>
           </span>
+        ) : section.icon ? (
+          <span
+            className="flex h-14 w-14 items-center justify-center rounded-2xl text-white shadow-sm ring-2 ring-white/40 sm:h-16 sm:w-16"
+            style={{ backgroundColor: primary }}
+            aria-hidden
+          >
+            <Iconify icon={section.icon} className="size-7 sm:size-8" />
+          </span>
         ) : (
           <span
             className="font-heading flex h-14 w-14 items-center justify-center rounded-2xl text-xl font-black text-white shadow-sm ring-2 ring-white/40 sm:h-16 sm:w-16"

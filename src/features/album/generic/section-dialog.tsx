@@ -163,6 +163,14 @@ export function GenericSectionDialog({
                     >
                       {section.flag}
                     </span>
+                  ) : section.icon ? (
+                    <span
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-white shadow-sm ring-2 ring-white/40"
+                      style={{ backgroundColor: primary }}
+                      aria-hidden
+                    >
+                      <Iconify icon={section.icon} className="size-7" />
+                    </span>
                   ) : (
                     <span
                       className="font-heading flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm ring-2 ring-white/40"

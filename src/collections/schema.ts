@@ -81,6 +81,8 @@ export const AlbumSectionSchema = z.object({
   order: z.number().int(),
   entityType: AlbumSectionEntityTypeSchema,
   badge: z.string().optional(),
+  /** Iconify icon name — rendered instead of badge text when set. */
+  icon: z.string().optional(),
   group: z.string().optional(),
   primaryColor: z.string().optional(),
   accentColor: z.string().optional(),

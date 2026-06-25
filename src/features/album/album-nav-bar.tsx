@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useDirection } from "@/components/app/direction-provider";
 import { ALBUMS, COLLECTION_FAMILIES, getFamilyAlbums } from "@/collections/catalog";
 import type { Album } from "@/collections/schema";
 import { Button } from "@/components/ui/button";
@@ -22,15 +23,50 @@ type Props = {
   album: Album;
 };
 
+function AlbumNavArrow({
+  chevron,
+  target,
+  label,
+}: {
+  chevron: "left" | "right";
+  target: Album | null;
+  label: string;
+}) {
+  const icon = chevron === "left" ? "lucide:chevron-left" : "lucide:chevron-right";
+
+  if (target) {
+    return (
+      <Button asChild variant="outline" size="icon-sm" className="rounded-full">
+        <Link href={WEB_ROUTES.ALBUM(target.slug)} aria-label={label}>
+          <Iconify icon={icon} className="size-4" flipRtl={false} />
+        </Link>
+      </Button>
+    );
+  }
+
+  return (
+    <Button variant="outline" size="icon-sm" className="rounded-full" disabled aria-label={label}>
+      <Iconify icon={icon} className="size-4" flipRtl={false} />
+    </Button>
+  );
+}
+
 export function AlbumNavBar({ album }: Props) {
   const t = useTranslations();
   const lt = useLocalizedText();
+  const isRtl = useDirection() === "rtl";
 
   const familyAlbums = getFamilyAlbums(album.familyId);
   const currentIndex = ALBUMS.findIndex((a) => a.id === album.id);
   const prevAlbum = currentIndex > 0 ? ALBUMS[currentIndex - 1] : null;
   const nextAlbum =
     currentIndex >= 0 && currentIndex < ALBUMS.length - 1 ? ALBUMS[currentIndex + 1] : null;
+
+  // LTR: prev on the left, next on the right. RTL: next on the left, prev on the right.
+  const leftAlbum = isRtl ? nextAlbum : prevAlbum;
+  const rightAlbum = isRtl ? prevAlbum : nextAlbum;
+  const leftLabel = isRtl ? t("album.nav.next") : t("album.nav.previous");
+  const rightLabel = isRtl ? t("album.nav.previous") : t("album.nav.next");
 
   return (
     <nav className="bg-background/80 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-30 border-b backdrop-blur">
@@ -84,41 +120,9 @@ export function AlbumNavBar({ album }: Props) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <div className="flex shrink-0 items-center gap-1">
-            {prevAlbum ? (
-              <Button asChild variant="outline" size="icon-sm" className="rounded-full">
-                <Link href={WEB_ROUTES.ALBUM(prevAlbum.slug)} aria-label={t("album.nav.previous")}>
-                  <Iconify icon="lucide:chevron-left" className="size-4 rtl:rotate-180" />
-                </Link>
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                size="icon-sm"
-                className="rounded-full"
-                disabled
-                aria-label={t("album.nav.previous")}
-              >
-                <Iconify icon="lucide:chevron-left" className="size-4 rtl:rotate-180" />
-              </Button>
-            )}
-            {nextAlbum ? (
-              <Button asChild variant="outline" size="icon-sm" className="rounded-full">
-                <Link href={WEB_ROUTES.ALBUM(nextAlbum.slug)} aria-label={t("album.nav.next")}>
-                  <Iconify icon="lucide:chevron-right" className="size-4 rtl:rotate-180" />
-                </Link>
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                size="icon-sm"
-                className="rounded-full"
-                disabled
-                aria-label={t("album.nav.next")}
-              >
-                <Iconify icon="lucide:chevron-right" className="size-4 rtl:rotate-180" />
-              </Button>
-            )}
+          <div className={cn("flex shrink-0 items-center gap-1", isRtl && "flex-row-reverse")}>
+            <AlbumNavArrow chevron="left" target={leftAlbum} label={leftLabel} />
+            <AlbumNavArrow chevron="right" target={rightAlbum} label={rightLabel} />
           </div>
         </div>
 
