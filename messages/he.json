@@ -193,6 +193,11 @@
       "expandIncomplete": "פתח חוסרים",
       "expandAll": "פתח הכול"
     },
+    "share": {
+      "copyLink": "שתף לינק להחלפות",
+      "copyLinkAria": "העתק קישור להחלפות לאלבום זה",
+      "setupRequired": "הגדר שם משתמש בפרופיל כדי לשתף את האלבום"
+    },
     "team": {
       "progress": "{owned}/{total}",
       "complete": "סמן הכל",
@@ -203,6 +208,8 @@
       "clearConfirmTitle": "לאפס את הנבחרת?",
       "clearConfirmDescription": "כל המדבקות בנבחרת יחזרו ל-0 עותקים.",
       "completedBadge": "הושלם!",
+      "previousSection": "נבחרת קודמת",
+      "nextSection": "נבחרת הבאה",
       "groupLabel": "בית {group}"
     },
     "sticker": {
@@ -292,6 +299,8 @@
     "downloadTxt": "הורדת TXT",
     "downloadCsv": "הורדת CSV",
     "backToAlbum": "חזרה לאלבום",
+    "viewMissing": "רשימת חוסרים",
+    "viewDuplicates": "רשימת כפולים",
     "totalCount": "{count, plural, one {# קוד} other {# קודים}}",
     "sectionLabel": "מקטע",
     "codeLabel": "קוד",
@@ -308,6 +317,7 @@
     "contactValueLabel": "מזהה / מספר ליצירת קשר",
     "contactNone": "אל תציג פרטי קשר",
     "shareLink": "לינק לשיתוף",
+    "shareLinkHint": "מציג חוסרים וכפולים עבור {album}. פתח אלבום כדי לשנות לאיזה אוסף הלינק מתייחס.",
     "openShare": "פתח",
     "copy": "העתק",
     "copied": "הקישור הועתק",
@@ -340,7 +350,7 @@
     "viewAll": "הצג הכול ({count})"
   },
   "share": {
-    "eyebrow": "אוסף פאניני מונדיאל 2026",
+    "eyebrow": "אוסף {album}",
     "albumProgress": "אלבום",
     "duplicates": "כפולים",
     "bonus": "בונוס",
@@ -358,7 +368,7 @@
     "messageCopied": "ההודעה הועתקה",
     "message": {
       "greeting": "היי {name}!",
-      "intro": "גם אני אוסף פאניני מונדיאל 2026 וראיתי את האוסף שלך — יש לנו {count} מדבקות שמתאימות.",
+      "intro": "גם אני אוסף {album} וראיתי את האוסף שלך — יש לנו {count} פריטים שמתאימים.",
       "needLine": "המדבקות שחסרות לי ויש לך כפולות:",
       "more": "(+{count} נוספות)",
       "swap": "רוצה להחליף?",
@@ -369,8 +379,8 @@
     "siteTitle": "מעקב אלבום פאניני מונדיאל 2026",
     "siteTitleTemplate": "%s · פאניני מונדיאל 2026",
     "siteDescription": "עקבו אחרי אלבום המדבקות של פאניני למונדיאל 2026. נהלו 980 מדבקות, סמנו כפולים, מצאו שותפים להחלפה ושתפו את רשימת החוסרים.",
-    "shareTitle": "@{username} — אוסף פאניני מונדיאל 2026",
-    "shareDescription": "ראו אילו חוסרים יש ל-@{username} ואילו כפולים יש להחלפה."
+    "shareTitle": "@{username} — {album}",
+    "shareDescription": "ראו מה חסר ל-@{username} ואילו כפולים יש להחלפה ב-{album}."
   },
   "library": {
     "eyebrow": "ספריית אלבומי כדורגל",

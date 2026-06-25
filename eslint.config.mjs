@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "node_modules/**",
+    "coverage/**",
+    ".claude/**",
+    ".cursor/**",
+    ".husky/**",
   ]),
   {
     rules: {

@@ -45,9 +45,12 @@ function DialogContent({
   className,
   children,
   showCloseButton = true,
+  portalSibling,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean;
+  /** Rendered in the dialog portal beside the panel (e.g. fixed side nav). */
+  portalSibling?: React.ReactNode;
 }) {
   const t = useTranslations();
   const dir = useDirection();
@@ -56,6 +59,7 @@ function DialogContent({
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
+      {portalSibling}
       <DialogPrimitive.Content
         data-slot="dialog-content"
         {...directionProps}

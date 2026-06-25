@@ -115,3 +115,105 @@ export function buildDuplicatesCsvForAlbum(album: Album, quantities: Quantities)
   }
   return lines.join("\n");
 }
+
+export type AlbumGroupedBucket = {
+  id: string;
+  title: string;
+  codes: string[];
+  counts?: Record<string, number>;
+};
+
+/** Localized section label, including badge/flag when present. */
+export function resolveAlbumSectionLabel(
+  album: Album,
+  sectionId: string,
+  label: (text: { en?: string; he?: string }) => string
+): string {
+  const section =
+    album.sections.find((s) => s.id === sectionId) ??
+    album.specialCollections?.find((s) => s.id === sectionId);
+  if (!section) return sectionId;
+  const name = label(section.title);
+  const badge = "badge" in section ? section.badge : undefined;
+  return badge ? `${badge} ${name}`.trim() : name;
+}
+
+function sectionTitleForRow(
+  album: Album,
+  row: AlbumItemRow,
+  label: (text: { en?: string; he?: string }) => string
+): string {
+  return resolveAlbumSectionLabel(album, row.sectionId, label);
+}
+
+/** Groups missing required items by album section (any album shape). */
+export function groupAlbumMissingBySection(
+  album: Album,
+  quantities: Quantities,
+  label: (text: { en?: string; he?: string }) => string
+): AlbumGroupedBucket[] {
+  const buckets = new Map<string, AlbumGroupedBucket>();
+  for (const row of listAlbumItemRows(album)) {
+    if (!row.item.isRequiredForCompletion) continue;
+    if (clampQuantity(quantities[row.item.code] ?? 0) !== 0) continue;
+    const title = sectionTitleForRow(album, row, label);
+    const existing = buckets.get(row.sectionId);
+    if (existing) existing.codes.push(row.item.code);
+    else buckets.set(row.sectionId, { id: row.sectionId, title, codes: [row.item.code] });
+  }
+  return [...buckets.values()];
+}
+
+/** Groups duplicate required items by album section with per-code extra counts. */
+export function groupAlbumDuplicatesBySection(
+  album: Album,
+  quantities: Quantities,
+  label: (text: { en?: string; he?: string }) => string
+): AlbumGroupedBucket[] {
+  const buckets = new Map<string, AlbumGroupedBucket>();
+  for (const row of listAlbumItemRows(album)) {
+    if (!row.item.isRequiredForCompletion) continue;
+    const qty = clampQuantity(quantities[row.item.code] ?? 0);
+    if (qty < 2) continue;
+    const title = sectionTitleForRow(album, row, label);
+    const existing = buckets.get(row.sectionId);
+    if (existing) {
+      existing.codes.push(row.item.code);
+      existing.counts![row.item.code] = qty - 1;
+    } else {
+      buckets.set(row.sectionId, {
+        id: row.sectionId,
+        title,
+        codes: [row.item.code],
+        counts: { [row.item.code]: qty - 1 },
+      });
+    }
+  }
+  return [...buckets.values()];
+}
+
+/** Album codes the viewer still needs (required items only). */
+export function viewerMissingSetForAlbum(album: Album, quantities: Quantities): Set<string> {
+  const result = new Set<string>();
+  for (const row of listAlbumItemRows(album)) {
+    if (!row.item.isRequiredForCompletion) continue;
+    if (clampQuantity(quantities[row.item.code] ?? 0) === 0) result.add(row.item.code);
+  }
+  return result;
+}
+
+/** Codes the owner has as duplicates that the viewer is missing, in album order. */
+export function computeSwapMatchesForAlbum(
+  album: Album,
+  ownerQuantities: Quantities,
+  viewerQuantities: Quantities
+): string[] {
+  const myMissing = viewerMissingSetForAlbum(album, viewerQuantities);
+  const matches: string[] = [];
+  for (const row of listAlbumItemRows(album)) {
+    if (!row.item.isRequiredForCompletion) continue;
+    const ownerQty = clampQuantity(ownerQuantities[row.item.code] ?? 0);
+    if (ownerQty >= 2 && myMissing.has(row.item.code)) matches.push(row.item.code);
+  }
+  return matches;
+}

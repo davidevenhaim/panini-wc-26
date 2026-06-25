@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
@@ -12,7 +11,6 @@ import { useDebounce } from "@/hooks/use-debounce";
 import { useLocalizedText } from "@/hooks/use-localized-text";
 import { toastSuccess } from "@/lib/toast";
 import { cn } from "@/lib/utils";
-import WEB_ROUTES from "@/constants/web-routes.constants";
 import type { Album, AlbumSection } from "@/collections/schema";
 import { useCollectionStore } from "@/store/collection.store";
 import { useSyncWithUser } from "../use-sync-with-user";
@@ -22,6 +20,7 @@ import { GenericSectionTile } from "./section-tile";
 import { GenericProgressSummary } from "./generic-progress-summary";
 import { TeamTileSection } from "./team-tile-section";
 import { ReportButton } from "@/features/data-reports/report-button";
+import { AlbumShareCopyButton } from "../album-share-copy-button";
 import type { FilterMode } from "../types";
 
 type Props = { album: Album };
@@ -55,13 +54,15 @@ export function GroupedAlbumPage({ album }: Props) {
 
   const hydrate = useCollectionStore((s) => s.hydrate);
   const isHydrated = useCollectionStore((s) => s.isHydrated);
+  const setActiveAlbum = useCollectionStore((s) => s.setActiveAlbum);
   const quantities = useCollectionStore((s) => s.quantities);
   const resetAll = useCollectionStore((s) => s.resetAll);
   const markCodesComplete = useCollectionStore((s) => s.markCodesComplete);
 
   React.useEffect(() => {
     hydrate();
-  }, [hydrate]);
+    setActiveAlbum(album.id);
+  }, [album.id, hydrate, setActiveAlbum]);
   useSyncWithUser();
 
   const resetConfirm = useBoolean();
@@ -121,6 +122,11 @@ export function GroupedAlbumPage({ album }: Props) {
   const selectedSection: AlbumSection | null =
     album.sections.find((s) => s.id === selectedSectionId) ?? null;
 
+  const navigableSections = React.useMemo(
+    () => [...album.sections].sort((a, b) => a.order - b.order),
+    [album.sections]
+  );
+
   if (!isHydrated) {
     return (
       <main className="mx-auto w-full px-4 py-10 sm:px-6 lg:px-10">
@@ -166,6 +172,7 @@ export function GroupedAlbumPage({ album }: Props) {
               : (album.season ?? album.publisher ?? "")}
           </Typography>
         </div>
+        <AlbumShareCopyButton album={album} />
       </header>
 
       <GenericProgressSummary album={album} quantities={quantities} />
@@ -309,6 +316,8 @@ export function GroupedAlbumPage({ album }: Props) {
         filter={filter}
         query={query}
         rtl={rtl}
+        sections={navigableSections}
+        onSectionChange={setSelectedSectionId}
       />
 
       <AreYouSureDialog

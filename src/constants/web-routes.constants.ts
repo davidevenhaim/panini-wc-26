@@ -6,7 +6,8 @@ const WEB_ROUTES = {
   PROFILE: "/profile",
   USERS: "/users",
   ISRAEL: "/israel",
-  USER_SHARE: (username: string) => `/u/${username}`,
+  USER_SHARE: (username: string, albumSlug?: string) =>
+    albumSlug ? `/u/${username}?album=${encodeURIComponent(albumSlug)}` : `/u/${username}`,
   ALBUM: (slug: string) => `/albums/${slug}`,
   ALBUM_MISSING: (slug: string) => `/albums/${slug}/missing`,
   ALBUM_DUPLICATES: (slug: string) => `/albums/${slug}/duplicates`,

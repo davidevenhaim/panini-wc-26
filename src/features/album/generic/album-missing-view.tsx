@@ -11,8 +11,10 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { toastSuccess, toastError } from "@/lib/toast";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { useCollectionStore } from "@/store/collection.store";
-import { buildMissingTextForAlbum, listAlbumMissing } from "@/lib/album/album-progress";
+import { buildMissingTextForAlbum, groupAlbumMissingBySection } from "@/lib/album/album-progress";
 import { ReportButton } from "@/features/data-reports/report-button";
+import { AlbumProfileShareButton } from "../album-profile-share-button";
+import { AlbumGroupedCodeBuckets } from "../album-grouped-code-buckets";
 import { useItemTerminology } from "../use-item-terminology";
 import { AlbumNavBar } from "../album-nav-bar";
 import type { Album } from "@/collections/schema";
@@ -48,7 +50,14 @@ export function AlbumMissingView({ album }: Props) {
   }, [hydrate, setActiveAlbum, album.id]);
 
   const quantities = getAlbumQuantities(album.id);
-  const rows = React.useMemo(() => listAlbumMissing(album, quantities), [album, quantities]);
+  const buckets = React.useMemo(
+    () => groupAlbumMissingBySection(album, quantities, lt),
+    [album, quantities, lt]
+  );
+  const totalCount = React.useMemo(
+    () => buckets.reduce((sum, bucket) => sum + bucket.codes.length, 0),
+    [buckets]
+  );
   const text = React.useMemo(
     () => buildMissingTextForAlbum(album, quantities),
     [album, quantities]
@@ -70,11 +79,14 @@ export function AlbumMissingView({ album }: Props) {
 
   if (!isHydrated) {
     return (
-      <main className="mx-auto w-full px-4 py-10 sm:px-6 lg:px-10">
-        <Typography variant="body2" as="p" color="muted" className="text-center">
-          {t("loading")}
-        </Typography>
-      </main>
+      <>
+        <AlbumNavBar album={album} />
+        <main className="mx-auto w-full px-4 py-10 sm:px-6 lg:px-10">
+          <Typography variant="body2" as="p" color="muted" className="text-center">
+            {t("loading")}
+          </Typography>
+        </main>
+      </>
     );
   }
 
@@ -83,7 +95,7 @@ export function AlbumMissingView({ album }: Props) {
       <AlbumNavBar album={album} />
       <main
         dir={rtl ? "rtl" : undefined}
-        className="mx-auto w-full max-w-3xl px-4 py-6 sm:px-6 lg:px-10"
+        className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 lg:px-10"
       >
         <div className="mb-4">
           <Button asChild variant="ghost" size="sm">
@@ -110,16 +122,18 @@ export function AlbumMissingView({ album }: Props) {
             {term.missingTitle}
           </Typography>
           <Typography variant="caption2" as="p" color="muted" className="mt-1">
-            {t("albumLists.missingSubtitle")} · {t("albumLists.totalCount", { count: rows.length })}
+            {t("albumLists.missingSubtitle")} · {t("albumLists.totalCount", { count: totalCount })}
           </Typography>
         </header>
 
+        <AlbumProfileShareButton album={album} />
+
         <div className="mb-4 flex flex-wrap gap-2">
-          <Button onClick={onCopy} disabled={rows.length === 0}>
+          <Button onClick={onCopy} disabled={totalCount === 0}>
             <Iconify icon="lucide:copy" className="size-4" />
             {t("albumLists.copyCodes")}
           </Button>
-          <Button variant="outline" onClick={onDownload} disabled={rows.length === 0}>
+          <Button variant="outline" onClick={onDownload} disabled={totalCount === 0}>
             <Iconify icon="lucide:download" className="size-4" />
             {t("albumLists.downloadTxt")}
           </Button>
@@ -134,26 +148,11 @@ export function AlbumMissingView({ album }: Props) {
           />
         </div>
 
-        {rows.length === 0 ? (
-          <div className="bg-card rounded-3xl border-2 border-dashed p-8 text-center">
-            <Iconify icon="lucide:party-popper" className="text-foreground/30 mx-auto size-10" />
-            <Typography variant="body2" as="p" color="muted" className="mt-2">
-              {t("albumLists.emptyMissing")}
-            </Typography>
-          </div>
-        ) : (
-          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
-            {rows.map((row) => (
-              <li
-                key={row.item.id}
-                className="bg-card rounded-xl border p-3 text-center font-mono text-sm font-semibold"
-                dir="ltr"
-              >
-                {row.item.code}
-              </li>
-            ))}
-          </ul>
-        )}
+        <AlbumGroupedCodeBuckets
+          buckets={buckets}
+          variant="missing"
+          emptyMessage={t("albumLists.emptyMissing")}
+        />
       </main>
     </>
   );

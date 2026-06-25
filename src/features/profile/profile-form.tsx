@@ -18,7 +18,10 @@ import {
   type Profile,
 } from "@/types/profile.types";
 import { contactLabel } from "@/lib/album/contact";
+import { useLocalizedText } from "@/hooks/use-localized-text";
 import WEB_ROUTES from "@/constants/web-routes.constants";
+import { ALBUM_BY_ID } from "@/collections/catalog";
+import { useCollectionStore } from "@/store/collection.store";
 
 type Props = {
   userId: string;
@@ -28,6 +31,7 @@ type Props = {
 
 export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) {
   const t = useTranslations();
+  const lt = useLocalizedText();
   const router = useRouter();
   const [username, setUsername] = React.useState(initialProfile?.username ?? defaultUsername);
   const [displayName, setDisplayName] = React.useState(initialProfile?.display_name ?? "");
@@ -39,12 +43,21 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
   const [isPublic, setIsPublic] = React.useState(initialProfile?.is_public ?? true);
   const [saving, setSaving] = React.useState(false);
 
+  const hydrate = useCollectionStore((s) => s.hydrate);
+  const activeAlbumId = useCollectionStore((s) => s.activeAlbumId);
+  const activeAlbum = ALBUM_BY_ID[activeAlbumId];
+
+  React.useEffect(() => {
+    hydrate();
+  }, [hydrate]);
+
   const usernameValid = USERNAME_REGEX.test(username);
-  const shareUrl = usernameValid
-    ? typeof window !== "undefined"
-      ? `${window.location.origin}${WEB_ROUTES.USER_SHARE(username)}`
-      : ""
-    : "";
+  const shareUrl =
+    usernameValid && activeAlbum
+      ? typeof window !== "undefined"
+        ? `${window.location.origin}${WEB_ROUTES.USER_SHARE(username, activeAlbum.slug)}`
+        : ""
+      : "";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -252,6 +265,9 @@ export function ProfileForm({ userId, initialProfile, defaultUsername }: Props) 
               </a>
             </Button>
           </div>
+          <Typography variant="caption2" as="p" color="muted" className="mt-2">
+            {t("profile.shareLinkHint", { album: activeAlbum ? lt(activeAlbum.title) : "" })}
+          </Typography>
         </div>
       )}
     </form>

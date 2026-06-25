@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import Iconify from "@/components/ui/iconify";
 import { AlbumFooter } from "@/features/album/album-footer";
@@ -13,37 +13,56 @@ import {
   fetchProfileByUsername,
   fetchUserStickers,
 } from "@/lib/album/supabase-sync";
-import { ALBUM_STICKERS } from "@/constants/album";
-import { computeAlbumStats, computeBonusStats } from "@/lib/album/collection";
-import { groupDuplicatesByTeam, groupMissingByTeam } from "@/lib/album/grouped";
+import { computeBonusStats } from "@/lib/album/collection";
+import {
+  albumProgressForQuantities,
+  computeSwapMatchesForAlbum,
+  groupAlbumDuplicatesBySection,
+  groupAlbumMissingBySection,
+} from "@/lib/album/album-progress";
 import { contactHref, contactIcon, contactLabel } from "@/lib/album/contact";
-import { viewerMissingSet } from "@/lib/album/listings";
 import { ShareContactActions } from "@/features/profile/share-contact-actions";
 import { buildSiteMetadata } from "@/lib/site-metadata";
+import { getAlbumBySlug } from "@/collections/catalog";
+import { resolveAppLocale } from "@/constants/locale";
+import { pickLocalizedText } from "@/utils/localized-text";
 
-type RouteParams = { params: Promise<{ username: string }> };
+type RouteParams = {
+  params: Promise<{ username: string }>;
+  searchParams: Promise<{ album?: string }>;
+};
 
 const MESSAGE_CODE_LIMIT = 60;
+const DEFAULT_SHARE_ALBUM_SLUG = "world-cup-2026";
 
-export default async function UserSharePage({ params }: RouteParams) {
+export default async function UserSharePage({ params, searchParams }: RouteParams) {
   const { username } = await params;
+  const { album: albumSlugParam } = await searchParams;
   const t = await getTranslations();
+  const locale = resolveAppLocale(await getLocale());
 
   if (!CONFIG.isSupabaseConfigured) notFound();
+
+  const albumSlug = albumSlugParam?.trim() || DEFAULT_SHARE_ALBUM_SLUG;
+  const album = getAlbumBySlug(albumSlug);
+  if (!album || album.dataStatus === "metadata-only") notFound();
 
   const supabase = await createClient();
   const profile = await fetchProfileByUsername(supabase, username);
   if (!profile) notFound();
 
-  const quantities = await fetchUserStickers(supabase, profile.id);
-  const album = computeAlbumStats(quantities);
-  const bonus = computeBonusStats(quantities);
-  const missing = groupMissingByTeam(quantities);
-  const duplicates = groupDuplicatesByTeam(quantities);
+  const quantities = await fetchUserStickers(supabase, profile.id, album.id);
+  const stats = albumProgressForQuantities(album, quantities);
+  const albumTitle = pickLocalizedText(album.title, locale);
+  const label = (text: { en?: string; he?: string }) => pickLocalizedText(text, locale);
+
+  const missing = groupAlbumMissingBySection(album, quantities, label);
+  const duplicates = groupAlbumDuplicatesBySection(album, quantities, label);
+  const showBonus = album.id === "panini-world-cup-2026";
+  const bonus = showBonus ? computeBonusStats(quantities) : null;
 
   const displayName = profile.display_name?.trim() || profile.username;
 
-  // ── Match computation against the logged-in viewer ───────────────────
   const { data: userData } = await supabase.auth.getUser();
   const viewerUser = userData.user;
   const isOwnProfile = viewerUser?.id === profile.id;
@@ -51,29 +70,20 @@ export default async function UserSharePage({ params }: RouteParams) {
   let viewerUsername: string | null = null;
 
   if (viewerUser && !isOwnProfile) {
-    const viewerStickers = await fetchUserStickers(supabase, viewerUser.id);
-    const myMissing = viewerMissingSet(viewerStickers);
-    const albumOrderIndex = new Map<string, number>(ALBUM_STICKERS.map((s, i) => [s.code, i]));
-    const matches: string[] = [];
-    for (const sticker of ALBUM_STICKERS) {
-      const ownerQty = quantities[sticker.code] ?? 0;
-      if (ownerQty >= 2 && myMissing.has(sticker.code)) matches.push(sticker.code);
-    }
-    matches.sort((a, b) => (albumOrderIndex.get(a) ?? 0) - (albumOrderIndex.get(b) ?? 0));
-    matchedCodes = matches;
+    const viewerStickers = await fetchUserStickers(supabase, viewerUser.id, album.id);
+    matchedCodes = computeSwapMatchesForAlbum(album, quantities, viewerStickers);
 
     const viewerProfile = await fetchProfileById(supabase, viewerUser.id);
     viewerUsername = viewerProfile?.username ?? null;
   }
 
-  // ── Prefilled message ────────────────────────────────────────────────
   const messageCodes = matchedCodes.slice(0, MESSAGE_CODE_LIMIT);
   const remaining = matchedCodes.length - messageCodes.length;
   const messageLines: string[] = [];
   if (matchedCodes.length > 0) {
     messageLines.push(t("share.message.greeting", { name: displayName }));
     messageLines.push("");
-    messageLines.push(t("share.message.intro", { count: matchedCodes.length }));
+    messageLines.push(t("share.message.intro", { count: matchedCodes.length, album: albumTitle }));
     messageLines.push("");
     messageLines.push(t("share.message.needLine"));
     messageLines.push(
@@ -96,9 +106,9 @@ export default async function UserSharePage({ params }: RouteParams) {
     <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:px-6 lg:px-10">
       <div className="mb-4 flex items-center justify-between gap-2">
         <Button asChild variant="ghost" size="sm">
-          <Link href={WEB_ROUTES.HOME}>
+          <Link href={WEB_ROUTES.ALBUM(album.slug)}>
             <Iconify icon="lucide:arrow-left" className="size-4" />
-            {t("back")}
+            {t("albumLists.backToAlbum")}
           </Link>
         </Button>
       </div>
@@ -111,7 +121,7 @@ export default async function UserSharePage({ params }: RouteParams) {
               as="span"
               className="text-[11px] font-bold tracking-[0.18em] text-white/80 uppercase"
             >
-              {t("share.eyebrow")}
+              {t("share.eyebrow", { album: albumTitle })}
             </Typography>
             <Typography
               variant="h6"
@@ -130,15 +140,17 @@ export default async function UserSharePage({ params }: RouteParams) {
             )}
             <div className="mt-3 flex flex-wrap gap-4 text-xs text-white/85">
               <span>
-                {t("share.albumProgress")}: <strong>{album.unique}</strong>/{album.total} ·{" "}
-                {album.percent}%
+                {t("share.albumProgress")}: <strong>{stats.unique}</strong>/{stats.total} ·{" "}
+                {stats.percent}%
               </span>
               <span>
-                {t("share.duplicates")}: <strong>{album.duplicates}</strong>
+                {t("share.duplicates")}: <strong>{stats.duplicates}</strong>
               </span>
-              <span>
-                {t("share.bonus")}: <strong>{bonus.unique}</strong>/{bonus.total}
-              </span>
+              {bonus && (
+                <span>
+                  {t("share.bonus")}: <strong>{bonus.unique}</strong>/{bonus.total}
+                </span>
+              )}
             </div>
           </div>
 
@@ -161,7 +173,6 @@ export default async function UserSharePage({ params }: RouteParams) {
         </div>
       </header>
 
-      {/* ── Match banner ───────────────────────────────────────────── */}
       {matchedCodes.length > 0 && (
         <section
           aria-labelledby="match-heading"
@@ -239,7 +250,7 @@ export default async function UserSharePage({ params }: RouteParams) {
               <Iconify icon="lucide:square-dashed" className="me-1 inline size-3.5" />
               {t("share.missingTitle")}
             </Typography>
-            <span className="text-foreground/60 font-mono text-xs">{album.missing}</span>
+            <span className="text-foreground/60 font-mono text-xs">{stats.missing}</span>
           </header>
           {missing.length === 0 ? (
             <Typography variant="caption2" as="p" color="muted">
@@ -285,7 +296,7 @@ export default async function UserSharePage({ params }: RouteParams) {
               <Iconify icon="lucide:copy" className="me-1 inline size-3.5" />
               {t("share.duplicatesTitle")}
             </Typography>
-            <span className="text-foreground/60 font-mono text-xs">{album.duplicates}</span>
+            <span className="text-foreground/60 font-mono text-xs">{stats.duplicates}</span>
           </header>
           {duplicates.length === 0 ? (
             <Typography variant="caption2" as="p" color="muted">
@@ -347,14 +358,20 @@ export default async function UserSharePage({ params }: RouteParams) {
   );
 }
 
-export async function generateMetadata({ params }: RouteParams) {
+export async function generateMetadata({ params, searchParams }: RouteParams) {
   const { username } = await params;
+  const { album: albumSlugParam } = await searchParams;
   const t = await getTranslations();
+  const locale = resolveAppLocale(await getLocale());
+
+  const albumSlug = albumSlugParam?.trim() || DEFAULT_SHARE_ALBUM_SLUG;
+  const album = getAlbumBySlug(albumSlug);
+  const albumTitle = album ? pickLocalizedText(album.title, locale) : "";
 
   return buildSiteMetadata({
-    title: t("metadata.shareTitle", { username }),
-    description: t("metadata.shareDescription", { username }),
-    path: `/u/${username}`,
+    title: t("metadata.shareTitle", { username, album: albumTitle }),
+    description: t("metadata.shareDescription", { username, album: albumTitle }),
+    path: WEB_ROUTES.USER_SHARE(username, album?.slug),
     absoluteTitle: true,
   });
 }

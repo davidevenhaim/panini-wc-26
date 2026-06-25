@@ -193,6 +193,11 @@
       "expandIncomplete": "Expandir incompletos",
       "expandAll": "Expandir todo"
     },
+    "share": {
+      "copyLink": "Compartir enlace de intercambio",
+      "copyLinkAria": "Copiar enlace de intercambio para este álbum",
+      "setupRequired": "Configura tu nombre de usuario en el perfil para compartir este álbum"
+    },
     "team": {
       "progress": "{owned}/{total}",
       "complete": "Marcar equipo completo",
@@ -203,6 +208,8 @@
       "clearConfirmTitle": "¿Vaciar este equipo?",
       "clearConfirmDescription": "Todos los cromos del equipo se reiniciarán a 0.",
       "completedBadge": "¡Completo!",
+      "previousSection": "Equipo anterior",
+      "nextSection": "Equipo siguiente",
       "groupLabel": "Grupo {group}"
     },
     "sticker": {
@@ -292,6 +299,8 @@
     "downloadTxt": "Descargar TXT",
     "downloadCsv": "Descargar CSV",
     "backToAlbum": "Volver al álbum",
+    "viewMissing": "Lista de faltantes",
+    "viewDuplicates": "Lista de repetidos",
     "totalCount": "{count, plural, one {# código} other {# códigos}}",
     "sectionLabel": "Sección",
     "codeLabel": "Código",
@@ -308,6 +317,7 @@
     "contactValueLabel": "Usuario / número",
     "contactNone": "No mostrar contacto",
     "shareLink": "Tu enlace para compartir",
+    "shareLinkHint": "Muestra faltantes y repetidos de {album}. Abre un álbum primero para cambiar qué colección comparte este enlace.",
     "openShare": "Abrir",
     "copy": "Copiar",
     "copied": "Enlace copiado",
@@ -340,7 +350,7 @@
     "viewAll": "Ver todos ({count})"
   },
   "share": {
-    "eyebrow": "Colección Panini Mundial 2026",
+    "eyebrow": "Colección {album}",
     "albumProgress": "Álbum",
     "duplicates": "Repetidos",
     "bonus": "Bonus",
@@ -358,7 +368,7 @@
     "messageCopied": "Mensaje copiado",
     "message": {
       "greeting": "¡Hola {name}!",
-      "intro": "Yo también colecciono Panini Mundial 2026 y vi tu álbum — tenemos {count} cromos coincidentes.",
+      "intro": "Yo también colecciono {album} y vi tu álbum — tenemos {count} cromos coincidentes.",
       "needLine": "Cromos que me faltan y tú tienes repetidos:",
       "more": "(+{count} más)",
       "swap": "¿Intercambiamos?",
@@ -369,8 +379,8 @@
     "siteTitle": "Rastreador del álbum Panini Mundial 2026",
     "siteTitleTemplate": "%s · Panini Mundial 2026",
     "siteDescription": "Lleva tu álbum de cromos Panini del Mundial 2026. Gestiona 980 cromos, marca repetidos, encuentra intercambios y comparte tu lista de faltantes.",
-    "shareTitle": "@{username} — colección Panini Mundial 2026",
-    "shareDescription": "Mira qué cromos le faltan a @{username} y qué repetidos tiene para intercambiar."
+    "shareTitle": "@{username} — {album}",
+    "shareDescription": "Consulta qué le faltan a @{username} y qué repetidos tiene para intercambiar en {album}."
   },
   "library": {
     "eyebrow": "Biblioteca de álbumes de fútbol",

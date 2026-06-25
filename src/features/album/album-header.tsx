@@ -24,6 +24,8 @@ import { CONFIG } from "@/lib/app-config";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { SITE_METADATA } from "@/constants/site-metadata.constants";
 import { exportExcel } from "./exporters";
+import type { Album } from "@/collections/schema";
+import { AlbumShareCopyButton } from "./album-share-copy-button";
 
 function getUserAvatarUrl(user: User): string | null {
   const meta = user.user_metadata as Record<string, unknown>;
@@ -46,6 +48,7 @@ function getUserInitial(user: User): string {
 
 type Props = {
   onOpenReset: () => void;
+  album: Album;
 };
 
 function AccountNavButton({
@@ -92,7 +95,7 @@ function AccountNavButton({
   );
 }
 
-export function AlbumHeader({ onOpenReset }: Props) {
+export function AlbumHeader({ onOpenReset, album }: Props) {
   const t = useTranslations();
   const quantities = useCollectionStore((s) => s.quantities);
   const { user, isAuthenticated, isLoading } = usePermissions();
@@ -130,6 +133,7 @@ export function AlbumHeader({ onOpenReset }: Props) {
           </Typography>
         </div>
         <div className="flex items-center gap-1">
+          <AlbumShareCopyButton album={album} variant="icon" />
           {CONFIG.isSupabaseConfigured && !isLoading && (
             <AccountNavButton
               user={user}

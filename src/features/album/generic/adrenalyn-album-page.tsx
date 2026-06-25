@@ -20,6 +20,7 @@ import { GenericSectionTile } from "./section-tile";
 import { TeamTileSection } from "./team-tile-section";
 import { GenericProgressSummary } from "./generic-progress-summary";
 import { ReportButton } from "@/features/data-reports/report-button";
+import { AlbumShareCopyButton } from "../album-share-copy-button";
 import type { FilterMode } from "../types";
 
 type Props = { album: Album };
@@ -103,6 +104,7 @@ export function AdrenalynAlbumPage({ album }: Props) {
   );
 
   const extras: SpecialCollection[] = album.specialCollections ?? [];
+  const navigableExtras = extras.map(extraToSection);
 
   function teamPassesFilters(section: AlbumSection): boolean {
     const owned = ownedFor(section, quantities);
@@ -137,6 +139,11 @@ export function AdrenalynAlbumPage({ album }: Props) {
   const selectedSection: AlbumSection | null =
     album.sections.find((s) => s.id === selectedSectionId) ?? null;
   const selectedExtra = extras.find((s) => s.id === selectedSpecialId);
+
+  const navigableSections = React.useMemo(
+    () => [...specialSections, ...teamSections],
+    [specialSections, teamSections]
+  );
 
   if (!isHydrated) {
     return (
@@ -175,6 +182,7 @@ export function AdrenalynAlbumPage({ album }: Props) {
             {album.publisher} · {album.season}
           </Typography>
         </div>
+        <AlbumShareCopyButton album={album} />
       </header>
 
       <GenericProgressSummary album={album} quantities={quantities} />
@@ -386,6 +394,8 @@ export function AdrenalynAlbumPage({ album }: Props) {
         filter={filter}
         query={query}
         rtl={rtl}
+        sections={navigableSections}
+        onSectionChange={setSelectedSectionId}
       />
 
       <GenericSectionDialog
@@ -400,6 +410,8 @@ export function AdrenalynAlbumPage({ album }: Props) {
         filter={filter}
         query={query}
         rtl={rtl}
+        sections={navigableExtras}
+        onSectionChange={setSelectedSpecialId}
       />
 
       <AreYouSureDialog

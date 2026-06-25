@@ -11,6 +11,7 @@ import { useCollectionStore } from "@/store/collection.store";
 import { useLocalizedText } from "@/hooks/use-localized-text";
 import { albumProgressForQuantities, type AlbumProgress } from "@/lib/album/album-progress";
 import { cn } from "@/lib/utils";
+import { AlbumShareCopyButton } from "@/features/album/album-share-copy-button";
 
 type Props = {
   album: Album;
@@ -45,102 +46,118 @@ export function AlbumCard({ album, className }: Props) {
 
   const status = STATUS_VARIANT[album.dataStatus];
   const isMetadataOnly = album.dataStatus === "metadata-only";
+  const albumTitle = lt(album.title);
 
   return (
-    <Link
-      href={WEB_ROUTES.ALBUM(album.slug)}
+    <div
       className={cn(
-        "group bg-card relative overflow-hidden rounded-3xl border p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg",
+        "group bg-card relative overflow-hidden rounded-3xl border shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg",
         className
       )}
       style={{ borderColor: `${album.theme.primary}40` }}
     >
       <span
         aria-hidden
-        className="absolute inset-x-0 top-0 h-1.5"
+        className="absolute inset-x-0 top-0 z-0 h-1.5"
         style={{
           background: `linear-gradient(90deg, ${album.theme.primary}, ${album.theme.accent ?? album.theme.primary})`,
         }}
       />
 
-      <div className="flex items-start gap-3">
-        <span
-          className="font-heading flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl font-black text-white shadow-sm"
-          style={{
-            background: `linear-gradient(135deg, ${album.theme.primary}, ${album.theme.accent ?? album.theme.primary})`,
-          }}
-          aria-hidden
-        >
-          {(lt(album.shortTitle) || lt(album.title)).charAt(0) || "?"}
-        </span>
-        <div className="min-w-0 flex-1">
-          <Typography
-            variant="h6"
-            as="h3"
-            className="font-heading truncate text-base leading-tight font-extrabold"
+      <div className="relative z-0 p-4">
+        <div className="flex items-start gap-3">
+          <span
+            className="font-heading flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl font-black text-white shadow-sm"
+            style={{
+              background: `linear-gradient(135deg, ${album.theme.primary}, ${album.theme.accent ?? album.theme.primary})`,
+            }}
+            aria-hidden
           >
-            {lt(album.title)}
-          </Typography>
-          <Typography variant="caption2" as="p" color="muted" className="truncate">
-            {album.publisher && album.season
-              ? `${album.publisher} · ${album.season}`
-              : (album.season ?? album.publisher ?? "")}
-          </Typography>
-        </div>
-      </div>
-
-      <div className="mt-3 flex flex-wrap items-center gap-1.5">
-        <span
-          className={cn(
-            "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold ring-1",
-            status.tone
-          )}
-        >
-          <Iconify icon={status.icon} className="size-3" />
-          {t(status.label)}
-        </span>
-        {album.itemType !== "STICKER" && (
-          <span className="bg-foreground/10 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase">
-            {album.itemType.toLowerCase()}
+            {(lt(album.shortTitle) || albumTitle).charAt(0) || "?"}
           </span>
+          <div className="min-w-0 flex-1 pe-10">
+            <Typography
+              variant="h6"
+              as="h3"
+              className="font-heading truncate text-base leading-tight font-extrabold"
+            >
+              {albumTitle}
+            </Typography>
+            <Typography variant="caption2" as="p" color="muted" className="truncate">
+              {album.publisher && album.season
+                ? `${album.publisher} · ${album.season}`
+                : (album.season ?? album.publisher ?? "")}
+            </Typography>
+          </div>
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          <span
+            className={cn(
+              "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold ring-1",
+              status.tone
+            )}
+          >
+            <Iconify icon={status.icon} className="size-3" />
+            {t(status.label)}
+          </span>
+          {album.itemType !== "STICKER" && (
+            <span className="bg-foreground/10 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase">
+              {album.itemType.toLowerCase()}
+            </span>
+          )}
+        </div>
+
+        {!isMetadataOnly && (
+          <>
+            <div className="mt-3 flex items-baseline justify-between gap-3">
+              <Typography
+                variant="overline"
+                as="span"
+                className="text-foreground/50 text-[10px] font-bold tracking-wider uppercase"
+              >
+                {t("album.stats.albumProgress")}
+              </Typography>
+              <span className="font-mono text-sm font-bold tabular-nums">
+                {progress.unique}/{progress.total}
+              </span>
+            </div>
+            <div className="bg-foreground/10 mt-1 h-1.5 w-full overflow-hidden rounded-full">
+              <div
+                className="h-full rounded-full transition-all duration-500"
+                style={{
+                  width: `${progress.percent}%`,
+                  background: `linear-gradient(90deg, ${album.theme.primary}, ${album.theme.accent ?? album.theme.primary})`,
+                }}
+              />
+            </div>
+            <div className="text-foreground/60 mt-2 flex gap-3 text-[11px]">
+              <span>{progress.percent}%</span>
+              {progress.duplicates > 0 && (
+                <span className="text-amber-600 dark:text-amber-400">+{progress.duplicates}</span>
+              )}
+            </div>
+          </>
+        )}
+
+        {isMetadataOnly && (
+          <p className="text-foreground/60 mt-3 text-xs">{t("library.checklistMissing")}</p>
         )}
       </div>
 
-      {!isMetadataOnly && (
-        <>
-          <div className="mt-3 flex items-baseline justify-between gap-3">
-            <Typography
-              variant="overline"
-              as="span"
-              className="text-foreground/50 text-[10px] font-bold tracking-wider uppercase"
-            >
-              {t("album.stats.albumProgress")}
-            </Typography>
-            <span className="font-mono text-sm font-bold tabular-nums">
-              {progress.unique}/{progress.total}
-            </span>
-          </div>
-          <div className="bg-foreground/10 mt-1 h-1.5 w-full overflow-hidden rounded-full">
-            <div
-              className="h-full rounded-full transition-all duration-500"
-              style={{
-                width: `${progress.percent}%`,
-                background: `linear-gradient(90deg, ${album.theme.primary}, ${album.theme.accent ?? album.theme.primary})`,
-              }}
-            />
-          </div>
-          <div className="text-foreground/60 mt-2 flex gap-3 text-[11px]">
-            <span>{progress.percent}%</span>
-            {progress.duplicates > 0 && (
-              <span className="text-amber-600 dark:text-amber-400">+{progress.duplicates}</span>
-            )}
-          </div>
-        </>
-      )}
+      <Link
+        href={WEB_ROUTES.ALBUM(album.slug)}
+        aria-label={albumTitle}
+        className="focus-visible:ring-ring/50 absolute inset-0 z-10 rounded-3xl focus-visible:ring-2 focus-visible:outline-none"
+      >
+        <span className="sr-only">{albumTitle}</span>
+      </Link>
 
-      {isMetadataOnly && (
-        <p className="text-foreground/60 mt-3 text-xs">{t("library.checklistMissing")}</p>
+      {!isMetadataOnly && (
+        <div className="absolute end-3 top-3 z-20">
+          <AlbumShareCopyButton album={album} variant="icon" className="bg-background/90" />
+        </div>
       )}
-    </Link>
+    </div>
   );
 }

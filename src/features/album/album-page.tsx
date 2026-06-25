@@ -24,6 +24,7 @@ import {
   TEAMS,
   TEAM_INDEX,
 } from "@/constants/album";
+import { getAlbumBySlug } from "@/collections/catalog";
 import type { SpecialSection } from "@/types/album.types";
 import { useCollectionStore } from "@/store/collection.store";
 import { AlbumHeader } from "./album-header";
@@ -187,7 +188,7 @@ export function AlbumPage({ collectors }: AlbumPageProps) {
         "from-background via-background bg-gradient-to-b to-emerald-50/40 dark:to-emerald-950/20"
       )}
     >
-      <AlbumHeader onOpenReset={resetConfirm.onTrue} />
+      <AlbumHeader onOpenReset={resetConfirm.onTrue} album={getAlbumBySlug("world-cup-2026")!} />
 
       <ProgressSummary
         albumOwned={albumStats.unique}
@@ -309,6 +310,8 @@ export function AlbumPage({ collectors }: AlbumPageProps) {
         }}
         filter={filter}
         query={query}
+        teams={TEAMS}
+        onTeamChange={setSelectedTeamCode}
       />
 
       <SpecialDialog

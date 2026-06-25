@@ -20,6 +20,12 @@ import { getQuantity } from "@/lib/album/collection";
 import { useCollectionStore } from "@/store/collection.store";
 import { StickerCounter } from "./sticker-counter";
 import type { FilterMode } from "./types";
+import {
+  DialogSideNavDesktop,
+  DialogSideNavMobile,
+  preventDialogCloseOnSideNav,
+  useDialogSectionNav,
+} from "./dialog-side-nav";
 
 type Props = {
   team: Team | null;
@@ -27,6 +33,8 @@ type Props = {
   onOpenChange: (open: boolean) => void;
   filter: FilterMode;
   query: string;
+  teams?: Team[];
+  onTeamChange?: (teamCode: string) => void;
 };
 
 function matchesFilter(qty: number, filter: FilterMode): boolean {
@@ -37,7 +45,15 @@ function matchesFilter(qty: number, filter: FilterMode): boolean {
   return true;
 }
 
-export function TeamDialog({ team, open, onOpenChange, filter, query }: Props) {
+export function TeamDialog({
+  team,
+  open,
+  onOpenChange,
+  filter,
+  query,
+  teams,
+  onTeamChange,
+}: Props) {
   const t = useTranslations();
   const confirmClear = useBoolean();
   const quantities = useCollectionStore((s) => s.quantities);
@@ -46,6 +62,15 @@ export function TeamDialog({ team, open, onOpenChange, filter, query }: Props) {
   const toggle = useCollectionStore((s) => s.toggle);
   const markComplete = useCollectionStore((s) => s.markTeamComplete);
   const clearTeam = useCollectionStore((s) => s.clearTeam);
+
+  const navigableTeams = teams ?? (team ? [team] : []);
+  const currentIndex = team ? navigableTeams.findIndex((t) => t.code === team.code) : -1;
+  const nav = useDialogSectionNav({
+    open,
+    items: navigableTeams,
+    currentIndex,
+    onSelect: onTeamChange ? (nextTeam) => onTeamChange(nextTeam.code) : undefined,
+  });
 
   if (!team) return null;
 
@@ -71,10 +96,27 @@ export function TeamDialog({ team, open, onOpenChange, filter, query }: Props) {
     return s.code.toLowerCase().includes(lcQuery);
   });
 
+  const sideNav = (
+    <DialogSideNavDesktop
+      enabled={open && nav.canNavigate}
+      hasPrev={nav.hasPrev}
+      hasNext={nav.hasNext}
+      goPrev={nav.goPrev}
+      goNext={nav.goNext}
+      prevLabel={t("album.team.previousSection")}
+      nextLabel={t("album.team.nextSection")}
+    />
+  );
+
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="flex max-h-[92svh] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl">
+        <DialogContent
+          className="flex max-h-[92svh] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl"
+          portalSibling={sideNav}
+          onPointerDownOutside={preventDialogCloseOnSideNav}
+          onInteractOutside={preventDialogCloseOnSideNav}
+        >
           <div
             className="relative px-5 pt-5 pb-4"
             style={{
@@ -82,38 +124,49 @@ export function TeamDialog({ team, open, onOpenChange, filter, query }: Props) {
             }}
           >
             <DialogHeader>
-              <div className="flex items-center gap-3 pe-8">
-                <span
-                  className="ring-border/30 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-4xl shadow-sm ring-2"
-                  aria-hidden
-                >
-                  <span className="drop-shadow-sm">{team.flag}</span>
-                </span>
-                <div className="min-w-0 flex-1">
-                  <DialogTitle className="flex items-center gap-2 text-base font-extrabold sm:text-lg">
-                    <span className="truncate">{team.name}</span>
-                    <span
-                      className="rounded-full px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider text-white uppercase"
-                      style={{ backgroundColor: team.primaryColor }}
-                    >
-                      {team.code}
-                    </span>
-                    {isComplete && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
-                        <Iconify icon="lucide:check" className="size-3" />
-                        {t("album.team.completedBadge")}
+              <div className="flex items-center gap-2 pe-8">
+                <DialogSideNavMobile
+                  enabled={open && nav.canNavigate}
+                  hasPrev={nav.hasPrev}
+                  hasNext={nav.hasNext}
+                  goPrev={nav.goPrev}
+                  goNext={nav.goNext}
+                  prevLabel={t("album.team.previousSection")}
+                  nextLabel={t("album.team.nextSection")}
+                />
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  <span
+                    className="ring-border/30 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-4xl shadow-sm ring-2"
+                    aria-hidden
+                  >
+                    <span className="drop-shadow-sm">{team.flag}</span>
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <DialogTitle className="flex items-center gap-2 text-base font-extrabold sm:text-lg">
+                      <span className="truncate">{team.name}</span>
+                      <span
+                        className="rounded-full px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider text-white uppercase"
+                        style={{ backgroundColor: team.primaryColor }}
+                      >
+                        {team.code}
                       </span>
-                    )}
-                  </DialogTitle>
-                  <DialogDescription className="mt-1 flex items-center gap-2 font-mono text-xs">
-                    <span>{t("album.team.groupLabel", { group: team.group })}</span>
-                    <span className="text-foreground/30">•</span>
-                    <span className="font-semibold">
-                      {t("album.team.progress", { owned, total })}
-                    </span>
-                    <span className="text-foreground/30">•</span>
-                    <span>{percent}%</span>
-                  </DialogDescription>
+                      {isComplete && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                          <Iconify icon="lucide:check" className="size-3" />
+                          {t("album.team.completedBadge")}
+                        </span>
+                      )}
+                    </DialogTitle>
+                    <DialogDescription className="mt-1 flex items-center gap-2 font-mono text-xs">
+                      <span>{t("album.team.groupLabel", { group: team.group })}</span>
+                      <span className="text-foreground/30">•</span>
+                      <span className="font-semibold">
+                        {t("album.team.progress", { owned, total })}
+                      </span>
+                      <span className="text-foreground/30">•</span>
+                      <span>{percent}%</span>
+                    </DialogDescription>
+                  </div>
                 </div>
               </div>
             </DialogHeader>

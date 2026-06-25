@@ -193,6 +193,11 @@
       "expandIncomplete": "توسيع الناقصة",
       "expandAll": "توسيع الكل"
     },
+    "share": {
+      "copyLink": "مشاركة رابط التبادل",
+      "copyLinkAria": "نسخ رابط التبادل لهذا الألبوم",
+      "setupRequired": "أعدّ اسم المستخدم في ملفك الشخصي لمشاركة هذا الألبوم"
+    },
     "team": {
       "progress": "{owned}/{total}",
       "complete": "إكمال الفريق",
@@ -203,6 +208,8 @@
       "clearConfirmTitle": "مسح هذا الفريق؟",
       "clearConfirmDescription": "ستتم إعادة تعيين كل ملصقات الفريق إلى 0 نسخ.",
       "completedBadge": "مكتمل!",
+      "previousSection": "الفريق السابق",
+      "nextSection": "الفريق التالي",
       "groupLabel": "المجموعة {group}"
     },
     "sticker": {
@@ -292,6 +299,8 @@
     "downloadTxt": "تنزيل TXT",
     "downloadCsv": "تنزيل CSV",
     "backToAlbum": "العودة للألبوم",
+    "viewMissing": "قائمة المفقود",
+    "viewDuplicates": "قائمة المكرر",
     "totalCount": "{count, plural, one {# رمز} other {# رموز}}",
     "sectionLabel": "القسم",
     "codeLabel": "الرمز",
@@ -308,6 +317,7 @@
     "contactValueLabel": "المعرّف / الرقم",
     "contactNone": "لا تعرض جهة الاتصال",
     "shareLink": "رابط المشاركة",
+    "shareLinkHint": "يعرض المفقود والمكرر لـ {album}. افتح ألبوماً أولاً لتغيير المجموعة التي يشاركها هذا الرابط.",
     "openShare": "فتح",
     "copy": "نسخ",
     "copied": "تم نسخ الرابط",
@@ -340,7 +350,7 @@
     "viewAll": "عرض الكل ({count})"
   },
   "share": {
-    "eyebrow": "مجموعة باناني كأس العالم 2026",
+    "eyebrow": "مجموعة {album}",
     "albumProgress": "الألبوم",
     "duplicates": "المكررة",
     "bonus": "الإضافية",
@@ -358,7 +368,7 @@
     "messageCopied": "تم نسخ الرسالة",
     "message": {
       "greeting": "مرحباً {name}!",
-      "intro": "أنا أيضاً أجمع باناني كأس العالم 2026 ورأيت ألبومك — لدينا {count} بطاقة متطابقة.",
+      "intro": "أنا أيضاً أجمع {album} ورأيت رابط مشاركتك — لدينا {count} بطاقة متطابقة.",
       "needLine": "البطاقات التي تنقصني وتملكها كمكررة:",
       "more": "(+{count} أخرى)",
       "swap": "نتبادل؟",
@@ -369,8 +379,8 @@
     "siteTitle": "متتبع ألبوم باناني كأس العالم 2026",
     "siteTitleTemplate": "%s · باناني كأس العالم 2026",
     "siteDescription": "تتبع ألبوم ملصقات باناني لكأس العالم 2026. أدر 980 ملصقًا، حدّد المكررة، اعثر على شركاء للتبادل وشارك قائمة المفقود.",
-    "shareTitle": "@{username} — مجموعة باناني كأس العالم 2026",
-    "shareDescription": "اطّلع على الملصقات التي ينقص @{username} والمكررة المتاحة للتبادل."
+    "shareTitle": "@{username} — {album}",
+    "shareDescription": "اطّلع على ما ينقص @{username} وما لديه من مكررات للتبادل في {album}."
   },
   "library": {
     "eyebrow": "مكتبة ألبومات كرة القدم",

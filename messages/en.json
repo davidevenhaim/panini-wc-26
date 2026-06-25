@@ -193,6 +193,11 @@
       "expandIncomplete": "Expand incomplete",
       "expandAll": "Expand all"
     },
+    "share": {
+      "copyLink": "Share swap link",
+      "copyLinkAria": "Copy swap link for this album",
+      "setupRequired": "Set up your profile username to share this album"
+    },
     "team": {
       "progress": "{owned}/{total}",
       "complete": "Mark team complete",
@@ -203,6 +208,8 @@
       "clearConfirmTitle": "Clear this team?",
       "clearConfirmDescription": "All stickers in this team will be reset to 0 copies.",
       "completedBadge": "Complete!",
+      "previousSection": "Previous team",
+      "nextSection": "Next team",
       "groupLabel": "Group {group}"
     },
     "sticker": {
@@ -292,6 +299,8 @@
     "downloadTxt": "Download TXT",
     "downloadCsv": "Download CSV",
     "backToAlbum": "Back to album",
+    "viewMissing": "Missing list",
+    "viewDuplicates": "Duplicates list",
     "totalCount": "{count, plural, one {# code} other {# codes}}",
     "sectionLabel": "Section",
     "codeLabel": "Code",
@@ -308,6 +317,7 @@
     "contactValueLabel": "Contact handle / number",
     "contactNone": "Don't show contact",
     "shareLink": "Your share link",
+    "shareLinkHint": "Shows missing & duplicates for {album}. Open an album first to change which collection this link shares.",
     "openShare": "Open",
     "copy": "Copy",
     "copied": "Link copied",
@@ -340,7 +350,7 @@
     "viewAll": "View all ({count})"
   },
   "share": {
-    "eyebrow": "Panini WC 2026 collection",
+    "eyebrow": "{album} collection",
     "albumProgress": "Album",
     "duplicates": "Duplicates",
     "bonus": "Bonus",
@@ -358,7 +368,7 @@
     "messageCopied": "Message copied",
     "message": {
       "greeting": "Hi {name}!",
-      "intro": "I'm collecting Panini WC 2026 too and saw your share link — we have {count} matching cards.",
+      "intro": "I'm collecting {album} too and saw your share link — we have {count} matching cards.",
       "needLine": "Cards I'm missing that you have as duplicates:",
       "more": "(+{count} more)",
       "swap": "Want to swap?",
@@ -369,8 +379,8 @@
     "siteTitle": "Panini WC 2026 Album Tracker",
     "siteTitleTemplate": "%s · Panini WC 2026",
     "siteDescription": "Track your Panini FIFA World Cup 2026 sticker album. Manage 980 stickers, mark duplicates, find swap partners, and share your missing list.",
-    "shareTitle": "@{username} — Panini WC 2026 collection",
-    "shareDescription": "See which stickers @{username} still needs and which duplicates they have for swapping."
+    "shareTitle": "@{username} — {album}",
+    "shareDescription": "See which items @{username} still needs and which duplicates they have for swapping in {album}."
   },
   "library": {
     "eyebrow": "Football collection library",

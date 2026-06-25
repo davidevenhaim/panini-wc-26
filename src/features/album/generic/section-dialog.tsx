@@ -21,6 +21,12 @@ import { StickerCounter } from "../sticker-counter";
 import { ReportButton } from "@/features/data-reports/report-button";
 import { useItemTerminology } from "../use-item-terminology";
 import type { FilterMode } from "../types";
+import {
+  DialogSideNavDesktop,
+  DialogSideNavMobile,
+  preventDialogCloseOnSideNav,
+  useDialogSectionNav,
+} from "../dialog-side-nav";
 
 type Props = {
   section: AlbumSection | null;
@@ -33,6 +39,9 @@ type Props = {
   filter: FilterMode;
   query: string;
   rtl?: boolean;
+  /** Ordered sections for prev/next navigation while the dialog stays open. */
+  sections?: AlbumSection[];
+  onSectionChange?: (sectionId: string) => void;
 };
 
 function matchesFilter(qty: number, filter: FilterMode): boolean {
@@ -53,6 +62,8 @@ export function GenericSectionDialog({
   filter,
   query,
   rtl,
+  sections,
+  onSectionChange,
 }: Props) {
   const t = useTranslations();
   const term = useItemTerminology({ itemType: itemType ?? "STICKER" });
@@ -62,6 +73,15 @@ export function GenericSectionDialog({
   const decrement = useCollectionStore((s) => s.decrement);
   const toggle = useCollectionStore((s) => s.toggle);
   const markSectionComplete = useCollectionStore((s) => s.markSectionComplete);
+
+  const navigableSections = sections ?? (section ? [section] : []);
+  const currentIndex = section ? navigableSections.findIndex((s) => s.id === section.id) : -1;
+  const nav = useDialogSectionNav({
+    open,
+    items: navigableSections,
+    currentIndex,
+    onSelect: onSectionChange ? (nextSection) => onSectionChange(nextSection.id) : undefined,
+  });
 
   if (!section) return null;
 
@@ -98,50 +118,78 @@ export function GenericSectionDialog({
     toastSuccess(t("album.team.clear"));
   }
 
+  const sideNav = (
+    <DialogSideNavDesktop
+      enabled={open && nav.canNavigate}
+      hasPrev={nav.hasPrev}
+      hasNext={nav.hasNext}
+      goPrev={nav.goPrev}
+      goNext={nav.goNext}
+      prevLabel={t("album.team.previousSection")}
+      nextLabel={t("album.team.nextSection")}
+    />
+  );
+
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="flex max-h-[92svh] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl">
+        <DialogContent
+          className="flex max-h-[92svh] flex-col gap-0 overflow-hidden p-0 sm:max-w-2xl"
+          portalSibling={sideNav}
+          onPointerDownOutside={preventDialogCloseOnSideNav}
+          onInteractOutside={preventDialogCloseOnSideNav}
+        >
           <div
             className="relative px-5 pt-5 pb-4"
             style={{ background: `linear-gradient(135deg, ${primary}30 0%, ${accent}18 100%)` }}
           >
             <DialogHeader>
-              <div className="flex items-center gap-3 pe-8">
-                {section.flag ? (
-                  <span
-                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-4xl shadow-sm ring-2 ring-white/40"
-                    style={{ backgroundColor: primary }}
-                    aria-hidden
-                  >
-                    {section.flag}
-                  </span>
-                ) : (
-                  <span
-                    className="font-heading flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm ring-2 ring-white/40"
-                    style={{ backgroundColor: primary }}
-                    aria-hidden
-                  >
-                    {section.badge ?? title.charAt(0).toUpperCase()}
-                  </span>
-                )}
-                <div className="min-w-0 flex-1">
-                  <DialogTitle className="flex items-center gap-2 text-base font-extrabold sm:text-lg">
-                    <span className="truncate">{title}</span>
-                    {isComplete && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
-                        <Iconify icon="lucide:check" className="size-3" />
-                        {t("album.team.completedBadge")}
-                      </span>
-                    )}
-                  </DialogTitle>
-                  <DialogDescription className="mt-1 flex items-center gap-2 font-mono text-xs">
-                    <span className="font-semibold">
-                      {owned}/{total}
+              <div className="flex items-center gap-2 pe-8">
+                <DialogSideNavMobile
+                  enabled={open && nav.canNavigate}
+                  hasPrev={nav.hasPrev}
+                  hasNext={nav.hasNext}
+                  goPrev={nav.goPrev}
+                  goNext={nav.goNext}
+                  prevLabel={t("album.team.previousSection")}
+                  nextLabel={t("album.team.nextSection")}
+                />
+                <div className="flex min-w-0 flex-1 items-center gap-3">
+                  {section.flag ? (
+                    <span
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-4xl shadow-sm ring-2 ring-white/40"
+                      style={{ backgroundColor: primary }}
+                      aria-hidden
+                    >
+                      {section.flag}
                     </span>
-                    <span className="text-foreground/30">•</span>
-                    <span>{percent}%</span>
-                  </DialogDescription>
+                  ) : (
+                    <span
+                      className="font-heading flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-2xl font-black text-white shadow-sm ring-2 ring-white/40"
+                      style={{ backgroundColor: primary }}
+                      aria-hidden
+                    >
+                      {section.badge ?? title.charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <DialogTitle className="flex items-center gap-2 text-base font-extrabold sm:text-lg">
+                      <span className="truncate">{title}</span>
+                      {isComplete && (
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-white shadow-sm">
+                          <Iconify icon="lucide:check" className="size-3" />
+                          {t("album.team.completedBadge")}
+                        </span>
+                      )}
+                    </DialogTitle>
+                    <DialogDescription className="mt-1 flex items-center gap-2 font-mono text-xs">
+                      <span className="font-semibold">
+                        {owned}/{total}
+                      </span>
+                      <span className="text-foreground/30">•</span>
+                      <span>{percent}%</span>
+                    </DialogDescription>
+                  </div>
                 </div>
               </div>
             </DialogHeader>

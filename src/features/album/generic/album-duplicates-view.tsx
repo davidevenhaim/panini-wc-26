@@ -11,8 +11,14 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 import { toastSuccess, toastError } from "@/lib/toast";
 import WEB_ROUTES from "@/constants/web-routes.constants";
 import { useCollectionStore } from "@/store/collection.store";
-import { buildDuplicatesCsvForAlbum, listAlbumDuplicates } from "@/lib/album/album-progress";
+import {
+  buildDuplicatesCsvForAlbum,
+  groupAlbumDuplicatesBySection,
+  listAlbumDuplicates,
+} from "@/lib/album/album-progress";
 import { ReportButton } from "@/features/data-reports/report-button";
+import { AlbumProfileShareButton } from "../album-profile-share-button";
+import { AlbumGroupedCodeBuckets } from "../album-grouped-code-buckets";
 import { useItemTerminology } from "../use-item-terminology";
 import { AlbumNavBar } from "../album-nav-bar";
 import type { Album } from "@/collections/schema";
@@ -48,6 +54,10 @@ export function AlbumDuplicatesView({ album }: Props) {
   }, [hydrate, setActiveAlbum, album.id]);
 
   const quantities = getAlbumQuantities(album.id);
+  const buckets = React.useMemo(
+    () => groupAlbumDuplicatesBySection(album, quantities, lt),
+    [album, quantities, lt]
+  );
   const rows = React.useMemo(() => listAlbumDuplicates(album, quantities), [album, quantities]);
   const csv = React.useMemo(
     () => buildDuplicatesCsvForAlbum(album, quantities),
@@ -73,11 +83,14 @@ export function AlbumDuplicatesView({ album }: Props) {
 
   if (!isHydrated) {
     return (
-      <main className="mx-auto w-full px-4 py-10 sm:px-6 lg:px-10">
-        <Typography variant="body2" as="p" color="muted" className="text-center">
-          {t("loading")}
-        </Typography>
-      </main>
+      <>
+        <AlbumNavBar album={album} />
+        <main className="mx-auto w-full px-4 py-10 sm:px-6 lg:px-10">
+          <Typography variant="body2" as="p" color="muted" className="text-center">
+            {t("loading")}
+          </Typography>
+        </main>
+      </>
     );
   }
 
@@ -86,7 +99,7 @@ export function AlbumDuplicatesView({ album }: Props) {
       <AlbumNavBar album={album} />
       <main
         dir={rtl ? "rtl" : undefined}
-        className="mx-auto w-full max-w-3xl px-4 py-6 sm:px-6 lg:px-10"
+        className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 lg:px-10"
       >
         <div className="mb-4">
           <Button asChild variant="ghost" size="sm">
@@ -118,6 +131,8 @@ export function AlbumDuplicatesView({ album }: Props) {
           </Typography>
         </header>
 
+        <AlbumProfileShareButton album={album} />
+
         <div className="mb-4 flex flex-wrap gap-2">
           <Button onClick={onCopy} disabled={rows.length === 0}>
             <Iconify icon="lucide:copy" className="size-4" />
@@ -138,30 +153,11 @@ export function AlbumDuplicatesView({ album }: Props) {
           />
         </div>
 
-        {rows.length === 0 ? (
-          <div className="bg-card rounded-3xl border-2 border-dashed p-8 text-center">
-            <Iconify icon="lucide:sparkles" className="text-foreground/30 mx-auto size-10" />
-            <Typography variant="body2" as="p" color="muted" className="mt-2">
-              {t("albumLists.emptyDuplicates")}
-            </Typography>
-          </div>
-        ) : (
-          <ul className="space-y-2">
-            {rows.map((row) => (
-              <li
-                key={row.item.id}
-                className="bg-card flex items-center justify-between gap-3 rounded-xl border p-3"
-              >
-                <span className="font-mono text-sm font-bold" dir="ltr">
-                  {row.item.code}
-                </span>
-                <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-xs font-bold text-amber-700 dark:text-amber-300">
-                  ×{row.extra}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <AlbumGroupedCodeBuckets
+          buckets={buckets}
+          variant="duplicates"
+          emptyMessage={t("albumLists.emptyDuplicates")}
+        />
       </main>
     </>
   );
