@@ -138,7 +138,7 @@ const DESKTOP_RIGHT_CLASS = `${DESKTOP_SIDE_CLASS} right-[max(0.75rem,calc(50%-m
 
 function getSideNavSlots(
   isRtl: boolean,
-  { hasPrev, hasNext, goPrev, goNext, prevLabel, nextLabel }: NavState
+  { hasPrev, hasNext, goPrev, goNext, prevLabel, nextLabel }: SideNavProps
 ) {
   // LTR: prev on the left, next on the right. RTL: next on the left, prev on the right.
   const left = isRtl
